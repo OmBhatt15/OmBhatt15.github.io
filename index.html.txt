@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Bhatt | Engineering Portfolio</title>
+    <style>
+        /* --- PROFESSIONAL ENGINEERING STYLING --- */
+        :root {
+            --monash-blue: #0066CC;
+            --dark-gray: #333;
+            --light-bg: #f8f9fa;
+        }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--light-bg); color: var(--dark-gray); line-height: 1.6; }
+        
+        /* HEADER */
+        header { background-color: white; border-bottom: 3px solid var(--monash-blue); padding: 3rem 1rem; text-align: center; }
+        h1 { margin: 0; font-size: 2.5rem; color: var(--dark-gray); }
+        .subtitle { color: var(--monash-blue); font-weight: bold; font-size: 1.2rem; margin-top: 0.5rem; }
+        .contact-info { margin-top: 1rem; font-size: 0.9rem; }
+        .contact-info a { color: var(--dark-gray); text-decoration: none; margin: 0 10px; border-bottom: 1px solid transparent; }
+        .contact-info a:hover { border-bottom: 1px solid var(--monash-blue); }
+
+        /* SECTIONS */
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+        .section-header { border-left: 5px solid var(--monash-blue); padding-left: 1rem; margin: 3rem 0 1.5rem 0; font-size: 1.5rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* ARES HIGHLIGHT BOX */
+        .highlight-box { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #e74c3c; /* Red for Ares */ margin-bottom: 2rem; }
+        .highlight-title { color: #c0392b; font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem; }
+
+        /* PROJECT GRID */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .project-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        .project-card:hover { transform: translateY(-5px); }
+        
+        /* IMAGE PLACEHOLDER - This is where your photos go */
+        .card-image { 
+            width: 100%; 
+            height: 220px; 
+            background-color: #ddd; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #666; 
+            font-weight: bold;
+            object-fit: cover;
+        }
+        
+        .card-content { padding: 1.5rem; }
+        .card-title { margin: 0 0 0.5rem 0; font-size: 1.2rem; color: var(--monash-blue); }
+        .tags { margin-bottom: 1rem; }
+        .tag { background: #eee; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; color: #555; margin-right: 5px; }
+        
+        footer { text-align: center; padding: 3rem; color: #888; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Om Bhatt</h1>
+    <p class="subtitle">Mechatronics Engineering Undergraduate & Co-Founder @ ARES Technologies</p>
+    <div class="contact-info">
+        <a href="https://linkedin.com/in/ombhatt15/">LinkedIn</a> • 
+        <a href="https://www.instagram.com/ares_technologies/reels/">ARES Instagram</a> • 
+        <a href="mailto:INSERT_YOUR_EMAIL_HERE">Email Me</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="highlight-box">
+        <div class="highlight-title">🚀 ARES Technologies & DeepNeuron Expo</div>
+        <p>
+            As Co-Founder of <strong>ARES Technologies</strong>, I lead a private R&D team developing autonomous robotic systems. 
+            We were recently selected to exhibit at the <strong>Monash DeepNeuron Tech Expo</strong>, presenting our bio-mimetic hardware alongside 
+            industry giants like Microsoft and Telstra.
+        </p>
+    </div>
+
+    <div class="section-header">Engineering Projects</div>
+    
+    <div class="project-grid">
+        
+        <div class="project-card">
+            <img src="jaegar.jpg" alt="JAEGAR Robot" class="card-image" onerror="this.style.display='none'">
+            <div class="card-image" style="background:#333; color:white;">JAEGAR (Image Placeholder)</div> 
+
+            <div class="card-content">
+                <h3 class="card-title">Project JAEGAR</h3>
+                <div class="tags">
+                    <span class="tag">Bio-Mimetic</span>
+                    <span class="tag">High-Current Servo</span>
+                    <span class="tag">CAD</span>
+                </div>
+                <p>
+                    An anthropomorphic robotic arm capable of real-time human motion mimicry. 
+                    Engineered with custom power distribution for high-torque servos, intended for medical and remote-operation applications.
+                </p>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="scorpion.jpg" alt="SCORPION Hexapod" class="card-image" onerror="this.style.display='none'">
+            <div class="card-image" style="background:#333; color:white;">SCORPION (Image Placeholder)</div>
+
+            <div class="card-content">
+                <h3 class="card-title">Project SCORPION</h3>
+                <div class="tags">
+                    <span class="tag">Inverse Kinematics</span>
+                    <span class="tag">PCB Design</span>
+                    <span class="tag">Autonomous</span>
+                </div>
+                <p>
+                    AI-powered hexapod robot utilizing inverse kinematics for adaptive terrain navigation. 
+                    Features a custom-designed PCB chassis integrating power management and sensor arrays for autonomous utility tasks.
+                </p>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <img src="sentinel.jpg" alt="SENTINEL System" class="card-image" onerror="this.style.display='none'">
+            <div class="card-image" style="background:#333; color:white;">SENTINEL (Image Placeholder)</div>
+
+            <div class="card-content">
+                <h3 class="card-title">Project SENTINEL</h3>
+                <div class="tags">
+                    <span class="tag">Computer Vision</span>
+                    <span class="tag">Object Tracking</span>
+                    <span class="tag">Defense Tech</span>
+                </div>
+                <p>
+                    An AI-driven automated tracking system designed for aerial defense simulation. 
+                    Utilizes computer vision algorithms for real-time target acquisition and rapid turret alignment.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 Om Bhatt. Built with HTML/CSS.
+</footer>
+
+</body>
+</html>
