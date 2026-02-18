@@ -9,50 +9,95 @@
         :root {
             --monash-blue: #0066CC;
             --dark-gray: #333;
-            --light-bg: #f8f9fa;
+            --light-bg: #f4f7f6;
+            --text-color: #444;
         }
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--light-bg); color: var(--dark-gray); line-height: 1.6; }
+        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--light-bg); color: var(--text-color); line-height: 1.6; }
         
         /* HEADER */
-        header { background-color: white; border-bottom: 3px solid var(--monash-blue); padding: 3rem 1rem; text-align: center; }
-        h1 { margin: 0; font-size: 2.5rem; color: var(--dark-gray); }
-        .subtitle { color: var(--monash-blue); font-weight: bold; font-size: 1.2rem; margin-top: 0.5rem; }
-        .contact-info { margin-top: 1rem; font-size: 0.9rem; }
-        .contact-info a { color: var(--dark-gray); text-decoration: none; margin: 0 10px; border-bottom: 1px solid transparent; }
-        .contact-info a:hover { border-bottom: 1px solid var(--monash-blue); }
+        header { background-color: white; border-bottom: 4px solid var(--monash-blue); padding: 4rem 1rem; text-align: center; }
+        h1 { margin: 0; font-size: 3rem; color: var(--dark-gray); letter-spacing: -1px; }
+        .subtitle { color: var(--monash-blue); font-weight: 600; font-size: 1.3rem; margin-top: 0.5rem; }
+        .contact-info { margin-top: 1.5rem; font-size: 1rem; }
+        .contact-info a { color: var(--dark-gray); text-decoration: none; margin: 0 15px; font-weight: 500; border-bottom: 2px solid transparent; transition: border-color 0.3s; }
+        .contact-info a:hover { border-bottom: 2px solid var(--monash-blue); }
 
-        /* SECTIONS */
-        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
-        .section-header { border-left: 5px solid var(--monash-blue); padding-left: 1rem; margin: 3rem 0 1.5rem 0; font-size: 1.5rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+        /* LAYOUT CONTAINER */
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
         
         /* ARES HIGHLIGHT BOX */
-        .highlight-box { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #e74c3c; /* Red for Ares */ margin-bottom: 2rem; }
-        .highlight-title { color: #c0392b; font-size: 1.3rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .highlight-box { 
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06); 
+            border-left: 6px solid #e74c3c; /* Red for Ares */ 
+            margin-bottom: 4rem; 
+        }
+        .highlight-title { color: #c0392b; font-size: 1.5rem; font-weight: bold; margin-bottom: 0.8rem; }
 
-        /* PROJECT GRID */
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .project-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.2s; }
-        .project-card:hover { transform: translateY(-5px); }
+        /* PROJECT CASE STUDY SECTION */
+        .project-section {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 4rem; /* Space between projects */
+        }
+
+        /* MEDIA AREA (Video/Image) */
+        .project-media {
+            width: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        video { width: 100%; display: block; max-height: 500px; }
+
+        /* TEXT CONTENT AREA */
+        .project-content { padding: 2.5rem; }
         
-        /* IMAGE PLACEHOLDER - This is where your photos go */
-        .card-image { 
-            width: 100%; 
-            height: 220px; 
-            background-color: #ddd; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            color: #666; 
-            font-weight: bold;
-            object-fit: cover;
+        .project-title { 
+            font-size: 2rem; 
+            color: var(--monash-blue); 
+            margin: 0 0 1rem 0; 
+            border-bottom: 2px solid #eee; 
+            padding-bottom: 0.5rem; 
+        }
+
+        /* ENGINEERING DETAILS GRID */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
         }
         
-        .card-content { padding: 1.5rem; }
-        .card-title { margin: 0 0 0.5rem 0; font-size: 1.2rem; color: var(--monash-blue); }
-        .tags { margin-bottom: 1rem; }
-        .tag { background: #eee; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; color: #555; margin-right: 5px; }
+        h4 { margin: 0 0 0.5rem 0; color: #2c3e50; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        p { margin-top: 0; font-size: 0.95rem; color: #555; }
         
-        footer { text-align: center; padding: 3rem; color: #888; font-size: 0.9rem; }
+        /* TAGS */
+        .tags { margin: 1rem 0 2rem 0; }
+        .tag { 
+            display: inline-block;
+            background: #eef2f5; 
+            padding: 5px 12px; 
+            border-radius: 20px; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            color: #555; 
+            margin-right: 8px; 
+            border: 1px solid #ddd;
+        }
+
+        /* MOBILE FIX */
+        @media (max-width: 768px) {
+            .details-grid { grid-template-columns: 1fr; gap: 1rem; }
+            h1 { font-size: 2rem; }
+        }
+
+        footer { text-align: center; padding: 4rem 0; color: #999; font-size: 0.9rem; }
     </style>
 </head>
 <body>
@@ -61,8 +106,8 @@
     <h1>Om Bhatt</h1>
     <p class="subtitle">Mechatronics Engineering Undergraduate & Co-Founder @ ARES Technologies</p>
     <div class="contact-info">
-        <a href="https://linkedin.com/in/ombhatt15/">LinkedIn</a> • 
-        <a href="https://www.instagram.com/ares_technologies/reels/">ARES Instagram</a> • 
+        <a href="https://linkedin.com/in/ombhatt15/">LinkedIn</a>
+        <a href="https://www.instagram.com/ares_technologies/reels/">ARES Portfolio</a>
         <a href="mailto:INSERT_YOUR_EMAIL_HERE">Email Me</a>
     </div>
 </header>
@@ -74,69 +119,128 @@
         <p>
             As Co-Founder of <strong>ARES Technologies</strong>, I lead a private R&D team developing autonomous robotic systems. 
             We were recently selected to exhibit at the <strong>Monash DeepNeuron Tech Expo</strong>, presenting our bio-mimetic hardware alongside 
-            industry giants like Microsoft and Telstra.
+            industry giants like Microsoft and Telstra. This experience validated our iterative design process and ability to scale prototypes.
         </p>
     </div>
 
-    <div class="section-header">Engineering Projects</div>
-    
-    <div class="project-grid">
-        
-        <div class="project-card">
-            <img src="jaegar.jpg" alt="JAEGAR Robot" class="card-image" onerror="this.style.display='none'">
-            <div class="card-image" style="background:#333; color:white;">JAEGAR (Image Placeholder)</div> 
+    <div class="project-section">
+        <div class="project-media">
+            <video controls muted playsinline poster="jaegar.jpg">
+                <source src="jaegar.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="project-content">
+            <h2 class="project-title">Project JAEGAR</h2>
+            <div class="tags">
+                <span class="tag">Bio-Mimetic Robotics</span>
+                <span class="tag">High-Current Power Distribution</span>
+                <span class="tag">SolidWorks CAD</span>
+            </div>
 
-            <div class="card-content">
-                <h3 class="card-title">Project JAEGAR</h3>
-                <div class="tags">
-                    <span class="tag">Bio-Mimetic</span>
-                    <span class="tag">High-Current Servo</span>
-                    <span class="tag">CAD</span>
+            <p class="lead">
+                An anthropomorphic robotic arm designed to replicate human motion in real-time. 
+                The primary goal was to create a fluid, high-torque system capable of mimicking delicate hand gestures for potential medical and teleoperation applications.
+            </p>
+
+            <div class="details-grid">
+                <div>
+                    <h4>The Challenge</h4>
+                    <p>
+                        The main difficulty was handling the power surge when all 5 fingers actuated simultaneously. 
+                        Standard microcontrollers couldn't handle the current draw, leading to brownouts. 
+                        Additionally, mapping linear servo movement to the non-linear rotation of human finger joints required complex mechanical linkage design.
+                    </p>
                 </div>
-                <p>
-                    An anthropomorphic robotic arm capable of real-time human motion mimicry. 
-                    Engineered with custom power distribution for high-torque servos, intended for medical and remote-operation applications.
-                </p>
+                <div>
+                    <h4>Engineering Solution</h4>
+                    <p>
+                        I designed a dedicated power distribution bus separate from the logic controller to isolate noise and manage high loads. 
+                        For the mechanics, I utilized SolidWorks to iterate on a "tendon-driven" design, using high-tension fishing line routed through 3D-printed phalanges to simulate muscle contraction.
+                    </p>
+                </div>
             </div>
         </div>
-
-        <div class="project-card">
-            <img src="scorpion.jpg" alt="SCORPION Hexapod" class="card-image" onerror="this.style.display='none'">
-            <div class="card-image" style="background:#333; color:white;">SCORPION (Image Placeholder)</div>
-
-            <div class="card-content">
-                <h3 class="card-title">Project SCORPION</h3>
-                <div class="tags">
-                    <span class="tag">Inverse Kinematics</span>
-                    <span class="tag">PCB Design</span>
-                    <span class="tag">Autonomous</span>
-                </div>
-                <p>
-                    AI-powered hexapod robot utilizing inverse kinematics for adaptive terrain navigation. 
-                    Features a custom-designed PCB chassis integrating power management and sensor arrays for autonomous utility tasks.
-                </p>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <img src="sentinel.jpg" alt="SENTINEL System" class="card-image" onerror="this.style.display='none'">
-            <div class="card-image" style="background:#333; color:white;">SENTINEL (Image Placeholder)</div>
-
-            <div class="card-content">
-                <h3 class="card-title">Project SENTINEL</h3>
-                <div class="tags">
-                    <span class="tag">Computer Vision</span>
-                    <span class="tag">Object Tracking</span>
-                    <span class="tag">Defense Tech</span>
-                </div>
-                <p>
-                    An AI-driven automated tracking system designed for aerial defense simulation. 
-                    Utilizes computer vision algorithms for real-time target acquisition and rapid turret alignment.
-                </p>
-            </div>
-        </div>
-
     </div>
+
+    <div class="project-section">
+        <div class="project-media">
+             <video controls muted playsinline poster="scorpion.jpg">
+                <source src="scorpion.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="project-content">
+            <h2 class="project-title">Project SCORPION</h2>
+            <div class="tags">
+                <span class="tag">Inverse Kinematics</span>
+                <span class="tag">PCB Design</span>
+                <span class="tag">Autonomous Navigation</span>
+            </div>
+
+            <p class="lead">
+                A hexapod robot built to explore autonomous terrain navigation. 
+                This platform served as a testbed for learning inverse kinematics algorithms and custom PCB fabrication.
+            </p>
+
+            <div class="details-grid">
+                <div>
+                    <h4>The Challenge</h4>
+                    <p>
+                        Coordinate 18 separate servos (3 per leg) to achieve a smooth "tripod gait" walking cycle.
+                        Traditional breadboard wiring was too bulky and unreliable for a moving chassis, causing frequent connection failures during movement.
+                    </p>
+                </div>
+                <div>
+                    <h4>Engineering Solution</h4>
+                    <p>
+                        I developed a custom Inverse Kinematics solver in Python to calculate the precise angle of every joint based on a desired foot coordinate (x,y,z).
+                        To solve the wiring issue, I designed a custom PCB in KiCad that integrated the servo drivers and power management directly into the robot's chassis, reducing weight by 40%.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-section">
+        <div class="project-media">
+             <video controls muted playsinline poster="sentinel.jpg">
+                <source src="sentinel.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="project-content">
+            <h2 class="project-title">Project SENTINEL</h2>
+            <div class="tags">
+                <span class="tag">Computer Vision</span>
+                <span class="tag">Python / OpenCV</span>
+                <span class="tag">Real-Time Tracking</span>
+            </div>
+
+            <p class="lead">
+                An automated defense simulation system using computer vision. 
+                Designed to track aerial targets and align a turret mechanism in real-time without human input.
+            </p>
+
+            <div class="details-grid">
+                <div>
+                    <h4>The Challenge</h4>
+                    <p>
+                        Processing video feeds fast enough to track a moving object while simultaneously driving stepper motors. 
+                        Latency between the camera detecting an object and the motors moving created a "lag" that made the tracking inaccurate.
+                    </p>
+                </div>
+                <div>
+                    <h4>Engineering Solution</h4>
+                    <p>
+                        I implemented a multi-threaded Python script where one thread handled the Heavy OpenCV image processing, and a separate lightweight thread handled the motor control.
+                        This allowed the turret to predict the target's path (vector analysis) rather than just reacting to where it was, significantly improving accuracy.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <footer>
