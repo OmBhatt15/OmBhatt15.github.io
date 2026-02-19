@@ -141,6 +141,7 @@
             <p class="lead">
                 An anthropomorphic robotic arm designed to replicate human motion in real-time. 
                 The primary goal was to create a fluid, high-torque system capable of mimicking delicate hand gestures for potential medical and teleoperation applications.
+                The end goal is to create a full scale humanoid robot that can mimic a user's actions.
             </p>
 
             <div class="details-grid">
@@ -156,7 +157,7 @@
                     <h4>Engineering Solution</h4>
                     <p>
                         I designed a dedicated power distribution bus separate from the logic controller to isolate noise and manage high loads. 
-                        For the mechanics, I utilized SolidWorks to iterate on a "tendon-driven" design, using high-tension fishing line routed through 3D-printed phalanges to simulate muscle contraction.
+                        For the mechanics, I utilized SolidWorks to iterate on a "tendon-driven" design, using high-tension nylon string routed through 3D-printed phalanges to simulate muscle contraction.
                     </p>
                 </div>
             </div>
@@ -179,7 +180,7 @@
             </div>
 
             <p class="lead">
-                A hexapod robot built to explore autonomous terrain navigation. 
+                A hexapod robot built to assist with daily tasks, surveillance and exploration. 
                 This platform served as a testbed for learning inverse kinematics algorithms and custom PCB fabrication.
             </p>
 
@@ -189,13 +190,17 @@
                     <p>
                         Coordinate 18 separate servos (3 per leg) to achieve a smooth "tripod gait" walking cycle.
                         Traditional breadboard wiring was too bulky and unreliable for a moving chassis, causing frequent connection failures during movement.
+                        The actual mechanical design of the robot was very tedious to get reliable and upright.
+
+                        Current issue is understanding autonomous movement and adding the scorpion claw to assist with tasks.
                     </p>
                 </div>
                 <div>
                     <h4>Engineering Solution</h4>
                     <p>
-                        I developed a custom Inverse Kinematics solver in Python to calculate the precise angle of every joint based on a desired foot coordinate (x,y,z).
-                        To solve the wiring issue, I designed a custom PCB in KiCad that integrated the servo drivers and power management directly into the robot's chassis, reducing weight by 40%.
+                        I developed a custom Inverse Kinematics solver in Python, with the help of AI, to calculate the precise angle of every joint based on a desired foot coordinate (x,y,z).
+                        To solve the wiring issue, I designed a custom PCB in KiCad that integrated the servo drivers and power management directly into the robot's chassis, reducing weight by 20%.
+                        We underwent 3 iterations of the robot's leg design, ending with an ultralight but sturdy design.
                     </p>
                 </div>
             </div>
@@ -233,7 +238,7 @@
                 <div>
                     <h4>Engineering Solution</h4>
                     <p>
-                        I implemented a multi-threaded Python script where one thread handled the Heavy OpenCV image processing, and a separate lightweight thread handled the motor control.
+                        I implemented, with the help of AI, a multi-threaded Python script where one thread handled the Heavy OpenCV image processing, and a separate lightweight thread handled the motor control.
                         This allowed the turret to predict the target's path (vector analysis) rather than just reacting to where it was, significantly improving accuracy.
                     </p>
                 </div>
@@ -249,3 +254,4 @@
 
 </body>
 </html>
+
