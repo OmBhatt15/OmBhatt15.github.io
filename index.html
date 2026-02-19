@@ -25,13 +25,13 @@
         /* LAYOUT CONTAINER */
         .container { max-width: 950px; margin: 0 auto; padding: 2rem; }
         
-        /* ARES HIGHLIGHT BOX */
+        /* HIGHLIGHT BOX */
         .highlight-box { 
             background: white; 
             padding: 2.5rem; 
             border-radius: 12px; 
             box-shadow: 0 4px 20px rgba(0,0,0,0.06); 
-            border-left: 6px solid #e74c3c; /* Red for Ares */ 
+            border-left: 6px solid #e74c3c; 
             margin-bottom: 4rem; 
         }
         .highlight-title { color: #c0392b; font-size: 1.5rem; font-weight: bold; margin-bottom: 0.8rem; }
@@ -42,20 +42,13 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 4rem; /* Space between projects */
+            margin-bottom: 4rem; 
         }
 
         .project-content { padding: 2.5rem; }
-        
-        .project-title { 
-            font-size: 2rem; 
-            color: var(--monash-blue); 
-            margin: 0 0 1rem 0; 
-            border-bottom: 2px solid #eee; 
-            padding-bottom: 0.5rem; 
-        }
+        .project-title { font-size: 2rem; color: var(--monash-blue); margin: 0 0 1rem 0; border-bottom: 2px solid #eee; padding-bottom: 0.5rem; }
 
-        /* --- GALLERY STYLES (NEW) --- */
+        /* --- GALLERY STYLES --- */
         .gallery-title { font-size: 1.1rem; font-weight: bold; color: #555; margin-top: 2rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; border-left: 4px solid #ddd; padding-left: 10px; }
         
         .gallery-grid {
@@ -71,6 +64,9 @@
         /* Video/Image specific styling */
         video.media-item { background: #000; max-height: 250px; object-fit: cover; }
         img.media-item { object-fit: cover; height: 100%; max-height: 250px; width: 100%; }
+        
+        /* Main Hero Media */
+        .hero-media { width: 100%; max-height: 500px; object-fit: cover; background: #000; border-radius: 8px; margin-bottom: 1.5rem; }
 
         /* ENGINEERING DETAILS GRID */
         .details-grid {
@@ -87,19 +83,8 @@
         
         /* TAGS */
         .tags { margin: 1rem 0 2rem 0; }
-        .tag { 
-            display: inline-block;
-            background: #eef2f5; 
-            padding: 5px 12px; 
-            border-radius: 20px; 
-            font-size: 0.85rem; 
-            font-weight: 600; 
-            color: #555; 
-            margin-right: 8px; 
-            border: 1px solid #ddd;
-        }
+        .tag { display: inline-block; background: #eef2f5; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: #555; margin-right: 8px; border: 1px solid #ddd; }
 
-        /* MOBILE FIX */
         @media (max-width: 768px) {
             .details-grid { grid-template-columns: 1fr; gap: 1rem; }
             h1 { font-size: 2rem; }
@@ -144,8 +129,11 @@
             <p class="lead">
                 An anthropomorphic robotic arm designed to replicate human motion in real-time. 
                 The primary goal was to create a fluid, high-torque system capable of mimicking delicate hand gestures for potential medical and teleoperation applications.
-                The end goal is to create a full scale humanoid robot that can mimic a user's actions.
             </p>
+            
+            <video class="hero-media" controls muted playsinline>
+                <source src="JAEGAR%20Finger%20V4%20Compressed.mp4" type="video/mp4">
+            </video>
 
             <div class="gallery-title">Phase 1: Finger Actuation Iterations</div>
             <div class="gallery-grid" style="grid-template-columns: repeat(4, 1fr);">
@@ -203,6 +191,8 @@
                 This platform served as a testbed for learning inverse kinematics algorithms and custom PCB fabrication.
             </p>
 
+            <img src="SCORPION%20V2%20Top.jpeg" class="hero-media" alt="Scorpion Main View">
+
             <div class="gallery-title">Design Evolution: Leg Mechanisms</div>
             <div class="gallery-grid" style="grid-template-columns: repeat(3, 1fr);">
                 <img src="SCORPION%20Leg%20V1.jpeg" class="media-item" alt="Leg V1">
@@ -227,17 +217,13 @@
                     <p>
                         Coordinate 18 separate servos (3 per leg) to achieve a smooth "tripod gait" walking cycle.
                         Traditional breadboard wiring was too bulky and unreliable for a moving chassis, causing frequent connection failures during movement.
-                        The actual mechanical design of the robot was very tedious to get reliable and upright.
-
-                        Current issue is understanding autonomous movement and adding the scorpion claw to assist with tasks.
                     </p>
                 </div>
                 <div>
                     <h4>Engineering Solution</h4>
                     <p>
-                        I developed a custom Inverse Kinematics solver in Python, with the help of AI, to calculate the precise angle of every joint based on a desired foot coordinate (x,y,z).
+                        I developed a custom Inverse Kinematics solver in Python to calculate the precise angle of every joint based on a desired foot coordinate (x,y,z).
                         To solve the wiring issue, I designed a custom PCB in KiCad that integrated the servo drivers and power management directly into the robot's chassis, reducing weight by 20%.
-                        We underwent 3 iterations of the robot's leg design, ending with an ultralight but sturdy design.
                     </p>
                 </div>
             </div>
@@ -260,6 +246,7 @@
 
             <div class="gallery-grid" style="grid-template-columns: 1fr 1fr;">
                 <img src="SENTINEL%20MK1.jpeg" class="media-item" alt="Sentinel MK1">
+                
                 <video class="media-item" controls muted playsinline>
                     <source src="SENTINEL%20MK4%20Showcase.mov" type="video/mp4">
                     <source src="SENTINEL%20MK4%20Showcase.mov" type="video/quicktime">
@@ -278,7 +265,7 @@
                 <div>
                     <h4>Engineering Solution</h4>
                     <p>
-                        I implemented, with the help of AI, a multi-threaded Python script where one thread handled the Heavy OpenCV image processing, and a separate lightweight thread handled the motor control.
+                        I implemented a multi-threaded Python script where one thread handled the Heavy OpenCV image processing, and a separate lightweight thread handled the motor control.
                         This allowed the turret to predict the target's path (vector analysis) rather than just reacting to where it was, significantly improving accuracy.
                     </p>
                 </div>
