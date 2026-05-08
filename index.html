@@ -119,6 +119,53 @@
 
     <div class="project-section">
         <div class="project-content">
+            <h2 class="project-title">Project Cassowary | Monash UAS</h2>
+            <div class="tags">
+                <span class="tag">High-Speed Data Acquisition</span>
+                <span class="tag">Altium Designer</span>
+                <span class="tag">Mixed-Signal PCB Design</span>
+                <span class="tag">Signal Integrity</span>
+            </div>
+
+            <p class="lead">
+                As a member of the <strong>Monash Unmanned Aerial Systems (MUAS)</strong> electronics team, I am responsible for the design and development of the <strong>Measurement & Logging Board (Board 1)</strong> for Project Cassowary—a high-fidelity thrust test stand used to characterize drone propulsion systems.
+            </p>
+            
+            <div class="gallery-title">PCB Design & Hardware Architecture</div>
+            <div class="gallery-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <img src="MUAS_PCB_3D.png" class="media-item" alt="Board 1 3D Render">
+                <img src="MUAS_PCB_Layout.png" class="media-item" alt="Altium Layout View">
+                <img src="MUAS_Schematic_AFE.png" class="media-item" alt="Analog Front End Schematic">
+                <img src="MUAS_PCB_Physical.jpeg" class="media-item" alt="Fabricated PCB Prototype">
+            </div>
+
+            <div class="details-grid">
+                <div>
+                    <h4>Role & Responsibilities</h4>
+                    <p>
+                        I led the hardware development for the <strong>Measurement & Logging hub</strong>. My work involved presiding over Design Reviews with industry representatives, selecting high-precision components (Texas Instruments ADCs/In-Amps), and routing a 4-layer PCB in <strong>Altium Designer</strong> focused on isolating sensitive analog signals from high-current motor noise.
+                    </p>
+                </div>
+                <div>
+                    <h4>Technical Challenges</h4>
+                    <p>
+                        <strong>Signal Integrity:</strong> Capturing thrust and torque data at 50 kS/s requires a 0.1% precision analog front-end. I utilized the <strong>INA826</strong> instrumentation amplifier to boost millivolt-scale load cell signals while rejecting electromagnetic interference (EMI) from 120A motor surges. <br><br>
+                        <strong>Power Domain Isolation:</strong> I designed a dual-rail buck converter system (LMR14050) to provide independent 3.3V/5V power, ensuring the RP2040 logic remains protected from back-EMF spikes.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="highlight-box" style="margin-bottom: 0; margin-top: 2rem; border-left-color: var(--monash-blue);">
+                <div class="highlight-title" style="color: var(--monash-blue);">Design Review Insight</div>
+                <p>
+                    During our V3 design review, I identified a critical voltage rating mismatch in our buck converter selection (40V rated vs. 50.4V battery input). I led the redesign to incorporate 60V-rated <strong>LM76002</strong> ICs, demonstrating a "fail-fast" engineering mindset that saved weeks of manufacturing delay.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="project-section">
+        <div class="project-content">
             <h2 class="project-title">Project JAEGAR</h2>
             <div class="tags">
                 <span class="tag">Bio-Mimetic Robotics</span>
