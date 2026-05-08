@@ -58,7 +58,8 @@
             margin-bottom: 2rem;
         }
         
-        .media-item { width: 100%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s; }
+        /* Media Items (Hover expansion added via JS) */
+        .media-item { width: 100%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s; cursor: zoom-in; }
         .media-item:hover { transform: scale(1.02); }
         
         /* Video/Image specific styling */
@@ -66,7 +67,7 @@
         img.media-item { object-fit: cover; height: 100%; max-height: 250px; width: 100%; }
         
         /* Main Hero Media */
-        .hero-media { width: 100%; max-height: 500px; object-fit: cover; background: #000; border-radius: 8px; margin-bottom: 1.5rem; }
+        .hero-media { width: 100%; max-height: 500px; object-fit: cover; background: #000; border-radius: 8px; margin-bottom: 1.5rem; cursor: zoom-in; }
 
         /* ENGINEERING DETAILS GRID */
         .details-grid {
@@ -128,7 +129,7 @@
             </div>
 
             <p class="lead">
-                As a member of the <strong>Monash Unmanned Aerial Systems (MUAS)</strong> electronics team, I am responsible for the design and development of the <strong>Measurement & Logging Board (Board 1)</strong> for Project Cassowary—a high-fidelity thrust test stand used to characterize drone propulsion systems.
+                As a member of the <strong>Monash Unmanned Aerial Systems (MUAS)</strong> electronics team, I am responsible for the design and development of the <strong>Measurement & Logging Board (Board 1)</strong> for Project Cassowary - a high-fidelity thrust test stand used to characterise drone propulsion systems.
             </p>
             
             <div class="gallery-title">PCB Design & Hardware Architecture</div>
@@ -149,7 +150,7 @@
                 <div>
                     <h4>Technical Challenges</h4>
                     <p>
-                        <strong>Signal Integrity:</strong> Capturing thrust and torque data at 50 kS/s requires a 0.1% precision analog front-end. I utilized the <strong>INA826</strong> instrumentation amplifier to boost millivolt-scale load cell signals while rejecting electromagnetic interference (EMI) from 120A motor surges. <br><br>
+                        <strong>Signal Integrity:</strong> Capturing thrust and torque data at 50 kS/s requires a 0.1% precision analog front-end. I utilised the <strong>INA826</strong> instrumentation amplifier to boost millivolt-scale load cell signals while rejecting electromagnetic interference (EMI) from 120A motor surges. <br><br>
                         <strong>Power Domain Isolation:</strong> I designed a dual-rail buck converter system (LMR14050) to provide independent 3.3V/5V power, ensuring the RP2040 logic remains protected from back-EMF spikes.
                     </p>
                 </div>
@@ -158,7 +159,7 @@
             <div class="highlight-box" style="margin-bottom: 0; margin-top: 2rem; border-left-color: var(--monash-blue);">
                 <div class="highlight-title" style="color: var(--monash-blue);">Design Review Insight</div>
                 <p>
-                    During our V3 design review, I identified a critical voltage rating mismatch in our buck converter selection (40V rated vs. 50.4V battery input). I led the redesign to incorporate 60V-rated <strong>LM76002</strong> ICs, demonstrating a "fail-fast" engineering mindset that saved weeks of manufacturing delay.
+                    During our V3 design review, we rigorously evaluated the system's power architecture. By verifying our propulsion testing would utilise a <strong>4S LiPo (16.8V peak)</strong>, I validated the selection of the 40V-rated <strong>LMR14050</strong> buck converters. This ensured a >2x safety margin while avoiding unnecessary over-engineering and keeping board fabrication costs down.
                 </p>
             </div>
         </div>
@@ -200,7 +201,7 @@
             </div>
 
             <div class="gallery-title">Phase 2: Full Hand Assembly</div>
-            <div class="gallery-grid" style="grid-template-columns: 1fr 1fr;">
+            <div class="gallery-grid" style="grid-template-columns: 1fr 1fr);">
                 <img src="JAEGAR%20Hand%20V3.jpeg" class="media-item" alt="Jaegar Hand V3">
                 <img src="Crippled%20JAEGAR%20Hand%20V3.jpeg" class="media-item" alt="Jaegar Hand Prototype">
             </div>
@@ -218,7 +219,7 @@
                     <h4>Engineering Solution</h4>
                     <p>
                         I designed a dedicated power distribution bus separate from the logic controller to isolate noise and manage high loads. 
-                        For the mechanics, I utilized SolidWorks to iterate on a "tendon-driven" design, using high-tension nylon string routed through 3D-printed phalanges to simulate muscle contraction.
+                        For the mechanics, I utilised SolidWorks to iterate on a "tendon-driven" design, using high-tension nylon string routed through 3D-printed phalanges to simulate muscle contraction.
                     </p>
                 </div>
             </div>
@@ -294,7 +295,7 @@
             </div>
 
             <p class="lead">
-                An automated defense simulation system using computer vision. 
+                An automated defence simulation system using computer vision. 
                 Designed to track aerial targets and align a turret mechanism in real-time without human input.
             </p>
 
@@ -329,9 +330,102 @@
 </div>
 
 <footer>
-    &copy; 2026 Om Bhatt. Built with HTML/CSS.
+    &copy; 2026 Om Bhatt. Built with HTML/CSS/JS.
 </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Create the modal container dynamically
+        const modal = document.createElement('div');
+        modal.id = 'media-modal';
+        Object.assign(modal.style, {
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+            zIndex: '9999',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            opacity: '0',
+            pointerEvents: 'none',
+            transition: 'opacity 0.3s ease',
+            cursor: 'zoom-out'
+        });
+
+        // Create the container for the expanded image/video
+        const modalContent = document.createElement('div');
+        Object.assign(modalContent.style, {
+            maxWidth: '90%',
+            maxHeight: '90%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+        });
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+
+        // Close modal when clicked anywhere
+        modal.addEventListener('click', () => {
+            modal.style.opacity = '0';
+            modal.style.pointerEvents = 'none';
+            // Clear content after fade out so videos stop playing
+            setTimeout(() => { modalContent.innerHTML = ''; }, 300);
+        });
+
+        const mediaItems = document.querySelectorAll('.media-item, .hero-media');
+        let hoverTimer;
+
+        // Function to clone and display the media
+        const openModal = (mediaElement) => {
+            modalContent.innerHTML = '';
+            const clone = mediaElement.cloneNode(true);
+            
+            // Clean up cloned styles to ensure it fits the screen
+            clone.style.transform = 'none';
+            clone.style.maxWidth = '100%';
+            clone.style.maxHeight = '90vh';
+            clone.style.width = 'auto';
+            clone.style.height = 'auto';
+            clone.style.objectFit = 'contain';
+            clone.style.cursor = 'default';
+            
+            // Ensure videos are playable when expanded
+            if (clone.tagName === 'VIDEO') {
+                clone.controls = true;
+                clone.muted = false; // Optional: unmute when expanded
+            }
+            
+            modalContent.appendChild(clone);
+            modal.style.opacity = '1';
+            modal.style.pointerEvents = 'auto';
+        };
+
+        // Attach event listeners to all images and videos
+        mediaItems.forEach(item => {
+            // Hover Trigger (2 seconds)
+            item.addEventListener('mouseenter', () => {
+                hoverTimer = setTimeout(() => {
+                    openModal(item);
+                }, 2000);
+            });
+
+            // Cancel the timer if the mouse leaves before 2 seconds
+            item.addEventListener('mouseleave', () => {
+                clearTimeout(hoverTimer);
+            });
+
+            // Click Trigger (Immediate)
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                clearTimeout(hoverTimer); // Prevent double-triggering if clicked quickly
+                openModal(item);
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
-
