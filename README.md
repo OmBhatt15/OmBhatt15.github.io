@@ -5,16 +5,14 @@ Co-Founder of ARES Technologies. Live at **[ombhatt15.github.io](https://ombhatt
 
 ## Stack
 
-Hand-written static site. No build step, no dependencies, no framework — GitHub Pages serves the
+Single-file static site. No build step, no dependencies, no framework — GitHub Pages serves the
 files exactly as they are committed.
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | All page content: hero, projects, experience, skills, education |
-| `styles.css` | Dark technical theme, blueprint grid, responsive layout |
-| `app.js` | Lightbox, discipline filtering, scroll reveal |
+| `index.html` | The entire site: styles, content and scripts in one file |
 | `Om_Bhatt_Resume.tex` | Résumé source (LaTeX) |
-| `Om_Bhatt_Resume.pdf` | Compiled résumé, linked from the hero |
+| `Om_Bhatt_Resume.pdf` | Compiled résumé, linked from the header |
 
 Media files live at the repository root and are referenced directly from `index.html`.
 

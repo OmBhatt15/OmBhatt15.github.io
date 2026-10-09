@@ -1,1046 +1,877 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Om Bhatt | Mechatronics Engineering Portfolio</title>
-<meta name="description" content="Mechatronics engineering portfolio of Om Bhatt — mixed-signal PCB design, robotics, embedded firmware and computer vision. Monash University, Co-Founder of ARES Technologies.">
-<meta name="author" content="Om Bhatt">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Bhatt | Engineering Portfolio</title>
+    <meta name="description" content="Engineering portfolio of Om Bhatt — mechatronics undergraduate at Monash University. Mixed-signal PCB design, robotics, embedded systems and computer vision.">
+    <style>
+        /* --- PROFESSIONAL ENGINEERING STYLING --- */
+        :root {
+            --monash-blue: #0066CC;
+            --dark-gray: #333;
+            --light-bg: #f4f7f6;
+            --text-color: #444;
+        }
+        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--light-bg); color: var(--text-color); line-height: 1.6; }
 
-<meta property="og:title" content="Om Bhatt | Mechatronics Engineering Portfolio">
-<meta property="og:description" content="Mixed-signal PCB design, legged robotics, embedded firmware and computer vision — built end to end.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://ombhatt15.github.io/">
+        /* HEADER */
+        header { background-color: white; border-bottom: 4px solid var(--monash-blue); padding: 4rem 1rem; text-align: center; }
+        h1 { margin: 0; font-size: 3rem; color: var(--dark-gray); letter-spacing: -1px; }
+        .subtitle { color: var(--monash-blue); font-weight: 600; font-size: 1.3rem; margin-top: 0.5rem; }
+        .contact-info { margin-top: 1.5rem; font-size: 1rem; }
+        .contact-info a { color: var(--dark-gray); text-decoration: none; margin: 0 15px; font-weight: 500; border-bottom: 2px solid transparent; transition: border-color 0.3s; }
+        .contact-info a:hover { border-bottom: 2px solid var(--monash-blue); }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+        .section-nav { margin-top: 1.25rem; font-size: 0.9rem; }
+        .section-nav a { color: #777; text-decoration: none; margin: 0 12px; font-weight: 500; border-bottom: 2px solid transparent; transition: border-color 0.3s, color 0.3s; }
+        .section-nav a:hover { color: var(--dark-gray); border-bottom: 2px solid var(--monash-blue); }
+
+        /* LAYOUT CONTAINER */
+        .container { max-width: 950px; margin: 0 auto; padding: 2rem; }
+
+        /* HIGHLIGHT BOX */
+        .highlight-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-left: 6px solid #e74c3c;
+            margin-bottom: 4rem;
+        }
+        .highlight-title { color: #c0392b; font-size: 1.5rem; font-weight: bold; margin-bottom: 0.8rem; }
+
+        /* SECTION HEADING */
+        .section-heading {
+            font-size: 1.8rem;
+            color: var(--dark-gray);
+            margin: 0 0 2rem 0;
+            padding-bottom: 0.6rem;
+            border-bottom: 3px solid var(--monash-blue);
+        }
+
+        /* PROJECT SECTION */
+        .project-section {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 4rem;
+        }
+
+        .project-content { padding: 2.5rem; }
+        .project-title { font-size: 2rem; color: var(--monash-blue); margin: 0 0 1rem 0; border-bottom: 2px solid #eee; padding-bottom: 0.5rem; }
+        .project-role { font-size: 0.95rem; color: #777; margin: -0.5rem 0 1rem 0; font-style: italic; }
+
+        /* STATUS LABEL */
+        .status-label { display: inline-block; font-size: 0.8rem; font-weight: 600; padding: 4px 12px; border-radius: 4px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .status-dev { background: #fdf0e6; color: #b55a19; border: 1px solid #f0cfae; }
+        .status-complete { background: #eaf4ec; color: #2d7a43; border: 1px solid #c3e2cc; }
+
+        /* --- GALLERY STYLES --- */
+        .gallery-title { font-size: 1.1rem; font-weight: bold; color: #555; margin-top: 2rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; border-left: 4px solid #ddd; padding-left: 10px; }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Media Items */
+        .media-item { width: 100%; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: transform 0.2s; cursor: zoom-in; }
+        .media-item:hover { transform: scale(1.02); }
+
+        /* Video/Image specific styling */
+        video.media-item { background: #000; max-height: 250px; object-fit: cover; }
+        img.media-item { object-fit: cover; height: 100%; max-height: 250px; width: 100%; }
+
+        /* Main Hero Media */
+        .hero-media { width: 100%; max-height: 500px; object-fit: cover; background: #000; border-radius: 8px; margin-bottom: 1.5rem; cursor: zoom-in; }
+
+        /* PENDING MEDIA NOTE */
+        .media-pending {
+            border: 1px dashed #ccc;
+            border-radius: 6px;
+            background: #fafbfc;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        /* ENGINEERING DETAILS GRID */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        h4 { margin: 0 0 0.5rem 0; color: #2c3e50; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        p { margin-top: 0; font-size: 0.95rem; color: #555; }
+
+        /* SPECIFICATION TABLE */
+        .spec-table { width: 100%; border-collapse: collapse; margin-top: 2rem; font-size: 0.9rem; }
+        .spec-table caption { text-align: left; font-weight: bold; color: #2c3e50; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; padding-bottom: 0.8rem; }
+        .spec-table th, .spec-table td { text-align: left; padding: 0.6rem 0.8rem 0.6rem 0; border-bottom: 1px solid #eee; vertical-align: top; }
+        .spec-table th { width: 38%; color: #555; font-weight: 600; }
+        .spec-table td { color: #444; }
+        .spec-table tr:last-child th, .spec-table tr:last-child td { border-bottom: none; }
+
+        /* LISTS */
+        .detail-list { margin: 0; padding-left: 1.2rem; }
+        .detail-list li { font-size: 0.95rem; color: #555; margin-bottom: 0.5rem; }
+
+        /* TAGS */
+        .tags { margin: 1rem 0 2rem 0; }
+        .tag { display: inline-block; background: #eef2f5; padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: #555; margin-right: 8px; margin-bottom: 8px; border: 1px solid #ddd; }
+
+        /* EXPERIENCE ENTRIES */
+        .entry { margin-bottom: 2.5rem; }
+        .entry:last-child { margin-bottom: 0; }
+        .entry-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; margin-bottom: 0.8rem; }
+        .entry-role { font-size: 1.2rem; font-weight: 600; color: var(--dark-gray); margin: 0; }
+        .entry-org { font-size: 0.95rem; color: var(--monash-blue); font-weight: 600; }
+        .entry-date { font-size: 0.9rem; color: #888; font-style: italic; }
+
+        /* SKILLS */
+        .skill-group { margin-bottom: 2rem; }
+        .skill-group:last-child { margin-bottom: 0; }
+        .skill-group h4 { margin-bottom: 0.8rem; }
+
+        /* EDUCATION */
+        .edu-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; }
+        .edu-degree { font-size: 1.1rem; color: #555; font-style: italic; margin: 0.2rem 0 1rem 0; }
+        .edu-grades { display: flex; gap: 3rem; flex-wrap: wrap; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee; }
+        .grade-value { font-size: 1.8rem; font-weight: bold; color: var(--monash-blue); line-height: 1; }
+        .grade-label { font-size: 0.85rem; color: #888; margin-top: 0.4rem; }
+
+        @media (max-width: 768px) {
+            .details-grid { grid-template-columns: 1fr; gap: 1rem; }
+            h1 { font-size: 2rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .contact-info a, .section-nav a { display: inline-block; margin: 4px 10px; }
+            .project-content { padding: 1.5rem; }
+            .highlight-box { padding: 1.5rem; }
+            .edu-grades { gap: 2rem; }
+        }
+
+        footer { text-align: center; padding: 4rem 0; color: #999; font-size: 0.9rem; }
+    </style>
 </head>
 <body>
 
-<!-- ============================================================== NAV ==== -->
-<nav class="nav">
-  <div class="nav-in">
-    <a class="nav-brand" href="#top">OM BHATT <span>/</span> MECHATRONICS</a>
-    <div class="nav-links">
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
+<header>
+    <h1>Om Bhatt</h1>
+    <p class="subtitle">Mechatronics Engineering Undergraduate &amp; Co-Founder @ ARES Technologies</p>
+    <div class="contact-info">
+        <a href="https://linkedin.com/in/ombhatt15/">LinkedIn</a>
+        <a href="https://github.com/OmBhatt15">GitHub</a>
+        <a href="https://www.instagram.com/ares_technologies/reels/">ARES Portfolio</a>
+        <a href="mailto:bhattom76@gmail.com">bhattom76@gmail.com</a>
+        <a href="Om_Bhatt_Resume.pdf">Résumé (PDF)</a>
     </div>
-    <a class="nav-cta" href="mailto:bhattom76@gmail.com">Get in touch</a>
-  </div>
-</nav>
-
-<!-- ============================================================= HERO ==== -->
-<header class="hero" id="top">
-  <div class="wrap">
-    <p class="eyebrow">Mechatronics Engineering · Monash University</p>
-    <h1>I build machines end&#8209;to&#8209;end — the CAD, the copper, the firmware and the vision stack.</h1>
-    <p class="hero-lead">
-      Second-year mechatronics undergraduate, Co-Founder of <strong>ARES Technologies</strong>, and
-      hardware lead on the measurement board for Monash UAS's Project Cassowary. I like the problems
-      that sit between disciplines: getting a millivolt sensor signal out clean while 120&nbsp;A of
-      motor current switches next to it.
-    </p>
-
-    <div class="chips">
-      <span class="chip">Mixed-Signal PCB Design</span>
-      <span class="chip">Embedded Firmware</span>
-      <span class="chip">Robotics &amp; Control</span>
-      <span class="chip">Computer Vision</span>
-      <span class="chip chip-live"><i class="dot"></i>Open to 2026/27 internships</span>
+    <div class="section-nav">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Technical Skills</a>
+        <a href="#education">Education</a>
     </div>
-
-    <div class="contact">
-      <a class="btn btn-primary" href="Om_Bhatt_Resume.pdf" download>Download Résumé (PDF)</a>
-      <a class="btn" href="https://linkedin.com/in/ombhatt15/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/OmBhatt15" target="_blank" rel="noopener">GitHub</a>
-      <a class="btn" href="https://www.instagram.com/ares_technologies/reels/" target="_blank" rel="noopener">ARES Build Log</a>
-      <a class="btn" href="mailto:bhattom76@gmail.com">bhattom76@gmail.com</a>
-    </div>
-
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-value">10<span style="font-size:.6em">/160</span></div>
-        <div class="stat-label">Placed 10th of 160 teams, Monash engineering design challenge</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">50 kS/s</div>
-        <div class="stat-label">Thrust &amp; torque acquisition rate, 0.1% precision front-end</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">32</div>
-        <div class="stat-label">Haptic motor channels on a single 4-layer board</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">250k+</div>
-        <div class="stat-label">Self-play battles simulated to evolve a game-playing agent</div>
-      </div>
-    </div>
-  </div>
 </header>
 
-<!-- ========================================================= PROJECTS ==== -->
-<section class="section" id="projects">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-num">01 — Selected work</div>
-      <h2>Projects</h2>
-      <p>
-        Eight builds across mixed-signal hardware, legged robotics, computer vision and AI.
-        Each entry covers the problem, the approach, and the failures that shaped the final design.
-      </p>
-    </div>
+<div class="container">
 
-    <div class="filters reveal" role="group" aria-label="Filter projects by discipline">
-      <button class="filter" data-filter="all" aria-pressed="true">All</button>
-      <button class="filter" data-filter="hardware" aria-pressed="false">Hardware</button>
-      <button class="filter" data-filter="embedded" aria-pressed="false">Embedded</button>
-      <button class="filter" data-filter="robotics" aria-pressed="false">Robotics</button>
-      <button class="filter" data-filter="software" aria-pressed="false">Software</button>
-    </div>
-
-    <!-- ------------------------------------------------- CASSOWARY ------ -->
-    <article class="project reveal" data-disciplines="hardware embedded">
-      <div class="project-head">
-        <div class="project-meta">
-          <span class="codename">MUAS / Cassowary</span>
-          <span class="status status-dev"><i class="dot"></i>In Active Development</span>
-          <span class="year">2026 — Present</span>
-        </div>
-        <h3>Measurement &amp; Logging Board</h3>
-        <p class="role">Electronics Team Member · Monash Unmanned Aerial Systems · Hardware lead, Board 1</p>
-        <p class="tagline">
-          A 4-layer mixed-signal board that captures thrust, torque and power from a heavy-lift drone
-          propulsion test stand at 50 kS/s — while sitting inches from 120 A of switching motor current.
+    <div class="highlight-box">
+        <div class="highlight-title">ARES Technologies &amp; DeepNeuron Expo</div>
+        <p>
+            As Co-Founder of <strong>ARES Technologies</strong>, I lead a private R&amp;D team developing autonomous robotic systems.
+            We were recently selected to exhibit at the <strong>Monash DeepNeuron Tech Expo</strong>, presenting our bio-mimetic hardware alongside
+            industry leaders including Microsoft, Telstra and Blackmagic Design. This experience validated our iterative design process and our ability to scale prototypes.
         </p>
-      </div>
-      <div class="metrics">
-        <div class="metric"><b>50 kS/s</b><span>acquisition rate</span></div>
-        <div class="metric"><b>0.1%</b><span>front-end precision</span></div>
-        <div class="metric"><b>120 A</b><span>motor EMI rejected</span></div>
-        <div class="metric"><b>4-layer</b><span>Altium Designer</span></div>
-      </div>
-      <div class="project-body">
-
-        <div class="gal-label">PCB design &amp; hardware architecture</div>
-        <div class="gal gal-2">
-          <img class="media" src="MUAS_Cassowary_3DPCB.png" alt="3D render of the Cassowary Measurement &amp; Logging Board" loading="lazy" data-cap="Board 1 — 3D render">
-          <img class="media" src="MUAS_Cassowary_Routing.png" alt="Altium Designer 4-layer routing view of the measurement board" loading="lazy" data-cap="Altium 4-layer routing">
-          <img class="media" src="MUAS_Cassowary_Schematic1.png" alt="Analog front-end schematic sheet" loading="lazy" data-cap="Analog front-end schematic">
-          <img class="media" src="MUAS_Cassowary_Schematic2.png" alt="Power and logic schematic sheet" loading="lazy" data-cap="Power &amp; logic schematic">
-        </div>
-
-        <div class="blocks">
-          <div class="block">
-            <h4>Problem</h4>
-            <p>
-              Manufacturer motor and propeller datasheets can't be taken on trust, so Project Cassowary
-              needed a test stand that measures real thrust, torque and power before any propulsion
-              hardware is signed off for flight.
-            </p>
-            <p>
-              The measurement problem is the hard part: load cells output millivolts, and they do it
-              right next to a motor drawing surges of up to 120 A. Every bit of that switching noise
-              couples into the signal you are trying to resolve to 0.1%.
-            </p>
-          </div>
-          <div class="block">
-            <h4>Approach</h4>
-            <ul>
-              <li>Owned hardware development of the Measurement &amp; Logging hub (Board 1) and presented it through formal design reviews with industry representatives.</li>
-              <li>Selected a high-precision analog front-end around the <strong>INA826</strong> instrumentation amplifier to lift millivolt-scale load-cell output while rejecting common-mode EMI.</li>
-              <li>Routed a 4-layer board in <strong>Altium Designer</strong> with the analog section partitioned away from high-current return paths.</li>
-              <li>Designed a dual-rail <strong>LMR14050</strong> buck converter stage giving independent 3.3 V and 5 V domains, isolating the RP2040 logic from back-EMF transients.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="challenges">
-          <h4>Engineering decisions</h4>
-          <div class="challenge">
-            <h5>Resolving a millivolt signal next to a 120 A motor</h5>
-            <dl>
-              <dt>Symptom</dt><dd>Load-cell readings that track motor RPM rather than actual thrust.</dd>
-              <dt>Root cause</dt><dd>Bridge output is millivolt-scale; ESC switching and motor current surges couple straight into it.</dd>
-              <dt>Fix</dt><dd>INA826 instrumentation amplifier with high common-mode rejection, placed close to the sensor, with analog and high-current sections separated in the layout.</dd>
-            </dl>
-          </div>
-          <div class="challenge">
-            <h5>Sizing the buck converters without over-engineering the board</h5>
-            <dl>
-              <dt>Context</dt><dd>At the V3 design review the whole power architecture was re-examined.</dd>
-              <dt>Analysis</dt><dd>Confirmed propulsion testing runs from a 4S LiPo — 16.8 V peak — so I validated the 40 V-rated LMR14050 against that worst case.</dd>
-              <dt>Result</dt><dd class="good">Better than 2× voltage safety margin while avoiding unnecessary over-specification, keeping fabrication cost down.</dd>
-            </dl>
-          </div>
-        </div>
-
-        <div class="specs">
-          <h4>Specifications</h4>
-          <table class="spec-table">
-            <tr><td class="g">Sensing</td><td class="k">Instrumentation amplifier</td><td class="v">TI INA826</td></tr>
-            <tr><td class="g">Sensing</td><td class="k">Acquisition rate</td><td class="v">50 kS/s</td></tr>
-            <tr><td class="g">Sensing</td><td class="k">Front-end precision</td><td class="v">0.1%</td></tr>
-            <tr><td class="g">Power</td><td class="k">Regulation</td><td class="v">Dual-rail LMR14050 buck (40 V rated)</td></tr>
-            <tr><td class="g">Power</td><td class="k">Supply under test</td><td class="v">4S LiPo · 16.8 V peak</td></tr>
-            <tr><td class="g">Power</td><td class="k">Logic rails</td><td class="v">Independent 3.3 V / 5 V</td></tr>
-            <tr><td class="g">Compute</td><td class="k">Microcontroller</td><td class="v">RP2040</td></tr>
-            <tr><td class="g">Layout</td><td class="k">Stack-up</td><td class="v">4-layer · Altium Designer</td></tr>
-          </table>
-        </div>
-
-        <div class="stack">
-          <span class="chip">Altium Designer</span>
-          <span class="chip">Mixed-Signal Design</span>
-          <span class="chip">Signal Integrity</span>
-          <span class="chip">RP2040</span>
-          <span class="chip">INA826</span>
-          <span class="chip">LMR14050</span>
-          <span class="chip">High-Speed DAQ</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- ------------------------------------------------------- ECKO ----- -->
-    <article class="project reveal" data-disciplines="hardware embedded">
-      <div class="project-head">
-        <div class="project-meta">
-          <span class="codename">PRJ-04 / ECKO</span>
-          <span class="status status-dev"><i class="dot"></i>In Active Development</span>
-          <span class="year">2026 — Present</span>
-        </div>
-        <h3>Haptic Sight Blindfold</h3>
-        <p class="role">ARES Technologies · Hardware &amp; PCB design</p>
-        <p class="tagline">
-          A head-worn assistive device that turns distance into touch: time-of-flight sensors measure
-          the space around the wearer, and 32 haptic motors render it as vibration they can feel.
-        </p>
-      </div>
-      <div class="metrics">
-        <div class="metric"><b>32</b><span>haptic motor channels</span></div>
-        <div class="metric"><b>4-layer</b><span>split-plane PCB</span></div>
-        <div class="metric"><b>ESP32-S3</b><span>WROOM-1 module</span></div>
-        <div class="metric"><b>ToF</b><span>distance sensing</span></div>
-      </div>
-      <div class="project-body">
-
-        <div class="gal-label">Hardware</div>
-        <div class="gal gal-1">
-          <div class="blueprint">
-            <b>Board bring-up in progress</b>
-            <span>Schematic complete and routed in Altium; photos and test data go here once the first boards return from fab.</span>
-          </div>
-        </div>
-
-        <div class="blocks">
-          <div class="block">
-            <h4>Problem</h4>
-            <p>
-              A white cane or a guide dog mostly senses what is at ground level and within arm's reach.
-              Obstacles at head height, and the broader layout of a room, stay invisible.
-            </p>
-            <p>
-              Rendering that information as touch needs a lot of actuators in a small, head-worn,
-              USB-powered package — and 32 vibration motors switching at once make for a hostile
-              electrical environment around a 2.4 GHz radio and an I²C sensor bus.
-            </p>
-          </div>
-          <div class="block">
-            <h4>Approach</h4>
-            <ul>
-              <li>Designed the main board around an <strong>ESP32-S3-WROOM-1</strong>, with a keep-out region under the antenna applied across all four copper layers.</li>
-              <li>Fanned the time-of-flight sensors out through an <strong>I²C multiplexer</strong>, since the sensors ship with one fixed address and cannot otherwise share a bus.</li>
-              <li>Drove 32 motor channels from two <strong>PCA9685</strong> 16-channel PWM controllers into four <strong>ULN2803C</strong> Darlington arrays.</li>
-              <li>Built a 4-layer stack-up — L1 signal, L2 solid ground, L3 split 3V3 / +5V_MOT, L4 signal — so every power and ground pin reaches its plane through a via rather than a trace.</li>
-              <li>Separated the motor rail from the logic rail with a ferrite bead and a dedicated LDO, and protected the USB-C input with an ESD array, a fuse, a reverse-polarity diode and 470 µF of bulk capacitance.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="challenges">
-          <h4>Challenges</h4>
-          <div class="challenge">
-            <h5>Several ToF sensors, one hard-wired I²C address</h5>
-            <dl>
-              <dt>Symptom</dt><dd>Only one sensor can be addressed if they all sit on the same bus.</dd>
-              <dt>Root cause</dt><dd>The sensors expose a single fixed I²C address with no strapping option.</dd>
-              <dt>Fix</dt><dd>An I²C multiplexer with a reset line driven from the ESP32, so each sensor is selected onto the bus in turn.</dd>
-            </dl>
-          </div>
-          <div class="challenge">
-            <h5>32 motors sharing a supply with the logic and the radio</h5>
-            <dl>
-              <dt>Symptom</dt><dd>Motor switching transients threaten brownouts and corrupt the I²C bus.</dd>
-              <dt>Root cause</dt><dd>A single 5 V rail feeding both the Darlington arrays and the regulator couples motor current into the logic domain.</dd>
-              <dt>Fix</dt><dd>Split the L3 plane into separate 3V3 and +5V_MOT regions with a clear gap, fed the logic side through a ferrite bead, and kept a strip either side of the split free of vias.</dd>
-            </dl>
-          </div>
-          <div class="challenge">
-            <h5>Routing USB-C differential pairs out of a crowded connector</h5>
-            <dl>
-              <dt>Symptom</dt><dd>D− has a pad on either side of D+, and the CC pull-down is boxed in by the data pads.</dd>
-              <dt>Root cause</dt><dd>USB-C pin symmetry puts both halves of each pair on opposite sides of the connector footprint.</dd>
-              <dt>Fix</dt><dd>Dropped the trapped pins through vias under the connector body to rejoin on the bottom layer, and moved I²C_SDA to a free GPIO so it never has to cross the USB pair.</dd>
-            </dl>
-          </div>
-        </div>
-
-        <div class="specs">
-          <h4>Specifications</h4>
-          <table class="spec-table">
-            <tr><td class="g">Compute</td><td class="k">MCU module</td><td class="v">ESP32-S3-WROOM-1</td></tr>
-            <tr><td class="g">Sensing</td><td class="k">Distance</td><td class="v">Time-of-flight, behind I²C multiplexer</td></tr>
-            <tr><td class="g">Actuation</td><td class="k">PWM generation</td><td class="v">2 × PCA9685 (16 ch each)</td></tr>
-            <tr><td class="g">Actuation</td><td class="k">Motor drive</td><td class="v">4 × ULN2803C Darlington array</td></tr>
-            <tr><td class="g">Actuation</td><td class="k">Channels</td><td class="v">32 haptic motors</td></tr>
-            <tr><td class="g">Layout</td><td class="k">Stack-up</td><td class="v">4-layer · 1.6 mm · 0.5 oz inner</td></tr>
-            <tr><td class="g">Layout</td><td class="k">Planes</td><td class="v">L2 solid GND · L3 split 3V3 / +5V_MOT</td></tr>
-            <tr><td class="g">Layout</td><td class="k">Design rules</td><td class="v">0.15 mm minimum clearance, DRC clean</td></tr>
-            <tr><td class="g">Power</td><td class="k">Input</td><td class="v">USB-C · ESD array · fuse · 470 µF bulk</td></tr>
-            <tr><td class="g">Power</td><td class="k">Rail isolation</td><td class="v">Ferrite bead + LDO to 3V3 logic</td></tr>
-          </table>
-        </div>
-
-        <div class="stack">
-          <span class="chip">Altium Designer</span>
-          <span class="chip">4-Layer PCB</span>
-          <span class="chip">ESP32-S3</span>
-          <span class="chip">I²C Multiplexing</span>
-          <span class="chip">PCA9685</span>
-          <span class="chip">Power Integrity</span>
-          <span class="chip">Assistive Technology</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- ----------------------------------------------------- JAEGAR ----- -->
-    <article class="project reveal" data-disciplines="robotics hardware embedded">
-      <div class="project-head">
-        <div class="project-meta">
-          <span class="codename">PRJ-03 / JAEGAR</span>
-          <span class="status status-op"><i class="dot"></i>Operational</span>
-          <span class="year">2025 — 2026</span>
-        </div>
-        <h3>Bio-Mimetic Robotic Hand</h3>
-        <p class="role">Co-Founder, ARES Technologies · Mechanical design &amp; power electronics</p>
-        <p class="tagline">
-          A tendon-driven anthropomorphic hand that mirrors a human operator's motion in real time,
-          built toward a full-scale humanoid that can copy a user's actions for medical and
-          teleoperation work.
-        </p>
-      </div>
-      <div class="metrics">
-        <div class="metric"><b>5</b><span>independently actuated fingers</span></div>
-        <div class="metric"><b>4</b><span>finger design iterations</span></div>
-        <div class="metric"><b>Real-time</b><span>motion mimicry</span></div>
-        <div class="metric"><b>Custom</b><span>power distribution bus</span></div>
-      </div>
-      <div class="project-body">
-
-        <div class="gal-label">Latest demonstration</div>
-        <div class="gal gal-1">
-          <video class="media media-hero" controls muted playsinline preload="metadata" data-cap="JAEGAR finger V4 — tendon-driven actuation">
-            <source src="JAEGAR%20Finger%20V4%20Compressed.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="gal-label">Phase 1 — finger actuation iterations V1 → V4</div>
-        <div class="gal gal-4">
-          <video class="media" controls muted playsinline preload="metadata" data-cap="Finger V1"><source src="JAEGAR%20Finger%20V1%20Compressed.mp4" type="video/mp4"></video>
-          <video class="media" controls muted playsinline preload="metadata" data-cap="Finger V2"><source src="JAEGAR%20Finger%20V2%20Compressed.mp4" type="video/mp4"></video>
-          <video class="media" controls muted playsinline preload="metadata" data-cap="Finger V3"><source src="JAEGAR%20Finger%20V3%20Compressed.mp4" type="video/mp4"></video>
-          <video class="media" controls muted playsinline preload="metadata" data-cap="Finger V4"><source src="JAEGAR%20Finger%20V4%20Compressed.mp4" type="video/mp4"></video>
-        </div>
-
-        <div class="gal-label">Phase 2 — full hand assembly</div>
-        <div class="gal gal-2">
-          <img class="media" src="JAEGAR%20Hand%20V3.jpeg" alt="JAEGAR robotic hand, V3 assembly" loading="lazy" data-cap="Hand V3 assembly">
-          <img class="media" src="Crippled%20JAEGAR%20Hand%20V3.jpeg" alt="JAEGAR hand V3 prototype showing failure mode" loading="lazy" data-cap="Hand V3 — failure teardown">
-        </div>
-
-        <div class="blocks">
-          <div class="block">
-            <h4>Problem</h4>
-            <p>
-              Replicating a human hand needs many degrees of freedom packed into a hand-sized volume,
-              and the joints don't move linearly — a servo's rotation has to be mapped onto the
-              non-linear rotation of a human finger joint through mechanical linkage.
-            </p>
-            <p>
-              Electrically, actuating all five fingers at once draws a current surge that a standard
-              microcontroller supply simply cannot deliver, which showed up as brownouts mid-grip.
-            </p>
-          </div>
-          <div class="block">
-            <h4>Approach</h4>
-            <ul>
-              <li>Iterated the finger mechanism through four generations in <strong>SolidWorks</strong>, tuning linkage geometry to match anatomical range of motion.</li>
-              <li>Built a tendon-driven design: high-tension nylon line routed through 3D-printed phalanges to emulate muscle contraction.</li>
-              <li>Designed a dedicated high-current power distribution bus, separate from the logic controller, to carry peak servo load and keep switching noise off the control lines.</li>
-              <li>Mapped operator glove input to servo targets for real-time mimicry.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="challenges">
-          <h4>Challenges</h4>
-          <div class="challenge">
-            <h5>Brownouts when all five fingers actuated together</h5>
-            <dl>
-              <dt>Symptom</dt><dd>Servos stuttered and the controller reset during full-hand grips.</dd>
-              <dt>Root cause</dt><dd>Combined stall current from simultaneous actuation exceeded what the original supply and wiring could deliver.</dd>
-              <dt>Fix</dt><dd>A dedicated power distribution bus sized for peak current, electrically separated from the logic controller.</dd>
-              <dt>Result</dt><dd class="good">Full-hand actuation without supply collapse.</dd>
-            </dl>
-          </div>
-          <div class="challenge">
-            <h5>Linear servo travel vs. non-linear finger rotation</h5>
-            <dl>
-              <dt>Symptom</dt><dd>Fingers curled unevenly and didn't reach a natural closed pose.</dd>
-              <dt>Root cause</dt><dd>A servo sweeps a constant angle per unit of travel; a finger joint does not.</dd>
-              <dt>Fix</dt><dd>Four rounds of linkage geometry in SolidWorks, converging on a tendon routing that reproduces anatomical motion.</dd>
-            </dl>
-          </div>
-        </div>
-
-        <div class="specs">
-          <h4>Specifications</h4>
-          <table class="spec-table">
-            <tr><td class="g">Mechanical</td><td class="k">Actuation principle</td><td class="v">Tendon-driven (nylon line)</td></tr>
-            <tr><td class="g">Mechanical</td><td class="k">Fabrication</td><td class="v">FDM-printed phalanges</td></tr>
-            <tr><td class="g">Mechanical</td><td class="k">CAD</td><td class="v">SolidWorks · 4 design generations</td></tr>
-            <tr><td class="g">Power</td><td class="k">Distribution</td><td class="v">Dedicated high-current bus, isolated from logic</td></tr>
-            <tr><td class="g">Control</td><td class="k">Input</td><td class="v">Operator glove → servo position targets</td></tr>
-            <tr><td class="g">Application</td><td class="k">Target domains</td><td class="v">Medical · teleoperation</td></tr>
-          </table>
-        </div>
-
-        <div class="stack">
-          <span class="chip">SolidWorks</span>
-          <span class="chip">Tendon Linkage Design</span>
-          <span class="chip">High-Current Power Distribution</span>
-          <span class="chip">FDM Prototyping</span>
-          <span class="chip">PWM Servo Control</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- ---------------------------------------------------- SCORPION ---- -->
-    <article class="project reveal" data-disciplines="robotics embedded hardware">
-      <div class="project-head">
-        <div class="project-meta">
-          <span class="codename">PRJ-02 / SCORPION</span>
-          <span class="status status-op"><i class="dot"></i>Operational</span>
-          <span class="year">2025 — 2026</span>
-        </div>
-        <h3>Autonomous Hexapod</h3>
-        <p class="role">Co-Founder, ARES Technologies · Inverse kinematics &amp; PCB design</p>
-        <p class="tagline">
-          A six-legged robot for surveillance and exploration, walking on a tripod gait driven by a
-          custom inverse-kinematics solver, with all 18 servos and power management folded onto one
-          board inside the chassis.
-        </p>
-      </div>
-      <div class="metrics">
-        <div class="metric"><b>18</b><span>coordinated servos</span></div>
-        <div class="metric"><b>6 × 3</b><span>DOF per leg</span></div>
-        <div class="metric"><b>−20%</b><span>chassis weight after integration</span></div>
-        <div class="metric"><b>3</b><span>leg mechanism revisions</span></div>
-      </div>
-      <div class="project-body">
-
-        <div class="gal-label">Assembled platform</div>
-        <div class="gal gal-1">
-          <img class="media media-hero" src="SCORPION%20V2%20Top.jpeg" alt="SCORPION hexapod V2, top view" loading="lazy" data-cap="SCORPION V2 — assembled">
-        </div>
-
-        <div class="gal-label">Design evolution — leg mechanisms V1 → V3</div>
-        <div class="gal gal-3">
-          <img class="media" src="SCORPION%20Leg%20V1.jpeg" alt="Hexapod leg mechanism, version 1" loading="lazy" data-cap="Leg V1">
-          <img class="media" src="SCORPION%20Leg%20V2.jpeg" alt="Hexapod leg mechanism, version 2" loading="lazy" data-cap="Leg V2">
-          <img class="media" src="SCORPION%20Leg%20V3.png" alt="Hexapod leg mechanism, final version 3" loading="lazy" data-cap="Leg V3 — final">
-        </div>
-
-        <div class="gal-label">Chassis &amp; integration</div>
-        <div class="gal gal-2">
-          <img class="media" src="SCORPION%20V1.jpeg" alt="SCORPION hexapod V1 build" loading="lazy" data-cap="V1 build">
-          <img class="media" src="SCORPION%20V1%20CAD.png" alt="SolidWorks CAD model of the hexapod chassis" loading="lazy" data-cap="V1 chassis CAD">
-          <img class="media" src="SCORPION%20V2%20Below.jpeg" alt="SCORPION V2 underside showing integrated electronics" loading="lazy" data-cap="V2 underside">
-          <img class="media" src="SCORPION%20V2%20Top.jpeg" alt="SCORPION V2 top view" loading="lazy" data-cap="V2 top">
-        </div>
-
-        <div class="gal-label">Custom electronics</div>
-        <div class="gal gal-2">
-          <img class="media" src="pcb_wiring.png" alt="Hexapod controller PCB schematic" loading="lazy" data-cap="Controller schematic">
-          <img class="media" src="pcb_3d.png" alt="Hexapod controller PCB 3D render" loading="lazy" data-cap="Controller PCB — 3D render">
-        </div>
-
-        <div class="blocks">
-          <div class="block">
-            <h4>Problem</h4>
-            <p>
-              A hexapod has to place each foot precisely while eighteen servos — three per leg — move in
-              coordination. Commanding them by angle is unworkable; the useful input is a foot
-              coordinate, which means solving the kinematics in reverse, every cycle.
-            </p>
-            <p>
-              The first prototype was breadboard-wired, and a nest of jumper connections on a walking,
-              flexing chassis failed constantly.
-            </p>
-          </div>
-          <div class="block">
-            <h4>Approach</h4>
-            <ul>
-              <li>Wrote a custom inverse-kinematics solver in <strong>Python</strong> that converts a desired foot coordinate (x, y, z) into the precise angle for every joint in that leg.</li>
-              <li>Modelled chassis and leg linkages in <strong>SolidWorks</strong>, iterating the leg mechanism through three revisions before committing to print.</li>
-              <li>Designed a custom PCB in <strong>KiCad</strong> integrating the servo drivers and power management directly into the chassis.</li>
-              <li>Added a camera and OpenCV object recognition tied to a gripper for autonomous pick-up.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="challenges">
-          <h4>Challenges</h4>
-          <div class="challenge">
-            <h5>Breadboard wiring couldn't survive a walking robot</h5>
-            <dl>
-              <dt>Symptom</dt><dd>Frequent connection failures and servo dropouts whenever the chassis moved.</dd>
-              <dt>Root cause</dt><dd>Dozens of jumpers carrying both power and signal worked loose under vibration, and the harness was too bulky to mount cleanly.</dd>
-              <dt>Fix</dt><dd>Moved servo drivers and power management onto one custom KiCad PCB integrated into the chassis.</dd>
-              <dt>Result</dt><dd class="good">Chassis weight cut by 20% and the loose-connection failure mode eliminated.</dd>
-            </dl>
-          </div>
-          <div class="challenge">
-            <h5>Coordinating a tripod gait across 18 joints</h5>
-            <dl>
-              <dt>Symptom</dt><dd>Gait transitions looked unstable and foot placement drifted.</dd>
-              <dt>Root cause</dt><dd>Per-joint angle commands carry no notion of where the foot actually needs to land.</dd>
-              <dt>Fix</dt><dd>Drove every leg from the IK solver instead, so the gait is planned in foot-coordinate space and the joint angles fall out of it.</dd>
-            </dl>
-          </div>
-        </div>
-
-        <div class="specs">
-          <h4>Specifications</h4>
-          <table class="spec-table">
-            <tr><td class="g">Kinematics</td><td class="k">Legs × DOF</td><td class="v">6 × 3 (18 joints)</td></tr>
-            <tr><td class="g">Kinematics</td><td class="k">Solver</td><td class="v">Custom inverse kinematics (Python)</td></tr>
-            <tr><td class="g">Kinematics</td><td class="k">Gait</td><td class="v">Tripod</td></tr>
-            <tr><td class="g">Electronics</td><td class="k">Controller board</td><td class="v">Custom PCB (KiCad)</td></tr>
-            <tr><td class="g">Electronics</td><td class="k">Integration</td><td class="v">Servo drivers + power management in chassis</td></tr>
-            <tr><td class="g">Perception</td><td class="k">Vision</td><td class="v">Camera + OpenCV object recognition</td></tr>
-            <tr><td class="g">Mechanical</td><td class="k">CAD / fabrication</td><td class="v">SolidWorks · FDM · 3 leg revisions</td></tr>
-          </table>
-        </div>
-
-        <div class="stack">
-          <span class="chip">Python</span>
-          <span class="chip">Inverse Kinematics</span>
-          <span class="chip">KiCad</span>
-          <span class="chip">SolidWorks</span>
-          <span class="chip">OpenCV</span>
-          <span class="chip">PWM Servo Control</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- ---------------------------------------------------- SENTINEL ---- -->
-    <article class="project reveal" data-disciplines="software robotics">
-      <div class="project-head">
-        <div class="project-meta">
-          <span class="codename">PRJ-01 / SENTINEL</span>
-          <span class="status status-op"><i class="dot"></i>Operational</span>
-          <span class="year">2025</span>
-        </div>
-        <h3>Computer-Vision Tracking Turret</h3>
-        <p class="role">Co-Founder, ARES Technologies · Vision pipeline &amp; control</p>
-        <p class="tagline">
-          An aerial-defence simulation that acquires a moving target with OpenCV and drives a turret to
-          keep it centred — predicting where the target is going rather than chasing where it was.
-        </p>
-      </div>
-      <div class="metrics">
-        <div class="metric"><b>Real-time</b><span>target tracking</span></div>
-        <div class="metric"><b>Multi-threaded</b><span>vision / motor split</span></div>
-        <div class="metric"><b>Vector</b><span>path prediction</span></div>
-        <div class="metric"><b>MK4</b><span>current revision</span></div>
-      </div>
-      <div class="project-body">
-
-        <div class="gal-label">Prototype &amp; demonstration</div>
-        <div class="gal gal-2">
-          <img class="media" src="SENTINEL%20MK1.jpeg" alt="SENTINEL tracking turret, MK1 prototype" loading="lazy" data-cap="SENTINEL MK1 prototype">
-          <video class="media" controls muted playsinline preload="metadata" data-cap="SENTINEL MK4 — tracking showcase">
-            <source src="SENTINEL%20MK4%20Showcase.mov" type="video/quicktime">
-            <source src="SENTINEL%20MK4%20Showcase.mov" type="video/mp4">
-            Your browser can't play this video — download it from the repository instead.
-          </video>
-        </div>
-
-        <div class="blocks">
-          <div class="block">
-            <h4>Problem</h4>
-            <p>
-              Keeping a moving target centred means processing video fast enough to locate it while
-              simultaneously driving motors to follow it. Those two jobs compete: heavy image
-              processing stalls the motor loop.
-            </p>
-            <p>
-              The result was latency between detection and movement — a visible lag that made the
-              turret consistently point at where the target had just been.
-            </p>
-          </div>
-          <div class="block">
-            <h4>Approach</h4>
-            <ul>
-              <li>Built an OpenCV pipeline to segment and locate the target in each frame.</li>
-              <li>Split the system across threads in <strong>Python</strong>: one carrying the heavy image processing, a separate lightweight thread handling motor control.</li>
-              <li>Used the target's frame-to-frame motion to predict its path by vector analysis, so corrections anticipate rather than react.</li>
-              <li>Closed the loop from pixel offset to stepper motor commands for turret alignment.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="challenges">
-          <h4>Challenges</h4>
-          <div class="challenge">
-            <h5>Tracking lag between detection and motion</h5>
-            <dl>
-              <dt>Symptom</dt><dd>The turret trailed behind the target, degrading accuracy at speed.</dd>
-              <dt>Root cause</dt><dd>A single execution thread meant every frame of OpenCV processing blocked the motor control path.</dd>
-              <dt>Fix</dt><dd>Multi-threaded architecture separating vision from actuation, plus vector-based path prediction instead of pure reaction.</dd>
-              <dt>Result</dt><dd class="good">Significantly improved tracking accuracy on moving targets.</dd>
-            </dl>
-          </div>
-        </div>
-
-        <div class="specs">
-          <h4>Specifications</h4>
-          <table class="spec-table">
-            <tr><td class="g">Vision</td><td class="k">Library</td><td class="v">Python + OpenCV</td></tr>
-            <tr><td class="g">Vision</td><td class="k">Tracking</td><td class="v">Frame-to-frame with vector prediction</td></tr>
-            <tr><td class="g">Software</td><td class="k">Architecture</td><td class="v">Multi-threaded (vision / control split)</td></tr>
-            <tr><td class="g">Actuation</td><td class="k">Turret drive</td><td class="v">Stepper motors</td></tr>
-            <tr><td class="g">Recognition</td><td class="k">Exhibited</td><td class="v">Monash DeepNeuron Tech Expo</td></tr>
-          </table>
-        </div>
-
-        <div class="stack">
-          <span class="chip">Python</span>
-          <span class="chip">OpenCV</span>
-          <span class="chip">Multi-threading</span>
-          <span class="chip">Object Tracking</span>
-          <span class="chip">Stepper Control</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- ----------------------------------------------------- WEIRMAN ---- -->
-    <article class="project reveal" data-disciplines="hardware embedded">
-      <div class="project-head">
-        <div class="project-meta">
-          <span class="codename">MONASH / WEIRMAN</span>
-          <span class="status status-op"><i class="dot"></i>Completed · 10th of 160</span>
-          <span class="year">2026</span>
-        </div>
-        <h3>Project Weirman — Autonomous Course-Correcting Robot</h3>
-        <p class="role">Student Engineer · Monash University engineering design challenge</p>
-        <p class="tagline">
-          A competition robot that detects its own deviation from course and self-corrects mid-run,
-          built on the deliberate bet that bulletproof electrical architecture beats elaborate
-          mechanics. Placed 10th of 160 teams.
-        </p>
-      </div>
-      <div class="metrics">
-        <div class="metric"><b>10 / 160</b><span>final placing</span></div>
-        <div class="metric"><b>100%</b><span>reliability in final evaluation</span></div>
-        <div class="metric"><b>Autonomous</b><span>mid-run course correction</span></div>
-      </div>
-      <div class="project-body">
-
-        <div class="gal-label">Competition run &amp; build</div>
-        <div class="gal gal-3">
-          <video class="media" controls muted playsinline preload="metadata" data-cap="Competition run">
-            <source src="Weirman_Video.mp4" type="video/mp4">
-          </video>
-          <img class="media" src="Weirman_Photo1.jpg" alt="Project Weirman robot build, view 1" loading="lazy" data-cap="Build — view 1">
-          <img class="media" src="Weirman_Photo2.jpg" alt="Project Weirman robot build, view 2" loading="lazy" data-cap="Build — view 2">
-        </div>
-
-        <div class="blocks">
-          <div class="block">
-            <h4>Problem</h4>
-            <p>
-              Standing out in a field of 160 teams leaves no room for a single system failure during
-              evaluation. The real risk in a project like this isn't ambition — it's over-engineering
-              the mechanics until nothing is reliable.
-            </p>
-          </div>
-          <div class="block">
-            <h4>Approach</h4>
-            <ul>
-              <li>Designed an automatic navigation system that detects deviation from the intended path and self-corrects mid-run, with no operator intervention.</li>
-              <li>Deliberately kept the mechanical design strictly functional and spent the time budget on electrical integration and control logic instead.</li>
-              <li>Delivered a lean, low-power electrical architecture on a stable mechanical platform, prioritising control-logic correctness over complexity.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="challenges">
-          <h4>The strategic call</h4>
-          <div class="challenge">
-            <h5>Where to spend a fixed time budget</h5>
-            <dl>
-              <dt>Context</dt><dd>160 competing teams, one evaluation run, finite build time.</dd>
-              <dt>Decision</dt><dd>Hold the mechanical design at "strictly functional" and invest everything else in circuitry, electrical integration and control logic.</dd>
-              <dt>Result</dt><dd class="good">100% system reliability through final evaluations and a 10th-place finish.</dd>
-            </dl>
-          </div>
-        </div>
-
-        <div class="stack">
-          <span class="chip">Autonomous Navigation</span>
-          <span class="chip">Control Logic</span>
-          <span class="chip">Circuit Design</span>
-          <span class="chip">Low-Power Architecture</span>
-          <span class="chip">Design for Reliability</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- --------------------------------------------------- TCG AGENT ---- -->
-    <article class="project reveal" data-disciplines="software">
-      <div class="project-head">
-        <div class="project-meta">
-          <span class="codename">KAGGLE / 2026</span>
-          <span class="status status-op"><i class="dot"></i>Completed</span>
-          <span class="year">2026</span>
-        </div>
-        <h3>Self-Play Card Game AI Agent</h3>
-        <p class="role">AI Agent Developer · Pokémon TCG AI Battle Challenge</p>
-        <p class="tagline">
-          An agent that builds its own competitive deck from a pool of more than 18,000 cards and
-          improves it through over 250,000 simulated self-play battles.
-        </p>
-      </div>
-      <div class="metrics">
-        <div class="metric"><b>18k+</b><span>card pool</span></div>
-        <div class="metric"><b>250k+</b><span>self-play battles</span></div>
-        <div class="metric"><b>~20</b><span>evolved heuristic weights</span></div>
-      </div>
-      <div class="project-body">
-
-        <div class="gal-label">Agent architecture</div>
-        <div class="gal gal-1">
-          <div class="blueprint">
-            <b>Deck builder → MCTS planner → GA heuristic tuner → self-play loop</b>
-            <span>Architecture diagram and training-curve plots to be added.</span>
-          </div>
-        </div>
-
-        <div class="blocks">
-          <div class="block">
-            <h4>Problem</h4>
-            <p>
-              A static heuristic plays greedily: it scores one option at a time, so it cannot value a
-              move whose payoff only arrives later in the turn, and it loses to multi-step
-              combinations.
-            </p>
-            <p>
-              Both halves of the problem move at once — the deck and the play policy each have to
-              evolve against a shifting meta.
-            </p>
-          </div>
-          <div class="block">
-            <h4>Approach</h4>
-            <ul>
-              <li><strong>Monte Carlo Tree Search</strong> with UCB1 selection to evaluate candidate turn actions by rollout.</li>
-              <li><strong>Beam search</strong> over multi-step action sequences, keeping the top-K partial plans at each step.</li>
-              <li>A <strong>genetic algorithm</strong> that evolves roughly 20 weighted terms of the board-evaluation heuristic.</li>
-              <li>Iterated self-play tournaments as the fitness function, so the agent's opponent improves alongside it.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="challenges">
-          <h4>Challenges</h4>
-          <div class="challenge">
-            <h5>Greedy scoring missed combination turns</h5>
-            <dl>
-              <dt>Symptom</dt><dd>Locally optimal single moves, consistently beaten by multi-step setups.</dd>
-              <dt>Root cause</dt><dd>Scoring actions one at a time cannot represent a play whose value is only realised two or three steps later.</dd>
-              <dt>Fix</dt><dd>Beam search across action sequences, retaining the top-K partial plans rather than committing to the best immediate move.</dd>
-              <dt>Result</dt><dd class="good">Compositional plays that greedy scoring never found.</dd>
-            </dl>
-          </div>
-        </div>
-
-        <div class="specs">
-          <h4>Specifications</h4>
-          <table class="spec-table">
-            <tr><td class="g">Search</td><td class="k">Turn planner</td><td class="v">MCTS (UCB1) + beam search</td></tr>
-            <tr><td class="g">Optimisation</td><td class="k">Heuristic tuning</td><td class="v">Genetic algorithm over ~20 weights</td></tr>
-            <tr><td class="g">Training</td><td class="k">Self-play volume</td><td class="v">250,000+ battles</td></tr>
-            <tr><td class="g">Domain</td><td class="k">Card pool</td><td class="v">18,000+ cards</td></tr>
-            <tr><td class="g">Stack</td><td class="k">Language</td><td class="v">Python</td></tr>
-          </table>
-        </div>
-
-        <div class="stack">
-          <span class="chip">Python</span>
-          <span class="chip">MCTS / UCB1</span>
-          <span class="chip">Beam Search</span>
-          <span class="chip">Genetic Algorithms</span>
-          <span class="chip">Self-Play RL</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- --------------------------------------------------- ENDEAVOUR ---- -->
-    <article class="project reveal" data-disciplines="software">
-      <div class="project-head">
-        <div class="project-meta">
-          <span class="codename">PRJ / ENDEAVOUR</span>
-          <span class="status status-dev"><i class="dot"></i>In Active Development</span>
-          <span class="year">2026 — Present</span>
-        </div>
-        <h3>Endeavour — Habit Tracking App</h3>
-        <p class="role">Founder · Cross-platform iOS &amp; Android</p>
-        <p class="tagline">
-          A habit tracker built around competition rather than willpower: streaks, leaderboards and
-          head-to-head challenges designed to make accountability social.
-        </p>
-      </div>
-      <div class="metrics">
-        <div class="metric"><b>iOS + Android</b><span>cross-platform</span></div>
-        <div class="metric"><b>Gamified</b><span>streaks &amp; leaderboards</span></div>
-        <div class="metric"><b>Solo</b><span>design &amp; build</span></div>
-      </div>
-      <div class="project-body">
-
-        <div class="gal-label">Product</div>
-        <div class="gal gal-1">
-          <div class="blueprint">
-            <b>In development</b>
-            <span>Screenshots and a build log will be published as features land.</span>
-          </div>
-        </div>
-
-        <div class="blocks">
-          <div class="block">
-            <h4>Problem</h4>
-            <p>
-              Habit trackers are easy to download and easy to abandon. Logging a streak privately
-              gives you no reason to come back on the day you least feel like it.
-            </p>
-          </div>
-          <div class="block">
-            <h4>Approach</h4>
-            <ul>
-              <li>Designing and building a cross-platform app for iOS and Android from scratch.</li>
-              <li>Competitive, gamified mechanics — streaks, leaderboards and head-to-head challenges — engineered to keep users accountable to each other.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="stack">
-          <span class="chip">Cross-Platform Mobile</span>
-          <span class="chip">iOS</span>
-          <span class="chip">Android</span>
-          <span class="chip">Product Design</span>
-        </div>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<!-- ======================================================= EXPERIENCE ==== -->
-<section class="section" id="experience">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-num">02 — Track record</div>
-      <h2>Experience</h2>
-      <p>University teams, a private R&amp;D venture, and competitive engineering challenges.</p>
     </div>
 
-    <div class="timeline reveal">
-      <div class="tl-item">
-        <div class="tl-when">2026 — Present</div>
-        <h3>Electronics Team Member</h3>
-        <p class="tl-org">Monash Unmanned Aerial Systems (MUAS) · Melbourne, VIC</p>
-        <ul>
-          <li>Leading hardware development of the Measurement &amp; Logging Board used to characterise heavy-lift drone propulsion systems on Project Cassowary.</li>
-          <li>Engineered a 4-layer mixed-signal PCB in Altium Designer, isolating sensitive analog front-ends from 120 A motor EMI to preserve signal integrity under extreme load.</li>
-          <li>Presented the board through formal design reviews with industry representatives, defending component selection and power architecture.</li>
-        </ul>
-      </div>
+    <h2 class="section-heading" id="projects">Projects</h2>
 
-      <div class="tl-item">
-        <div class="tl-when">2025 — Present</div>
-        <h3>Co-Founder</h3>
-        <p class="tl-org">ARES Technologies · Private R&amp;D team, Melbourne, VIC</p>
-        <ul>
-          <li>Co-founded a private engineering team building autonomous robotic systems and bio-mimetic hardware from concept to working prototype.</li>
-          <li>Selected to exhibit prototypes at the <strong>Monash University DeepNeuron Tech Expo</strong>, presenting alongside industry leaders including Microsoft, Telstra and Blackmagic Design.</li>
-          <li>Shipped four platforms across dexterous manipulation (JAEGAR), legged locomotion (SCORPION), computer vision (SENTINEL) and assistive hardware (ECKO).</li>
-        </ul>
-      </div>
+    <!-- ===================================================== CASSOWARY -->
+    <div class="project-section">
+        <div class="project-content">
+            <h2 class="project-title">Project Cassowary | Monash UAS</h2>
+            <p class="project-role">Electronics Team Member, Monash Unmanned Aerial Systems — Hardware lead, Measurement &amp; Logging Board (Board 1) · 2026 – Present</p>
+            <span class="status-label status-dev">In Active Development</span>
+            <div class="tags">
+                <span class="tag">High-Speed Data Acquisition</span>
+                <span class="tag">Altium Designer</span>
+                <span class="tag">Mixed-Signal PCB Design</span>
+                <span class="tag">Signal Integrity</span>
+            </div>
 
-      <div class="tl-item">
-        <div class="tl-when">2026</div>
-        <h3>Student Engineer — Project Weirman</h3>
-        <p class="tl-org">Monash University academic design challenge</p>
-        <ul>
-          <li>Placed <strong>10th out of 160 teams</strong> in a university-wide engineering design challenge.</li>
-          <li>Designed an automatic navigation system enabling the robot to detect deviation and self-correct mid-run without operator intervention.</li>
-          <li>Delivered a stable mechanical platform with a lean, low-power electrical architecture, achieving 100% system reliability during final evaluations.</li>
-        </ul>
-      </div>
+            <p class="lead">
+                As a member of the <strong>Monash Unmanned Aerial Systems (MUAS)</strong> electronics team, I am responsible for the design and development of the <strong>Measurement &amp; Logging Board (Board 1)</strong> for Project Cassowary — a high-fidelity thrust test stand used to characterise drone propulsion systems.
+            </p>
 
-      <div class="tl-item">
-        <div class="tl-when">2026</div>
-        <h3>AI Agent Developer</h3>
-        <p class="tl-org">Pokémon TCG AI Battle Challenge (Kaggle)</p>
-        <ul>
-          <li>Built an agent that constructs and refines a competitive deck from a pool of over 18,000 cards.</li>
-          <li>MCTS (UCB1) and beam search planning replaced static greedy heuristics; a genetic algorithm evolved ~20 board-evaluation weights across 250,000+ self-play battles.</li>
-        </ul>
-      </div>
+            <div class="gallery-title">PCB Design &amp; Hardware Architecture</div>
+            <div class="gallery-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <img src="MUAS_Cassowary_3DPCB.png" class="media-item" alt="Board 1 3D Render">
+                <img src="MUAS_Cassowary_Routing.png" class="media-item" alt="Altium Layout View">
+                <img src="MUAS_Cassowary_Schematic1.png" class="media-item" alt="Analog Front End Schematic">
+                <img src="MUAS_Cassowary_Schematic2.png" class="media-item" alt="Power and Logic Schematic">
+            </div>
 
-      <div class="tl-item">
-        <div class="tl-when">2026 — Present</div>
-        <h3>Founder — Endeavour</h3>
-        <p class="tl-org">Personal venture · iOS &amp; Android</p>
-        <ul>
-          <li>Designing and building a cross-platform habit-tracking app with competitive, gamified features engineered around social accountability.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+            <div class="details-grid">
+                <div>
+                    <h4>Role &amp; Responsibilities</h4>
+                    <p>
+                        I led the hardware development for the <strong>Measurement &amp; Logging hub</strong>. My work involved presiding over design reviews with industry representatives, selecting high-precision components (Texas Instruments ADCs and instrumentation amplifiers), and routing a 4-layer PCB in <strong>Altium Designer</strong> focused on isolating sensitive analog signals from high-current motor noise.
+                    </p>
+                </div>
+                <div>
+                    <h4>Technical Challenges</h4>
+                    <p>
+                        <strong>Signal Integrity:</strong> Capturing thrust and torque data at 50 kS/s requires a 0.1% precision analog front-end. I utilised the <strong>INA826</strong> instrumentation amplifier to boost millivolt-scale load cell signals while rejecting electromagnetic interference from 120 A motor surges.<br><br>
+                        <strong>Power Domain Isolation:</strong> I designed a dual-rail buck converter system (LMR14050) to provide independent 3.3 V and 5 V power, ensuring the RP2040 logic remains protected from back-EMF spikes.
+                    </p>
+                </div>
+            </div>
 
-<!-- =========================================================== SKILLS ==== -->
-<section class="section" id="skills">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-num">03 — Capability</div>
-      <h2>Technical Skills</h2>
-      <p>Grouped by domain, with the projects that evidence them. Levels: 1 exposure · 3 proficient · 5 expert.</p>
-    </div>
+            <table class="spec-table">
+                <caption>Specifications</caption>
+                <tr><th>Acquisition rate</th><td>50 kS/s</td></tr>
+                <tr><th>Front-end precision</th><td>0.1%</td></tr>
+                <tr><th>Instrumentation amplifier</th><td>Texas Instruments INA826</td></tr>
+                <tr><th>Power regulation</th><td>Dual-rail LMR14050 buck converters (40 V rated)</td></tr>
+                <tr><th>Logic rails</th><td>Independent 3.3 V / 5 V domains</td></tr>
+                <tr><th>Microcontroller</th><td>RP2040</td></tr>
+                <tr><th>Board stack-up</th><td>4-layer, routed in Altium Designer</td></tr>
+                <tr><th>Supply under test</th><td>4S LiPo, 16.8 V peak</td></tr>
+            </table>
 
-    <div class="domains reveal">
-
-      <div class="domain">
-        <div class="domain-code">DOM-01</div>
-        <h3>Electronics &amp; Mixed-Signal</h3>
-        <p>Custom boards from schematic to hand-soldered assembly, including precision sensor front-ends and high-current power.</p>
-        <div class="skill"><div class="skill-row"><span class="skill-name">PCB design (Altium Designer)</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">PCB design &amp; fabrication (KiCad)</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">Mixed-signal layout &amp; signal integrity</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">High-current power distribution</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">Sensor signal conditioning</span><span class="skill-lv">3 / 5</span></div><div class="bar"><i style="width:60%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">Hand-soldering (THT / SMD)</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="instruments"><b>Instruments</b>Multimeter · bench PSU · soldering station · DAQ · oscilloscope</div>
-      </div>
-
-      <div class="domain">
-        <div class="domain-code">DOM-02</div>
-        <h3>Robotics &amp; Control</h3>
-        <p>Real-time control on microcontrollers: kinematics, closed loops and many-channel actuation.</p>
-        <div class="skill"><div class="skill-row"><span class="skill-name">Inverse kinematics</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">PID control loops</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">PWM signal modulation (18+ ch)</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">Autonomous navigation systems</span><span class="skill-lv">3 / 5</span></div><div class="bar"><i style="width:60%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">ESP32 / Arduino / RP2040</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">C++ (embedded firmware)</span><span class="skill-lv">3 / 5</span></div><div class="bar"><i style="width:60%"></i></div></div>
-      </div>
-
-      <div class="domain">
-        <div class="domain-code">DOM-03</div>
-        <h3>CAD &amp; Prototyping</h3>
-        <p>Assemblies, linkages and toleranced parts designed for the printer and the bench.</p>
-        <div class="skill"><div class="skill-row"><span class="skill-name">SolidWorks (complex assemblies)</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">Rapid prototyping (FDM)</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">DFM / tolerance analysis</span><span class="skill-lv">3 / 5</span></div><div class="bar"><i style="width:60%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">Linkage &amp; tendon mechanism design</span><span class="skill-lv">3 / 5</span></div><div class="bar"><i style="width:60%"></i></div></div>
-        <div class="instruments"><b>Workshop</b>FDM printers · calipers · hand tools</div>
-      </div>
-
-      <div class="domain">
-        <div class="domain-code">DOM-04</div>
-        <h3>Software &amp; AI</h3>
-        <p>Vision pipelines and search-based AI that make decisions in real time.</p>
-        <div class="skill"><div class="skill-row"><span class="skill-name">Python</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">OpenCV / object tracking</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">MCTS / UCB1 &amp; beam search</span><span class="skill-lv">4 / 5</span></div><div class="bar"><i style="width:80%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">Genetic algorithms</span><span class="skill-lv">3 / 5</span></div><div class="bar"><i style="width:60%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">Self-play reinforcement learning</span><span class="skill-lv">3 / 5</span></div><div class="bar"><i style="width:60%"></i></div></div>
-        <div class="skill"><div class="skill-row"><span class="skill-name">Cross-platform mobile development</span><span class="skill-lv">3 / 5</span></div><div class="bar"><i style="width:60%"></i></div></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ======================================================== EDUCATION ==== -->
-<section class="section" id="education">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-num">04 — Education</div>
-      <h2>Monash University</h2>
-    </div>
-
-    <div class="edu reveal">
-      <div class="edu-main">
-        <h3>Bachelor of Engineering (Honours), Mechatronics</h3>
-        <p>Clayton, VIC · Expected graduation 2028</p>
-      </div>
-      <div class="edu-grades">
-        <div>
-          <div class="grade-v">79.3</div>
-          <div class="grade-l">Weighted Average Mark<br>(Distinction)</div>
+            <div class="highlight-box" style="margin-bottom: 0; margin-top: 2rem; border-left-color: var(--monash-blue);">
+                <div class="highlight-title" style="color: var(--monash-blue);">Design Review Insight</div>
+                <p>
+                    During our V3 design review, we rigorously evaluated the system's power architecture. By verifying that our propulsion testing would utilise a <strong>4S LiPo (16.8 V peak)</strong>, I validated the selection of the 40 V-rated <strong>LMR14050</strong> buck converters. This ensured a greater than 2x safety margin while avoiding unnecessary over-engineering and keeping board fabrication costs down.
+                </p>
+            </div>
         </div>
-        <div>
-          <div class="grade-v">3.4</div>
-          <div class="grade-l">Grade Point Average</div>
+    </div>
+
+    <!-- ========================================================== ECKO -->
+    <div class="project-section">
+        <div class="project-content">
+            <h2 class="project-title">Project ECKO</h2>
+            <p class="project-role">ARES Technologies — Hardware &amp; PCB design · 2026 – Present</p>
+            <span class="status-label status-dev">In Active Development</span>
+            <div class="tags">
+                <span class="tag">Assistive Technology</span>
+                <span class="tag">4-Layer PCB Design</span>
+                <span class="tag">Altium Designer</span>
+                <span class="tag">Power Integrity</span>
+                <span class="tag">Embedded Systems</span>
+            </div>
+
+            <p class="lead">
+                A head-worn assistive device that converts spatial distance into haptic feedback. Time-of-flight sensors measure the distance to surrounding objects, and an array of 32 haptic motors renders those measurements as vibration, allowing a visually impaired wearer to perceive obstacles and room layout. I am responsible for the design of the 4-layer control board.
+            </p>
+
+            <div class="gallery-title">Hardware</div>
+            <div class="media-pending">
+                Board bring-up is in progress. The schematic is complete and routed in Altium Designer; photographs and test data will be published once the first boards return from fabrication.
+            </div>
+
+            <div class="details-grid">
+                <div>
+                    <h4>The Challenge</h4>
+                    <p>
+                        A cane or guide dog primarily detects obstacles at ground level and within arm's reach, leaving hazards at head height and the broader layout of a space difficult to perceive. Rendering that information through touch requires a high actuator count within a compact, head-worn, USB-powered assembly.
+                    </p>
+                    <p>
+                        This creates two electrical constraints. The time-of-flight sensors ship with a single fixed I²C address and therefore cannot share a bus directly. Separately, 32 vibration motors switching simultaneously generate transients capable of disrupting the 2.4 GHz radio and corrupting the sensor bus.
+                    </p>
+                </div>
+                <div>
+                    <h4>Engineering Solution</h4>
+                    <p>
+                        I resolved the addressing constraint with an I²C multiplexer driven by a reset line from the ESP32-S3, selecting each sensor onto the bus in sequence. Motor drive is handled by two PCA9685 16-channel PWM controllers feeding four ULN2803C Darlington arrays.
+                    </p>
+                    <p>
+                        To contain switching noise, I specified a 4-layer stack-up with a solid ground plane on L2 and a split 3V3 / +5V_MOT plane on L3, so every power and ground pin reaches its plane through a via rather than a trace. The logic rail is fed through a ferrite bead and a dedicated regulator, and a keep-out region beneath the antenna is applied across all four copper layers.
+                    </p>
+                </div>
+            </div>
+
+            <table class="spec-table">
+                <caption>Specifications</caption>
+                <tr><th>Microcontroller module</th><td>ESP32-S3-WROOM-1</td></tr>
+                <tr><th>Distance sensing</th><td>Time-of-flight sensors behind an I²C multiplexer</td></tr>
+                <tr><th>PWM generation</th><td>2 × PCA9685 (16 channels each)</td></tr>
+                <tr><th>Motor drive</th><td>4 × ULN2803C Darlington arrays</td></tr>
+                <tr><th>Haptic channels</th><td>32</td></tr>
+                <tr><th>Board stack-up</th><td>4-layer, 1.6 mm, 0.5 oz inner copper</td></tr>
+                <tr><th>Plane configuration</th><td>L2 solid ground; L3 split 3V3 / +5V_MOT</td></tr>
+                <tr><th>Design rules</th><td>0.15 mm minimum clearance, DRC clean</td></tr>
+                <tr><th>Power input</th><td>USB-C with ESD array, fuse, reverse-polarity diode, 470 µF bulk</td></tr>
+                <tr><th>Rail isolation</th><td>Ferrite bead and dedicated regulator to 3V3 logic</td></tr>
+            </table>
         </div>
-      </div>
     </div>
 
-    <div class="section-head reveal" style="margin-top:56px; margin-bottom:20px">
-      <div class="section-num">Interests</div>
-    </div>
-    <div class="chips reveal">
-      <span class="chip">Digital logic design — Redstone logic gates &amp; hex/binary decoders</span>
-      <span class="chip">Robotics Club, Years 9–10</span>
-    </div>
-  </div>
-</section>
+    <!-- ======================================================== JAEGAR -->
+    <div class="project-section">
+        <div class="project-content">
+            <h2 class="project-title">Project JAEGAR</h2>
+            <p class="project-role">Co-Founder, ARES Technologies — Mechanical design &amp; power electronics · 2025 – 2026</p>
+            <span class="status-label status-complete">Operational</span>
+            <div class="tags">
+                <span class="tag">Bio-Mimetic Robotics</span>
+                <span class="tag">High-Current Power Distribution</span>
+                <span class="tag">SolidWorks CAD</span>
+            </div>
 
-<!-- =========================================================== FOOTER ==== -->
-<footer class="footer">
-  <div class="footer-in">
-    <p>&copy; 2026 Om Bhatt · Built by hand with HTML, CSS and JavaScript.</p>
-    <div class="footer-links">
-      <a href="mailto:bhattom76@gmail.com">Email</a>
-      <a href="https://linkedin.com/in/ombhatt15/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/OmBhatt15" target="_blank" rel="noopener">GitHub</a>
-      <a href="#top">Back to top</a>
-    </div>
-  </div>
-</footer>
+            <p class="lead">
+                An anthropomorphic robotic arm designed to replicate human motion in real time.
+                The primary goal was to create a fluid, high-torque system capable of mimicking delicate hand gestures for medical and teleoperation applications.
+                The end goal is a full-scale humanoid robot that can mimic a user's actions.
+            </p>
 
-<!-- ========================================================= LIGHTBOX ==== -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Expanded media">
-  <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
-  <div class="lightbox-stage" id="lightbox-stage"></div>
-  <div class="lightbox-cap" id="lightbox-cap"></div>
+            <video class="hero-media" controls muted playsinline preload="metadata">
+                <source src="JAEGAR%20Finger%20V4%20Compressed.mp4" type="video/mp4">
+            </video>
+
+            <div class="gallery-title">Phase 1: Finger Actuation Iterations</div>
+            <div class="gallery-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <video class="media-item" controls muted playsinline preload="metadata">
+                    <source src="JAEGAR%20Finger%20V1%20Compressed.mp4" type="video/mp4">
+                </video>
+                <video class="media-item" controls muted playsinline preload="metadata">
+                    <source src="JAEGAR%20Finger%20V2%20Compressed.mp4" type="video/mp4">
+                </video>
+                <video class="media-item" controls muted playsinline preload="metadata">
+                    <source src="JAEGAR%20Finger%20V3%20Compressed.mp4" type="video/mp4">
+                </video>
+                <video class="media-item" controls muted playsinline preload="metadata">
+                    <source src="JAEGAR%20Finger%20V4%20Compressed.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="gallery-title">Phase 2: Full Hand Assembly</div>
+            <div class="gallery-grid" style="grid-template-columns: 1fr 1fr;">
+                <img src="JAEGAR%20Hand%20V3.jpeg" class="media-item" alt="JAEGAR Hand V3">
+                <img src="Crippled%20JAEGAR%20Hand%20V3.jpeg" class="media-item" alt="JAEGAR Hand Prototype">
+            </div>
+
+            <div class="details-grid">
+                <div>
+                    <h4>The Challenge</h4>
+                    <p>
+                        The main difficulty was handling the power surge when all five fingers actuated simultaneously.
+                        Standard microcontrollers could not supply the required current draw, leading to brownouts.
+                        Additionally, mapping linear servo movement to the non-linear rotation of human finger joints required complex mechanical linkage design.
+                    </p>
+                </div>
+                <div>
+                    <h4>Engineering Solution</h4>
+                    <p>
+                        I designed a dedicated power distribution bus separate from the logic controller to isolate noise and manage high loads.
+                        For the mechanics, I used SolidWorks to iterate on a tendon-driven design, routing high-tension nylon line through 3D-printed phalanges to simulate muscle contraction. The finger mechanism progressed through four design generations before reaching its current form.
+                    </p>
+                </div>
+            </div>
+
+            <table class="spec-table">
+                <caption>Specifications</caption>
+                <tr><th>Actuation principle</th><td>Tendon-driven, high-tension nylon line</td></tr>
+                <tr><th>Fabrication</th><td>FDM-printed phalanges</td></tr>
+                <tr><th>CAD</th><td>SolidWorks, four design generations</td></tr>
+                <tr><th>Power distribution</th><td>Dedicated high-current bus, isolated from logic</td></tr>
+                <tr><th>Control input</th><td>Operator glove mapped to servo position targets</td></tr>
+                <tr><th>Target applications</th><td>Medical and teleoperation</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ====================================================== SCORPION -->
+    <div class="project-section">
+        <div class="project-content">
+            <h2 class="project-title">Project SCORPION</h2>
+            <p class="project-role">Co-Founder, ARES Technologies — Inverse kinematics &amp; PCB design · 2025 – 2026</p>
+            <span class="status-label status-complete">Operational</span>
+            <div class="tags">
+                <span class="tag">Inverse Kinematics</span>
+                <span class="tag">PCB Design</span>
+                <span class="tag">Autonomous Navigation</span>
+            </div>
+
+            <p class="lead">
+                A hexapod robot built to assist with daily tasks, surveillance and exploration.
+                This platform served as a testbed for inverse kinematics algorithms and custom PCB fabrication.
+            </p>
+
+            <img src="SCORPION%20V2%20Top.jpeg" class="hero-media" alt="SCORPION Main View">
+
+            <div class="gallery-title">Design Evolution: Leg Mechanisms</div>
+            <div class="gallery-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <img src="SCORPION%20Leg%20V1.jpeg" class="media-item" alt="Leg V1">
+                <img src="SCORPION%20Leg%20V2.jpeg" class="media-item" alt="Leg V2">
+                <img src="SCORPION%20Leg%20V3.png" class="media-item" alt="Leg V3 Final">
+            </div>
+
+            <div class="gallery-title">Chassis &amp; Integration</div>
+            <div class="gallery-grid" style="grid-template-columns: 1fr 1fr;">
+                <img src="SCORPION%20V1.jpeg" class="media-item" alt="SCORPION V1">
+                <img src="SCORPION%20V1%20CAD.png" class="media-item" alt="SCORPION V1 CAD">
+            </div>
+
+            <div class="gallery-grid" style="grid-template-columns: 1fr 1fr;">
+                <img src="SCORPION%20V2%20Below.jpeg" class="media-item" alt="SCORPION V2 Bottom View">
+                <img src="SCORPION%20V2%20Top.jpeg" class="media-item" alt="SCORPION V2 Top View">
+            </div>
+
+            <div class="gallery-title">Custom Electronics &amp; PCB Design</div>
+            <div class="gallery-grid" style="grid-template-columns: 1fr 1fr;">
+                <img src="pcb_wiring.png" class="media-item" alt="SCORPION PCB Schematic">
+                <img src="pcb_3d.png" class="media-item" alt="SCORPION PCB 3D View">
+            </div>
+
+            <div class="details-grid">
+                <div>
+                    <h4>The Challenge</h4>
+                    <p>
+                        Coordinating 18 separate servos (three per leg) to achieve a smooth tripod gait walking cycle.
+                        Traditional breadboard wiring was too bulky and unreliable for a moving chassis, causing frequent connection failures during movement.
+                    </p>
+                </div>
+                <div>
+                    <h4>Engineering Solution</h4>
+                    <p>
+                        I developed a custom inverse kinematics solver in Python to calculate the precise angle of every joint based on a desired foot coordinate (x, y, z).
+                        To resolve the wiring issue, I designed a custom PCB in KiCad that integrated the servo drivers and power management directly into the robot's chassis, reducing weight by 20%.
+                    </p>
+                </div>
+            </div>
+
+            <table class="spec-table">
+                <caption>Specifications</caption>
+                <tr><th>Legs and degrees of freedom</th><td>6 × 3 (18 joints)</td></tr>
+                <tr><th>Kinematics solver</th><td>Custom inverse kinematics, Python</td></tr>
+                <tr><th>Gait</th><td>Tripod</td></tr>
+                <tr><th>Controller board</th><td>Custom PCB designed in KiCad</td></tr>
+                <tr><th>Integration</th><td>Servo drivers and power management within chassis</td></tr>
+                <tr><th>Weight reduction</th><td>20% following board integration</td></tr>
+                <tr><th>Perception</th><td>Camera with OpenCV object recognition</td></tr>
+                <tr><th>Mechanical</th><td>SolidWorks CAD, FDM printing, three leg revisions</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ====================================================== SENTINEL -->
+    <div class="project-section">
+        <div class="project-content">
+            <h2 class="project-title">Project SENTINEL</h2>
+            <p class="project-role">Co-Founder, ARES Technologies — Vision pipeline &amp; control · 2025</p>
+            <span class="status-label status-complete">Operational</span>
+            <div class="tags">
+                <span class="tag">Computer Vision</span>
+                <span class="tag">Python / OpenCV</span>
+                <span class="tag">Real-Time Tracking</span>
+            </div>
+
+            <p class="lead">
+                An automated defence simulation system using computer vision.
+                Designed to track aerial targets and align a turret mechanism in real time without human input.
+            </p>
+
+            <div class="gallery-grid" style="grid-template-columns: 1fr 1fr;">
+                <img src="SENTINEL%20MK1.jpeg" class="media-item" alt="SENTINEL MK1">
+                <video class="media-item" controls muted playsinline preload="metadata">
+                    <source src="SENTINEL%20MK4%20Showcase.mov" type="video/quicktime">
+                    <source src="SENTINEL%20MK4%20Showcase.mov" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="details-grid">
+                <div>
+                    <h4>The Challenge</h4>
+                    <p>
+                        Processing video feeds fast enough to track a moving object while simultaneously driving stepper motors.
+                        Latency between the camera detecting an object and the motors moving created a lag that made the tracking inaccurate.
+                    </p>
+                </div>
+                <div>
+                    <h4>Engineering Solution</h4>
+                    <p>
+                        I implemented a multi-threaded Python script in which one thread handled the heavy OpenCV image processing and a separate lightweight thread handled motor control.
+                        This allowed the turret to predict the target's path through vector analysis rather than reacting to its previous position, significantly improving accuracy.
+                    </p>
+                </div>
+            </div>
+
+            <table class="spec-table">
+                <caption>Specifications</caption>
+                <tr><th>Vision stack</th><td>Python with OpenCV</td></tr>
+                <tr><th>Tracking method</th><td>Frame-to-frame tracking with vector path prediction</td></tr>
+                <tr><th>Software architecture</th><td>Multi-threaded, vision separated from motor control</td></tr>
+                <tr><th>Turret actuation</th><td>Stepper motors</td></tr>
+                <tr><th>Exhibited at</th><td>Monash DeepNeuron Tech Expo</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ======================================================= WEIRMAN -->
+    <div class="project-section">
+        <div class="project-content">
+            <h2 class="project-title">Project Weirman</h2>
+            <p class="project-role">Student Engineer, Monash University academic design challenge · 2026</p>
+            <span class="status-label status-complete">Completed — 10th of 160 teams</span>
+            <div class="tags">
+                <span class="tag">Circuitry &amp; Hardware Logic</span>
+                <span class="tag">Autonomous Navigation</span>
+                <span class="tag">Academic Competition</span>
+            </div>
+
+            <p class="lead">
+                Developed as a competitive academic project at Monash University, where our team placed <strong>10th out of 160 teams</strong>. To secure a top placing in such a large field, we prioritised reliable circuitry and hardware logic over complex mechanical structural design to ensure consistent performance during the final evaluation.
+            </p>
+
+            <div class="gallery-title">Project Media</div>
+            <div class="gallery-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <video class="media-item" controls muted playsinline preload="metadata">
+                    <source src="Weirman_Video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <img src="Weirman_Photo1.jpg" class="media-item" alt="Weirman Project View 1">
+                <img src="Weirman_Photo2.jpg" class="media-item" alt="Weirman Project View 2">
+            </div>
+
+            <div class="details-grid">
+                <div>
+                    <h4>The Challenge</h4>
+                    <p>
+                        Standing out against 160 other teams meant we could not afford a single system failure during testing. The main challenge was designing an electrical architecture that would remain completely reliable under competition conditions, while avoiding the common pitfall of over-engineering the physical mechanics.
+                    </p>
+                </div>
+                <div>
+                    <h4>Engineering Solution</h4>
+                    <p>
+                        Our strategy relied on robust circuitry and clean hardware logic. I designed an automatic navigation system enabling the robot to detect deviation and self-correct its course mid-run without operator intervention. By keeping the mechanical design strictly functional and dedicating our time to electrical integration and control logic, we achieved 100% system reliability during final evaluations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================== TCG AGENT -->
+    <div class="project-section">
+        <div class="project-content">
+            <h2 class="project-title">Self-Play Card Game AI Agent</h2>
+            <p class="project-role">AI Agent Developer, Pokémon TCG AI Battle Challenge (Kaggle) · 2026</p>
+            <span class="status-label status-complete">Completed</span>
+            <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Monte Carlo Tree Search</span>
+                <span class="tag">Genetic Algorithms</span>
+                <span class="tag">Self-Play Reinforcement Learning</span>
+            </div>
+
+            <p class="lead">
+                An agent that autonomously constructs and refines a competitive deck from a pool of more than 18,000 cards, trained through over 250,000 simulated self-play battles to produce a high-win-rate, meta-resistant deck.
+            </p>
+
+            <div class="details-grid">
+                <div>
+                    <h4>The Challenge</h4>
+                    <p>
+                        A static heuristic evaluates one option at a time and therefore plays greedily. It cannot assign value to a move whose payoff only materialises later in the turn, which causes it to lose consistently against multi-step combinations.
+                    </p>
+                    <p>
+                        The problem is compounded by the fact that both the deck composition and the play policy must evolve against a shifting competitive meta.
+                    </p>
+                </div>
+                <div>
+                    <h4>Engineering Solution</h4>
+                    <p>
+                        I replaced static scoring with Monte Carlo Tree Search using UCB1 selection to evaluate candidate turn actions by rollout, combined with a beam search across multi-step action sequences that retains the top-K partial plans at each step.
+                    </p>
+                    <p>
+                        A genetic algorithm evolves approximately 20 weighted terms of the board-evaluation heuristic, using iterated self-play tournaments as the fitness function so that the agent's opponent improves alongside it.
+                    </p>
+                </div>
+            </div>
+
+            <table class="spec-table">
+                <caption>Specifications</caption>
+                <tr><th>Turn planner</th><td>Monte Carlo Tree Search (UCB1) with beam search</td></tr>
+                <tr><th>Heuristic optimisation</th><td>Genetic algorithm over approximately 20 weights</td></tr>
+                <tr><th>Training volume</th><td>250,000+ self-play battles</td></tr>
+                <tr><th>Card pool</th><td>18,000+ cards</td></tr>
+                <tr><th>Language</th><td>Python</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ===================================================== ENDEAVOUR -->
+    <div class="project-section">
+        <div class="project-content">
+            <h2 class="project-title">Endeavour</h2>
+            <p class="project-role">Founder — Cross-platform iOS &amp; Android application · 2026 – Present</p>
+            <span class="status-label status-dev">In Active Development</span>
+            <div class="tags">
+                <span class="tag">Cross-Platform Mobile</span>
+                <span class="tag">iOS</span>
+                <span class="tag">Android</span>
+                <span class="tag">Product Design</span>
+            </div>
+
+            <p class="lead">
+                A cross-platform habit-tracking application built around competitive, gamified mechanics. Streaks, leaderboards and head-to-head challenges are used to establish social accountability between users rather than relying on individual motivation alone.
+            </p>
+
+            <div class="media-pending">
+                In active development. Screenshots and a build log will be published as features are completed.
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================================================== EXPERIENCE -->
+    <h2 class="section-heading" id="experience">Experience</h2>
+    <div class="project-section">
+        <div class="project-content">
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <p class="entry-role">Electronics Team Member</p>
+                        <span class="entry-org">Monash Unmanned Aerial Systems (MUAS)</span>
+                    </div>
+                    <span class="entry-date">2026 – Present</span>
+                </div>
+                <ul class="detail-list">
+                    <li>Leading hardware development of the Measurement &amp; Logging Board used to characterise heavy-lift drone propulsion systems on Project Cassowary.</li>
+                    <li>Engineered a 4-layer mixed-signal PCB in Altium Designer, isolating sensitive analog front-ends from 120 A motor EMI to preserve signal integrity under extreme load.</li>
+                    <li>Presented the board through formal design reviews with industry representatives, defending component selection and power architecture.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <p class="entry-role">Co-Founder</p>
+                        <span class="entry-org">ARES Technologies (Private R&amp;D Team)</span>
+                    </div>
+                    <span class="entry-date">2025 – Present</span>
+                </div>
+                <ul class="detail-list">
+                    <li>Co-founded a private engineering team building autonomous robotic systems and bio-mimetic hardware from concept to working prototype.</li>
+                    <li>Selected to exhibit prototypes at the <strong>Monash University DeepNeuron Tech Expo</strong>, presenting alongside industry leaders including Microsoft, Telstra and Blackmagic Design.</li>
+                    <li>Delivered four platforms spanning dexterous manipulation (JAEGAR), legged locomotion (SCORPION), computer vision (SENTINEL) and assistive hardware (ECKO).</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <p class="entry-role">Student Engineer</p>
+                        <span class="entry-org">Project Weirman, Monash University</span>
+                    </div>
+                    <span class="entry-date">2026</span>
+                </div>
+                <ul class="detail-list">
+                    <li>Placed <strong>10th out of 160 teams</strong> in a university-wide engineering design challenge.</li>
+                    <li>Designed an automatic navigation system enabling the robot to detect deviation and self-correct mid-run without operator intervention.</li>
+                    <li>Delivered a stable mechanical platform with a lean, low-power electrical architecture, achieving 100% system reliability during final evaluations.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <p class="entry-role">AI Agent Developer</p>
+                        <span class="entry-org">Pokémon TCG AI Battle Challenge (Kaggle)</span>
+                    </div>
+                    <span class="entry-date">2026</span>
+                </div>
+                <ul class="detail-list">
+                    <li>Built an agent that constructs and refines a competitive deck from a pool of over 18,000 cards.</li>
+                    <li>Implemented Monte Carlo Tree Search (UCB1) and beam search planning in place of static greedy heuristics, with a genetic algorithm evolving approximately 20 board-evaluation weights across 250,000+ self-play battles.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div>
+                        <p class="entry-role">Founder</p>
+                        <span class="entry-org">Endeavour — iOS &amp; Android Application</span>
+                    </div>
+                    <span class="entry-date">2026 – Present</span>
+                </div>
+                <ul class="detail-list">
+                    <li>Designing and building a cross-platform habit-tracking application with competitive, gamified features structured around social accountability.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ======================================================== SKILLS -->
+    <h2 class="section-heading" id="skills">Technical Skills</h2>
+    <div class="project-section">
+        <div class="project-content">
+
+            <div class="skill-group">
+                <h4>Hardware Engineering</h4>
+                <p>Mixed-signal PCB design (Altium Designer, KiCad), 4-layer stack-ups and split-plane power distribution, precision analog front-ends, high-current power distribution, signal integrity and EMI mitigation, hand-soldering (THT and SMD).</p>
+            </div>
+
+            <div class="skill-group">
+                <h4>Robotics &amp; Control</h4>
+                <p>Inverse kinematics, PID control loops, PWM signal modulation across 18+ channels, autonomous navigation systems, computer vision and object tracking, microcontroller integration (ESP32-S3, RP2040, Arduino), embedded C++.</p>
+            </div>
+
+            <div class="skill-group">
+                <h4>CAD &amp; Prototyping</h4>
+                <p>SolidWorks complex assemblies, rapid prototyping via FDM printing, design for manufacture (DFM) and tolerance analysis, linkage and tendon mechanism design, test rig and fixture design.</p>
+            </div>
+
+            <div class="skill-group">
+                <h4>Software &amp; AI</h4>
+                <p>Python (OpenCV, multi-threading), C++ for embedded firmware, search and optimisation methods (Monte Carlo Tree Search with UCB1, beam search, genetic algorithms), self-play reinforcement learning, cross-platform mobile development for iOS and Android.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===================================================== EDUCATION -->
+    <h2 class="section-heading" id="education">Education</h2>
+    <div class="project-section">
+        <div class="project-content">
+            <div class="edu-header">
+                <p class="entry-role">Monash University</p>
+                <span class="entry-date">Clayton, VIC · Expected Graduation 2028</span>
+            </div>
+            <p class="edu-degree">Bachelor of Engineering (Honours), Mechatronics</p>
+
+            <div class="edu-grades">
+                <div>
+                    <div class="grade-value">79.300</div>
+                    <div class="grade-label">Weighted Average Mark (Distinction)</div>
+                </div>
+                <div>
+                    <div class="grade-value">3.400</div>
+                    <div class="grade-label">Grade Point Average</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
+                <h4>Interests</h4>
+                <p>
+                    <strong>Digital Logic Design:</strong> An early interest in computing logic developed through complex Redstone circuitry, including logic gates and hexadecimal and binary decoders.
+                    &nbsp;&nbsp;<strong>Robotics:</strong> High School Robotics Club member, Years 9–10.
+                </p>
+            </div>
+        </div>
+    </div>
+
 </div>
 
-<script src="app.js"></script>
+<footer>
+    &copy; 2026 Om Bhatt. Built with HTML/CSS/JS.
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Create the modal container dynamically
+        const modal = document.createElement('div');
+        modal.id = 'media-modal';
+        Object.assign(modal.style, {
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+            zIndex: '9999',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            opacity: '0',
+            pointerEvents: 'none',
+            transition: 'opacity 0.3s ease',
+            cursor: 'zoom-out'
+        });
+
+        // Create the container for the expanded image/video
+        const modalContent = document.createElement('div');
+        Object.assign(modalContent.style, {
+            maxWidth: '90%',
+            maxHeight: '90%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+        });
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+
+        const closeModal = () => {
+            modal.style.opacity = '0';
+            modal.style.pointerEvents = 'none';
+            document.body.style.overflow = '';
+            // Clear content after fade out so videos stop playing
+            setTimeout(() => { modalContent.innerHTML = ''; }, 300);
+        };
+
+        // Close modal when clicked anywhere, or on Escape
+        modal.addEventListener('click', closeModal);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.pointerEvents === 'auto') closeModal();
+        });
+
+        // Function to clone and display the media
+        const openModal = (mediaElement) => {
+            modalContent.innerHTML = '';
+            const clone = mediaElement.cloneNode(true);
+
+            // Clean up cloned styles to ensure it fits the screen
+            clone.style.transform = 'none';
+            clone.style.maxWidth = '100%';
+            clone.style.maxHeight = '90vh';
+            clone.style.width = 'auto';
+            clone.style.height = 'auto';
+            clone.style.objectFit = 'contain';
+            clone.style.cursor = 'default';
+
+            // Ensure videos are playable when expanded
+            if (clone.tagName === 'VIDEO') {
+                clone.controls = true;
+                clone.muted = false;
+            }
+
+            modalContent.appendChild(clone);
+            modal.style.opacity = '1';
+            modal.style.pointerEvents = 'auto';
+            document.body.style.overflow = 'hidden';
+        };
+
+        // Attach event listeners to all images and videos.
+        // Images expand on click; videos expand on double-click so that the
+        // inline playback controls remain usable.
+        document.querySelectorAll('.media-item, .hero-media').forEach(item => {
+            if (item.tagName === 'VIDEO') {
+                item.addEventListener('dblclick', (e) => {
+                    e.preventDefault();
+                    openModal(item);
+                });
+            } else {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal(item);
+                });
+            }
+        });
+    });
+</script>
+
 </body>
 </html>
