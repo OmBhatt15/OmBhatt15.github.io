@@ -1,0 +1,110 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[left=0.55in,top=0.4in,right=0.55in,bottom=0.4in]{geometry}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+% --- FONT ---
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault}
+\usepackage[T1]{fontenc}
+
+% --- COLORS ---
+\definecolor{monashblue}{RGB}{0, 102, 204}
+\definecolor{darkgray}{RGB}{50, 50, 50}
+
+% --- SECTIONS ---
+\titleformat{\section}{\Large\bfseries\color{monashblue}}{}{0em}{}[\color{monashblue}\titlerule]
+\titlespacing{\section}{0pt}{4pt}{2pt}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\renewcommand{\baselinestretch}{0.90}
+
+\hypersetup{colorlinks=true, urlcolor=monashblue, linkcolor=monashblue}
+
+\begin{document}
+
+% --- HEADER ---
+\begin{center}
+    {\huge \textbf{Om Bhatt}} \\[0.08em]
+    {\large Engineering Undergraduate (Monash University)} \\[0.05em]
+    {\color{darkgray} Melbourne, VIC $\cdot$ 0492 827 616 $\cdot$ bhattom76@gmail.com} \\[0.1em]
+    \href{https://linkedin.com/in/ombhatt15/}{\textbf{LinkedIn}} $\cdot$
+    \href{https://ombhatt15.github.io/}{\textbf{GitHub Portfolio}} $\cdot$
+    \href{https://github.com/OmBhatt15}{\textbf{GitHub}}
+\end{center}
+
+% --- EDUCATION ---
+\section{Education}
+\textbf{Monash University} \hfill Clayton, VIC \\
+\textit{Bachelor of Engineering (Honours), Mechatronics} \hfill \textit{Expected Grad: 2028}
+\begin{itemize}[noitemsep, topsep=1pt, leftmargin=*]
+    \item \textbf{Weighted Average Mark (WAM): 79.300 (Distinction)} \quad $\cdot$ \quad \textbf{Grade Point Average (GPA): 3.400}
+    \item \textbf{Interests:} Digital logic design, self-taught through complex Redstone circuitry (logic gates, hex/binary decoders) \quad $\cdot$ \quad High School Robotics Club (Year 9--10).
+\end{itemize}
+
+% --- TECHNICAL SKILLS ---
+\section{Technical Skills}
+\begin{itemize}[noitemsep, topsep=1pt, leftmargin=*]
+    \item \textbf{Hardware Engineering:} Mixed-Signal PCB Design (Altium Designer, KiCad), 4-Layer Stack-Ups \& Split-Plane Power, Precision Analog Front-Ends, High-Current Power Distribution, Signal Integrity \& EMI Mitigation.
+    \item \textbf{Robotics \& Control:} Inverse Kinematics, PID Control Loops, PWM Modulation (18+ channels), Autonomous Navigation, Computer Vision (Object Tracking), Microcontrollers (ESP32-S3/RP2040/Arduino).
+    \item \textbf{CAD \& Prototyping:} SolidWorks (Complex Assemblies), Rapid Prototyping (FDM), DFM, Linkage \& Tendon Mechanism Design.
+    \item \textbf{Software \& AI:} Python (OpenCV, Multi-Threading), C++ (Embedded Firmware), Search \& Optimisation (MCTS/UCB1, Beam Search, Genetic Algorithms), Cross-Platform Mobile (iOS/Android).
+\end{itemize}
+
+% --- ENGINEERING EXPERIENCE ---
+\section{Engineering Experience}
+
+\textbf{Electronics Team Member} \hfill \textit{Monash Unmanned Aerial Systems (MUAS)} \\
+\textit{Melbourne, VIC} \hfill \textit{2026 -- Present}
+\begin{itemize}[noitemsep, topsep=1pt, leftmargin=*]
+    \item \textbf{Project Cassowary:} Leading hardware development of the Measurement \& Logging Board used to characterise heavy-lift drone propulsion systems.
+    \item \textbf{Precision Analog Design:} Engineered a 0.1\%-precision front-end capturing thrust and torque at \textbf{50 kS/s}, using an INA826 instrumentation amplifier to resolve millivolt load-cell signals while rejecting EMI from \textbf{120A} motor surges.
+    \item \textbf{Design Review:} Validated 40V-rated converters against a 4S LiPo (16.8V peak) worst case, securing a $>$2x safety margin while avoiding over-engineering and cutting fabrication cost.
+    \item \textbf{Mixed-Signal PCB Design:} Routed a 4-layer board in Altium Designer isolating analog front-ends from high-current return paths, with dual-rail LMR14050 buck converters giving the RP2040 logic independent 3.3V/5V domains protected from back-EMF spikes.
+\end{itemize}
+
+\vspace{1pt}
+
+\textbf{Co-Founder} \hfill \textit{ARES Technologies (Private R\&D Team)} \\
+\textit{Melbourne, VIC} \hfill \textit{2025 -- Present}
+\begin{itemize}[noitemsep, topsep=1pt, leftmargin=*]
+    \item \textbf{Overview:} Co-founded a private engineering team building autonomous robotic systems and bio-mimetic hardware from concept to working prototype.
+    \item \textbf{Industry Recognition:} Selected to exhibit prototypes at the \textbf{Monash University DeepNeuron Tech Expo}, presenting alongside industry leaders including Microsoft, Telstra, and Blackmagic Design.
+    \item \textbf{Project ECKO (Assistive Haptics):} Designing the 4-layer control board for a haptic-sight blindfold that renders time-of-flight distance as vibration, driving \textbf{32 haptic motor channels} from an ESP32-S3 via dual PCA9685 controllers, with a split 3V3/+5V\_MOT plane isolating motor noise from the logic and 2.4 GHz radio.
+    \item \textbf{Project JAEGAR (Bio-Mimetic Robotics):} Designed an anthropomorphic robotic hand for real-time motion mimicry, engineering a dedicated high-current power bus to eliminate brownouts during simultaneous five-finger actuation and iterating tendon-driven linkages across four SolidWorks generations.
+    \item \textbf{Project SCORPION (Autonomous Hexapod):} Built an AI-powered hexapod coordinating \textbf{18 servos} on a tripod gait from a custom Python inverse-kinematics solver, replacing failure-prone breadboard wiring with an integrated KiCad PCB that cut chassis weight by \textbf{20\%}.
+    \item \textbf{Project SENTINEL (Computer Vision Defense):} Developed a multi-threaded object tracking system decoupling OpenCV processing from motor control, predicting target paths by vector analysis for real-time turret alignment.
+\end{itemize}
+
+\vspace{1pt}
+
+\textbf{Student Engineer} \hfill \textit{Project Weirman (Monash Academic Project)} \\
+\textit{Melbourne, VIC} \hfill \textit{2026}
+\begin{itemize}[noitemsep, topsep=1pt, leftmargin=*]
+    \item \textbf{Result:} Placed \textbf{10th out of 160 teams} in a highly competitive university-wide engineering design challenge.
+    \item \textbf{Autonomous Navigation:} Designed and built an automatic navigation system enabling the robot to detect deviation and self-correct its course mid-run without operator intervention.
+    \item \textbf{Reliability by Design:} Paired a stable mechanical platform with a lean, low-power electrical architecture, prioritising bulletproof control logic over unnecessary complexity to achieve 100\% system reliability during final evaluations.
+\end{itemize}
+
+% --- SOFTWARE \& AI PROJECTS ---
+\section{Software \& AI Projects}
+
+\textbf{AI Agent Developer} \hfill \textit{Pokemon TCG AI Battle Challenge (Kaggle)} \\
+\textit{Team Project} \hfill \textit{2026}
+\begin{itemize}[noitemsep, topsep=1pt, leftmargin=*]
+    \item Built an agent that autonomously constructs and refines a competitive deck from a pool of over \textbf{18,000 cards}, trained through more than \textbf{250,000 simulated self-play battles}.
+    \item Replaced static greedy heuristics with Monte Carlo Tree Search (UCB1) and beam search over multi-step action sequences, while a genetic algorithm evolved $\sim$20 board-evaluation weights via self-play tournaments.
+\end{itemize}
+
+\vspace{1pt}
+
+\textbf{Founder} \hfill \textit{Endeavour -- iOS \& Android App} \\
+\textit{Personal Venture} \hfill \textit{2026 -- Present}
+\begin{itemize}[noitemsep, topsep=1pt, leftmargin=*]
+    \item Building a cross-platform habit-tracking app with gamified streaks, leaderboards and head-to-head challenges, designed around social accountability.
+\end{itemize}
+
+\end{document}
