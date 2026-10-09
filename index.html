@@ -273,7 +273,7 @@
             </div>
 
             <p class="lead">
-                A head-worn assistive device that converts spatial distance into haptic feedback. Time-of-flight sensors measure the distance to surrounding objects, and an array of 32 haptic motors renders those measurements as vibration, allowing a visually impaired wearer to perceive obstacles and room layout. I am responsible for the design of the 4-layer control board.
+                A head-worn assistive device that converts spatial distance into haptic feedback. Time-of-flight sensors measure the distance to surrounding objects, and an array of 32 haptic motors renders those measurements as vibration, allowing a visually impaired wearer to perceive obstacles and room layout. Within the team, I am responsible for the design of the 4-layer control board.
             </p>
 
             <div class="gallery-title">Hardware</div>
@@ -294,7 +294,7 @@
                 <div>
                     <h4>Engineering Solution</h4>
                     <p>
-                        I resolved the addressing constraint with an I²C multiplexer driven by a reset line from the ESP32-S3, selecting each sensor onto the bus in sequence. Motor drive is handled by two PCA9685 16-channel PWM controllers feeding four ULN2803C Darlington arrays.
+                        We resolved the addressing constraint with an I²C multiplexer driven by a reset line from the ESP32-S3, selecting each sensor onto the bus in sequence. Motor drive is handled by two PCA9685 16-channel PWM controllers feeding four ULN2803C Darlington arrays.
                     </p>
                     <p>
                         To contain switching noise, I specified a 4-layer stack-up with a solid ground plane on L2 and a split 3V3 / +5V_MOT plane on L3, so every power and ground pin reaches its plane through a via rather than a trace. The logic rail is fed through a ferrite bead and a dedicated regulator, and a keep-out region beneath the antenna is applied across all four copper layers.
@@ -375,7 +375,7 @@
                     <h4>Engineering Solution</h4>
                     <p>
                         I designed a dedicated power distribution bus separate from the logic controller to isolate noise and manage high loads.
-                        For the mechanics, I used SolidWorks to iterate on a tendon-driven design, routing high-tension nylon line through 3D-printed phalanges to simulate muscle contraction. The finger mechanism progressed through four design generations before reaching its current form.
+                        For the mechanics, we iterated on a tendon-driven design in SolidWorks, routing high-tension nylon line through 3D-printed phalanges to simulate muscle contraction. The finger mechanism progressed through four design generations before reaching its current form.
                     </p>
                 </div>
             </div>
@@ -447,7 +447,7 @@
                     <h4>Engineering Solution</h4>
                     <p>
                         I developed a custom inverse kinematics solver in Python to calculate the precise angle of every joint based on a desired foot coordinate (x, y, z).
-                        To resolve the wiring issue, I designed a custom PCB in KiCad that integrated the servo drivers and power management directly into the robot's chassis, reducing weight by 20%.
+                        To resolve the wiring issue, we moved the servo drivers and power management onto a custom PCB designed in KiCad, integrating them directly into the robot's chassis and reducing weight by 20%.
                     </p>
                 </div>
             </div>
@@ -503,7 +503,7 @@
                 <div>
                     <h4>Engineering Solution</h4>
                     <p>
-                        I implemented a multi-threaded Python script in which one thread handled the heavy OpenCV image processing and a separate lightweight thread handled motor control.
+                        We implemented a multi-threaded Python architecture in which one thread handled the heavy OpenCV image processing and a separate lightweight thread handled motor control.
                         This allowed the turret to predict the target's path through vector analysis rather than reacting to its previous position, significantly improving accuracy.
                     </p>
                 </div>
@@ -593,7 +593,7 @@
                 <div>
                     <h4>Engineering Solution</h4>
                     <p>
-                        I replaced static scoring with Monte Carlo Tree Search using UCB1 selection to evaluate candidate turn actions by rollout, combined with a beam search across multi-step action sequences that retains the top-K partial plans at each step.
+                        We replaced static scoring with Monte Carlo Tree Search using UCB1 selection to evaluate candidate turn actions by rollout, combined with a beam search across multi-step action sequences that retains the top-K partial plans at each step.
                     </p>
                     <p>
                         A genetic algorithm evolves approximately 20 weighted terms of the board-evaluation heuristic, using iterated self-play tournaments as the fitness function so that the agent's opponent improves alongside it.
