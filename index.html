@@ -61,107 +61,199 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
 
 /* ---------- the arcade scene ---------- */
 .arcade{
-  position:relative;height:min(72vh,560px);min-height:420px;overflow:hidden;
-  background:linear-gradient(180deg,#0e0b22 0%,#110d2a 74%,var(--carpet) 74%,var(--carpet) 100%);
+  position:relative;height:min(76vh,640px);min-height:460px;overflow:hidden;
+  background:
+    linear-gradient(180deg,#07051a 0%,#0c0924 56%,#0a0820 70%,#16123a 70.2%,#0d0a26 100%);
   user-select:none;-webkit-user-select:none;touch-action:pan-y;
 }
 .arcade:focus{outline:none}
 .arcade:focus-visible{box-shadow:inset 0 0 0 3px rgba(255,210,63,.55)}
-/* carpet pattern */
-.arcade::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:26%;pointer-events:none;
+/* ceiling neon tubes */
+.arcade::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:70%;pointer-events:none;z-index:0;
   background:
-    radial-gradient(circle at 20% 30%,rgba(46,230,255,.18) 0 3px,transparent 4px),
-    radial-gradient(circle at 70% 70%,rgba(255,62,165,.18) 0 3px,transparent 4px),
-    radial-gradient(circle at 45% 55%,rgba(255,210,63,.14) 0 2px,transparent 3px);
-  background-size:110px 90px,130px 100px,90px 70px;
-  opacity:.9;
+    linear-gradient(180deg,#07051a 0,#07051a 18px,var(--neon-pink) 18px,var(--neon-pink) 21px,transparent 21px),
+    linear-gradient(180deg,transparent 34px,var(--neon-cyan) 34px,var(--neon-cyan) 36px,transparent 36px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.028) 0 2px,transparent 2px 72px),
+    radial-gradient(ellipse 60% 40% at 50% 0%,rgba(255,62,165,.14),transparent 70%);
 }
-.world{position:absolute;left:0;top:0;height:100%;will-change:transform}
-.wall-line{position:absolute;left:0;right:0;top:74%;height:6px;background:#2a2550;box-shadow:0 2px 0 #090716}
+/* glossy floor: reflections, sheen and a faint perspective grid */
+.arcade::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:30%;pointer-events:none;z-index:0;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02) 30%,transparent 55%),
+    radial-gradient(ellipse 70% 60% at 50% 0%,rgba(255,62,165,.10),transparent 70%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 120px),
+    repeating-linear-gradient(180deg,rgba(255,255,255,.03) 0 1px,transparent 1px 26px),
+    linear-gradient(180deg,#1e1850,#0b0924);
+}
+.world{position:absolute;left:0;top:0;height:100%;will-change:transform;z-index:1}
+.wall-line{position:absolute;left:0;right:0;top:70%;height:5px;background:linear-gradient(180deg,#3b3380,#1a1545);box-shadow:0 0 18px rgba(46,230,255,.25)}
 .zone-sign{
-  position:absolute;top:48px;transform:translateX(-50%);
+  position:absolute;top:52px;transform:translateX(-50%);
   font-family:var(--display);font-size:10px;line-height:1.8;text-align:center;
-  color:var(--neon-cyan);padding:10px 14px;border:3px solid var(--neon-cyan);
-  box-shadow:0 0 14px rgba(46,230,255,.45),inset 0 0 14px rgba(46,230,255,.2);
-  background:rgba(8,6,24,.8);white-space:nowrap;
+  color:var(--neon-cyan);padding:10px 16px;border:3px solid var(--neon-cyan);border-radius:4px;
+  box-shadow:0 0 14px rgba(46,230,255,.55),inset 0 0 14px rgba(46,230,255,.25),0 0 40px rgba(46,230,255,.25);
+  text-shadow:0 0 8px rgba(46,230,255,.9);
+  background:rgba(8,6,24,.85);white-space:nowrap;
 }
-.zone-sign.pink{color:var(--neon-pink);border-color:var(--neon-pink);box-shadow:0 0 14px rgba(255,62,165,.45),inset 0 0 14px rgba(255,62,165,.2)}
-.zone-sign.yellow{color:var(--neon-yellow);border-color:var(--neon-yellow);box-shadow:0 0 14px rgba(255,210,63,.45),inset 0 0 14px rgba(255,210,63,.2)}
+.zone-sign.pink{color:var(--neon-pink);border-color:var(--neon-pink);box-shadow:0 0 14px rgba(255,62,165,.55),inset 0 0 14px rgba(255,62,165,.25),0 0 40px rgba(255,62,165,.25);text-shadow:0 0 8px rgba(255,62,165,.9)}
+.zone-sign.yellow{color:var(--neon-yellow);border-color:var(--neon-yellow);box-shadow:0 0 14px rgba(255,210,63,.55),inset 0 0 14px rgba(255,210,63,.25),0 0 40px rgba(255,210,63,.25);text-shadow:0 0 8px rgba(255,210,63,.9)}
 
-/* cabinet */
+/* ---------- cabinet ---------- */
 .cab{
-  position:absolute;bottom:26%;transform:translateX(-50%);width:176px;
+  position:absolute;bottom:30%;transform:translateX(-50%);width:190px;
   background:none;border:0;padding:0;margin:0;color:inherit;font:inherit;text-align:left;cursor:pointer;
+  --g:var(--glow);
 }
 .cab-body{
-  position:relative;background:var(--cab-body);border:4px solid var(--cab-edge);border-bottom-width:10px;
-  box-shadow:6px 6px 0 #070513;
+  position:relative;z-index:1;
+  background:linear-gradient(90deg,#211c48 0%,#2c2660 18%,#2a2458 82%,#1a1640 100%);
+  border-radius:6px 6px 2px 2px;
+  box-shadow:
+    inset 3px 0 0 rgba(255,255,255,.08),inset -3px 0 0 rgba(0,0,0,.45),
+    0 0 0 2px #0a0820,14px 10px 24px rgba(0,0,0,.6);
   transition:transform .18s ease,box-shadow .18s ease;
 }
-.cab-top{height:14px;background:var(--cab-edge);border-bottom:4px solid #0b0919}
+/* side art stripes in the cabinet's colour */
+.cab-body::before,.cab-body::after{
+  content:"";position:absolute;top:70px;bottom:40px;width:6px;pointer-events:none;
+  background:linear-gradient(180deg,var(--g),transparent 70%);opacity:.75;
+}
+.cab-body::before{left:3px}.cab-body::after{right:3px}
 .cab-marquee{
-  font-family:var(--display);font-size:8px;line-height:1.5;text-align:center;padding:9px 6px;
-  color:var(--ink);background:#15112f;border-bottom:4px solid var(--cab-edge);min-height:44px;
-  display:flex;align-items:center;justify-content:center;
-  text-shadow:0 0 6px var(--glow);
+  position:relative;margin:0 6px;padding:12px 8px 10px;min-height:46px;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:var(--display);font-size:8px;line-height:1.5;color:#fff;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.22),transparent 45%),
+    linear-gradient(180deg,color-mix(in srgb,var(--g) 70%,#000) ,color-mix(in srgb,var(--g) 35%,#000));
+  border:3px solid #0a0820;border-bottom-width:5px;border-radius:5px 5px 0 0;
+  box-shadow:0 0 14px color-mix(in srgb,var(--g) 60%,transparent),inset 0 0 18px color-mix(in srgb,var(--g) 45%,transparent);
+  text-shadow:0 0 6px #fff,0 0 12px var(--g);
+  clip-path:polygon(0 0,100% 0,96% 100%,4% 100%);
+}
+.cab-grille{height:10px;margin:4px 14px 0;background:repeating-linear-gradient(90deg,#0a0820 0 3px,#3b3380 3px 5px);border-radius:2px;opacity:.9}
+.cab-bezel{
+  position:relative;margin:6px 10px 0;padding:8px;background:linear-gradient(180deg,#0f0c26,#07051a);
+  border-radius:8px;box-shadow:inset 0 2px 0 rgba(255,255,255,.08),inset 0 -2px 0 rgba(0,0,0,.6);
 }
 .cab-screen{
-  position:relative;margin:8px 10px 0;height:104px;background:var(--crt-bg);overflow:hidden;
-  border:3px solid #0b0919;
+  position:relative;height:92px;background:var(--crt-bg);overflow:hidden;border-radius:6px;
+  box-shadow:inset 0 0 16px rgba(0,0,0,.9),0 0 10px color-mix(in srgb,var(--g) 35%,transparent);
 }
-.cab-screen img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.2) contrast(1.1)}
+.cab-screen img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.25) contrast(1.1) brightness(.95)}
 .cab-screen .title-card{
   height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;padding:8px;
-  font-family:var(--display);font-size:9px;line-height:1.6;text-align:center;color:var(--glow);
+  font-family:var(--display);font-size:9px;line-height:1.6;text-align:center;color:var(--g);
+  text-shadow:0 0 8px var(--g);
+  background:radial-gradient(ellipse at 50% 60%,color-mix(in srgb,var(--g) 18%,#06120e),#061a12 75%);
 }
-.cab-screen .title-card small{font-family:var(--body);font-size:11px;color:var(--crt-green);line-height:1.3}
+.cab-screen .title-card small{font-family:var(--body);font-size:11px;color:var(--crt-green);line-height:1.3;text-shadow:none}
+/* scanlines, vignette and glass glare */
+.cab-screen::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:
+    linear-gradient(115deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,.06) 28%,transparent 42%),
+    radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%);
+}
 .cab-screen::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 2px,transparent 2px 4px);
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.26) 0 2px,transparent 2px 4px);
 }
 .cab-panel{
-  margin:8px 10px 6px;height:30px;background:#3a3470;border:3px solid #0b0919;
-  display:flex;align-items:center;justify-content:space-evenly;padding:0 8px;
+  position:relative;margin:10px 8px 0;height:34px;
+  background:linear-gradient(180deg,#4a4290,#2b2560);border:3px solid #0a0820;border-radius:4px;
+  transform:perspective(240px) rotateX(38deg);transform-origin:50% 0;
+  display:flex;align-items:center;justify-content:space-evenly;padding:0 10px;
+  box-shadow:0 4px 0 #0a0820,0 -1px 0 color-mix(in srgb,var(--g) 60%,transparent);
 }
-.stick{width:10px;height:10px;border-radius:50%;background:#e8e4d8;box-shadow:0 -10px 0 0 #e8e4d8,0 0 0 3px #0b0919}
-.btn-a,.btn-b{width:12px;height:12px;border-radius:50%;border:3px solid #0b0919}
-.btn-a{background:var(--glow)}
-.btn-b{background:var(--neon-yellow)}
+.stick{width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#b9b3d9);box-shadow:0 -11px 0 0 #e8e4d8,0 0 0 3px #0a0820}
+.btn-a,.btn-b{width:14px;height:14px;border-radius:50%;border:3px solid #0a0820;box-shadow:inset 0 -3px 0 rgba(0,0,0,.35),0 0 8px currentColor}
+.btn-a{background:var(--g);color:var(--g)}
+.btn-b{background:var(--neon-yellow);color:var(--neon-yellow)}
 .cab-status{
   font-family:var(--display);font-size:7px;line-height:1.5;text-align:center;color:var(--crt-green);
-  padding:0 8px 8px;
+  padding:4px 8px 6px;text-shadow:0 0 6px rgba(155,255,122,.7);
 }
-.cab-base{height:26px;background:#0b0919;margin:0 -4px -10px;border-top:4px solid var(--cab-edge)}
+.cab-kick{
+  position:relative;height:40px;margin:0 6px;border-top:3px solid #0a0820;
+  background:linear-gradient(180deg,#1a1640,#0e0b26);
+}
+.coin-door{
+  position:absolute;left:50%;top:7px;transform:translateX(-50%);width:34px;height:24px;
+  border:2px solid #4a4290;border-radius:3px;background:#0a0820;
+}
+.coin-door::before{content:"";position:absolute;left:50%;top:4px;width:3px;height:9px;margin-left:-1px;background:var(--g);box-shadow:0 0 6px var(--g)}
+.coin-door::after{content:"";position:absolute;left:5px;right:5px;bottom:3px;height:2px;background:#4a4290}
+.cab-base{height:12px;margin:0 2px;background:#050312;border-radius:0 0 4px 4px}
+.cab-side{
+  position:absolute;top:0;bottom:0;right:-16px;width:16px;z-index:0;pointer-events:none;
+  background:linear-gradient(90deg,#120f2e,#07051a);
+  transform:skewY(-28deg);transform-origin:0 100%;
+  border-radius:0 4px 4px 0;
+  box-shadow:inset 1px 0 0 rgba(255,255,255,.06);
+}
+.cab-side::before{content:"";position:absolute;left:3px;right:3px;top:16%;height:40%;background:linear-gradient(180deg,var(--g),transparent);opacity:.5}
+/* LED underglow + floor reflection */
+.cab-glow{
+  position:absolute;left:8%;right:8%;bottom:-12px;height:22px;border-radius:50%;z-index:0;pointer-events:none;
+  background:var(--g);filter:blur(12px);opacity:.55;
+}
+.cab-refl{
+  position:absolute;left:0;right:0;top:100%;height:110px;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--g) 32%,transparent),transparent 85%);
+  -webkit-mask-image:linear-gradient(180deg,#000,transparent);mask-image:linear-gradient(180deg,#000,transparent);
+  transform:skewX(-6deg);opacity:.8;
+}
 
-.cab.near .cab-body{transform:translateY(-6px);box-shadow:6px 12px 0 #070513,0 0 28px var(--glow),0 0 60px var(--glow)}
-.cab.near .cab-marquee{color:var(--glow)}
+.cab.near .cab-body{transform:translateY(-6px);box-shadow:inset 3px 0 0 rgba(255,255,255,.08),inset -3px 0 0 rgba(0,0,0,.45),0 0 0 2px #0a0820,14px 16px 24px rgba(0,0,0,.6),0 0 34px var(--g),0 0 80px color-mix(in srgb,var(--g) 60%,transparent)}
+.cab.near .cab-glow{opacity:1;filter:blur(16px)}
 .cab:hover .cab-body{transform:translateY(-3px)}
-.prompt{
-  position:absolute;left:50%;top:-44px;transform:translateX(-50%);
-  font-family:var(--display);font-size:8px;line-height:1.6;white-space:nowrap;text-align:center;
-  color:var(--neon-yellow);background:#0b0919;border:3px solid var(--neon-yellow);padding:6px 10px;
-  opacity:0;transition:opacity .15s;pointer-events:none;
+
+/* preview bubble that pops up when you walk up to a machine */
+.bubble{
+  position:absolute;left:50%;bottom:52%;transform:translateX(-50%) translateY(10px) scale(.6);transform-origin:50% 100%;
+  width:300px;padding:10px;border-radius:8px;cursor:default;
+  background:#0f0c24;border:3px solid var(--g);
+  box-shadow:0 0 0 3px #050312,0 0 24px color-mix(in srgb,var(--g) 60%,transparent),10px 10px 0 #050312;
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s ease,transform .16s ease,visibility .16s;
+  text-align:left;z-index:5;
 }
-.cab.near .prompt{opacity:1}
-@media (prefers-reduced-motion:reduce){.cab-body,.prompt{transition:none}}
+.bubble::after{
+  content:"";position:absolute;left:50%;top:100%;margin-left:-9px;border:9px solid transparent;border-top-color:var(--g);
+}
+.cab.near .bubble{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1)}
+.cab.near .cab-screen img,.cab.near .cab-screen .title-card{filter:brightness(.35) blur(1px)}
+.bubble img{width:100%;height:120px;object-fit:cover;display:block;border-radius:4px;border:2px solid #2a2550;background:#000}
+.bubble .b-card{height:120px;display:flex;align-items:center;justify-content:center;border-radius:4px;border:2px solid #2a2550;font-family:var(--display);font-size:10px;color:var(--g);text-shadow:0 0 8px var(--g);background:radial-gradient(ellipse at 50% 60%,color-mix(in srgb,var(--g) 18%,#06120e),#061a12 75%)}
+.bubble h3{font-family:var(--display);font-size:9px;line-height:1.6;color:#fff;margin:10px 0 4px}
+.bubble p{font-family:var(--body);font-size:13.5px;line-height:1.4;color:var(--ink-dim);margin:0 0 10px}
+.bubble .play{
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  font-family:var(--display);font-size:9px;color:#0a0820;background:var(--neon-yellow);
+  border:3px solid #0a0820;padding:10px;cursor:pointer;box-shadow:3px 3px 0 #050312;
+}
+.bubble .play:hover{background:#fff}
+.bubble .play:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #050312}
+@media (prefers-reduced-motion:reduce){.cab-body,.bubble{transition:none}}
 
 /* player sprite */
-.player{position:absolute;bottom:17%;z-index:2;width:calc(16 * var(--px));height:calc(24 * var(--px));transform:translateX(-50%);pointer-events:none;will-change:transform,left}
+.player{position:absolute;bottom:22%;z-index:2;width:calc(16 * var(--px));height:calc(24 * var(--px));transform:translateX(-50%);pointer-events:none;will-change:transform,left}
 .player .sprite{position:absolute;left:0;top:0;width:var(--px);height:var(--px);background:transparent}
 .player.flip .sprite{transform:scaleX(-1);transform-origin:calc(8 * var(--px)) 0}
-.player .shadow{position:absolute;left:10%;right:10%;bottom:-6px;height:8px;border-radius:50%;background:rgba(0,0,0,.45)}
+.player .shadow{position:absolute;left:10%;right:10%;bottom:-6px;height:8px;border-radius:50%;background:rgba(0,0,0,.5)}
 
 /* HUD / controls */
 .hud{
-  position:absolute;left:0;right:0;top:12px;display:flex;justify-content:space-between;align-items:flex-start;
+  position:absolute;left:0;right:0;top:12px;display:flex;justify-content:space-between;align-items:flex-start;z-index:3;
   padding:0 16px;pointer-events:none;font-family:var(--display);font-size:9px;line-height:1.7;color:var(--ink-dim);
 }
 .hud .hint{background:rgba(8,6,24,.78);border:3px solid #2a2550;padding:8px 12px;max-width:min(360px,60vw)}
 .hud .hint b{color:var(--neon-yellow);font-weight:400}
 .hud .counter{background:rgba(8,6,24,.78);border:3px solid #2a2550;padding:8px 12px;color:var(--crt-green);white-space:nowrap}
 .pad{
-  position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 16px;
+  position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 16px;z-index:3;
 }
 .pad .group{display:flex;gap:10px}
 .pad button{
@@ -171,7 +263,13 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
 .pad button.go{background:var(--neon-pink);color:#fff;width:72px;height:72px;font-size:11px}
 .pad button:active{transform:translateY(4px);box-shadow:0 2px 0 #0b0919}
 @media (hover:hover) and (pointer:fine){.pad{display:none}}
-@media (max-width:640px){.hud{justify-content:flex-end}.hud .hint{display:none}.arcade{height:min(68vh,520px)}.zone-sign{top:10px;font-size:8px;padding:8px 10px}.cab{width:160px}}
+@media (max-width:640px){
+  .hud{justify-content:flex-end}.hud .hint{display:none}
+  .arcade{height:min(72vh,560px)}
+  .zone-sign{top:48px;font-size:8px;padding:8px 10px}
+  .cab{width:170px}
+  .bubble{width:min(280px,calc(100vw - 40px))}
+}
 
 /* ---------- lobby (everything below the scene) ---------- */
 .lobby{max-width:1080px;margin:0 auto;padding:56px 20px 80px}
@@ -679,16 +777,21 @@ footer a{color:var(--ink-dim)}
     const screen = d.dataset.img
       ? `<img src="${d.dataset.img}" alt="">`
       : `<div class="title-card">${d.dataset.title}<small>${d.dataset.blurb}</small></div>`;
-    b.innerHTML = `<div class="prompt">PRESS ↑ TO PLAY</div>
+    const bimg = d.dataset.img ? `<img src="${d.dataset.img}" alt="">` : `<div class="b-card">${d.dataset.title}</div>`;
+    b.innerHTML = `<div class="bubble" role="group" aria-label="${d.dataset.title} preview">${bimg}
+        <h3>${d.dataset.title}</h3><p>${d.dataset.blurb}. ${d.dataset.status}.</p>
+        <span class="play" data-play>PLAY ▶</span></div>
       <div class="cab-body">
-        <div class="cab-top"></div>
         <div class="cab-marquee">${d.dataset.title}</div>
-        <div class="cab-screen">${screen}</div>
+        <div class="cab-grille"></div>
+        <div class="cab-bezel"><div class="cab-screen">${screen}</div></div>
         <div class="cab-panel"><div class="stick"></div><div class="btn-a"></div><div class="btn-b"></div></div>
         <div class="cab-status">${d.dataset.status}</div>
+        <div class="cab-kick"><div class="coin-door"></div></div>
         <div class="cab-base"></div>
-      </div>`;
-    b.addEventListener('click', () => walkTo(i, true));
+      </div>
+      <div class="cab-side"></div><div class="cab-glow"></div><div class="cab-refl"></div>`;
+    b.addEventListener('click', e => { if (e.target.closest('[data-play]') || nearIdx === i) open(i); else walkTo(i, true); });
     cabsEl.appendChild(b); cabs.push({x, el:b, d});
 
     const li = document.createElement('li');
