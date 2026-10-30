@@ -520,20 +520,21 @@
         </div>
     </div>
 
-    <!-- ======================================================= WEIRMAN -->
+    <!-- ======================================================= WARMAN -->
     <div class="project-section">
         <div class="project-content">
-            <h2 class="project-title">Project Weirman</h2>
-            <p class="project-role">Student Engineer, Monash University academic design challenge · 2026</p>
+            <h2 class="project-title">Warman Design &amp; Build Competition</h2>
+            <p class="project-role">Student Engineer, MMA2001 Design 1 (Monash University) — Team of 5 · 2026</p>
             <span class="status-label status-complete">Completed — 10th of 160 teams</span>
             <div class="tags">
                 <span class="tag">Circuitry &amp; Hardware Logic</span>
                 <span class="tag">Autonomous Navigation</span>
+                <span class="tag">Arduino Mega</span>
                 <span class="tag">Academic Competition</span>
             </div>
 
             <p class="lead">
-                Developed as a competitive academic project at Monash University, where our team placed <strong>10th out of 160 teams</strong>. To secure a top placing in such a large field, we prioritised reliable circuitry and hardware logic over complex mechanical structural design to ensure consistent performance during the final evaluation.
+                Built for the Warman Design &amp; Build Competition in MMA2001 Design 1 at Monash University, where our team placed <strong>10th out of 160 teams</strong>. The brief: a system no larger than 400 × 400 mm that, from a single start action, autonomously collects six randomly placed payloads, delivers them to a hopper and finishes in the end zone within 120 seconds. To secure a top placing in such a large field, we prioritised reliable circuitry and hardware logic over complex mechanical structural design to ensure consistent performance during the final evaluation.
             </p>
 
             <div class="gallery-title">Project Media</div>
@@ -542,8 +543,8 @@
                     <source src="Weirman_Video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-                <img src="Weirman_Photo1.jpg" class="media-item" alt="Weirman Project View 1">
-                <img src="Weirman_Photo2.jpg" class="media-item" alt="Weirman Project View 2">
+                <img src="Weirman_Photo1.jpg" class="media-item" alt="Warman robot view 1">
+                <img src="Weirman_Photo2.jpg" class="media-item" alt="Warman robot view 2">
             </div>
 
             <div class="details-grid">
@@ -560,6 +561,181 @@
                     </p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- ================================================ X72 PROCESSOR -->
+    <div class="project-section">
+        <div class="project-content">
+            <h2 class="project-title">x72 16-bit Processor on FPGA</h2>
+            <p class="project-role">ECE2072 Digital Systems (Monash University) — Team of 2 · 2026</p>
+            <span class="status-label status-complete">Completed — all four tasks functional</span>
+            <div class="tags">
+                <span class="tag">Verilog</span>
+                <span class="tag">FPGA</span>
+                <span class="tag">Quartus Prime</span>
+                <span class="tag">Hardware Verification</span>
+            </div>
+
+            <p class="lead">
+                A 16-bit multi-cycle processor written in Verilog and implemented on a Terasic DE10-Lite (Intel MAX 10) board. It runs an eight-instruction set over a shared 16-bit bus and, in its final form, executes stored programs from on-chip ROM with conditional branching. Our demonstration program computes 5! with a loop of multiply, add and branch instructions and shows the result on the board's seven-segment displays.
+            </p>
+
+            <div class="details-grid">
+                <div>
+                    <h4>The Challenge</h4>
+                    <p>
+                        Every instruction shares one bus, so the control unit has to sequence the registers, ALU and bus multiplexer correctly across four clock ticks. A single wrong enable signal corrupts a result silently, which makes careful verification as important as the design itself.
+                    </p>
+                </div>
+                <div>
+                    <h4>Engineering Solution</h4>
+                    <p>
+                        I built the control unit, a one-hot tick FSM that needs no decoding, a width-parameterised register reused for every register in the design, the sign extender and the board top level. We verified the processor with self-checking testbenches that compute each expected result independently: <strong>40,323 checks over 2,267 instructions passed with no failures</strong>, and the design was then confirmed on hardware.
+                    </p>
+                </div>
+            </div>
+
+            <table class="spec-table">
+                <caption>Specifications</caption>
+                <tr><th>Architecture</th><td>16-bit, multi-cycle, shared bus, 8 registers</td></tr>
+                <tr><th>Instruction set</th><td>movi, add, addi, sub, mul, ssi, disp, bez</td></tr>
+                <tr><th>Target device</th><td>Intel MAX 10 (DE10-Lite)</td></tr>
+                <tr><th>Toolchain</th><td>Verilog, Quartus Prime Lite, self-checking testbenches</td></tr>
+                <tr><th>Resources (final build)</th><td>849 logic elements, 231 registers, 2 embedded multipliers</td></tr>
+                <tr><th>Timing</th><td>165.7 MHz Fmax on the 50 MHz board clock</td></tr>
+                <tr><th>Verification</th><td>40,323 self-checking test cases, zero failures</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ============================================== AUDIO PIPELINE -->
+    <div class="project-section">
+        <div class="project-content">
+            <h2 class="project-title">Real-Time Audio Acquisition System</h2>
+            <p class="project-role">ECE2071 Systems Programming (Monash University) — Team of 4 · 2026</p>
+            <span class="status-label status-complete">Completed — 39.75 / 40 in demonstration</span>
+            <div class="tags">
+                <span class="tag">Embedded C</span>
+                <span class="tag">STM32</span>
+                <span class="tag">DMA / SPI / UART</span>
+                <span class="tag">Signal Processing</span>
+            </div>
+
+            <p class="lead">
+                A two-microcontroller audio recorder. One STM32L432 samples an analogue audio input at about 44.1 kS/s and passes the samples over SPI to a second STM32, which streams them over UART to a PC command-line tool. The tool can record manually or trigger automatically from an ultrasonic distance sensor, and saves each recording as a WAV file with CSV data, waveform, FFT and spectrogram plots.
+            </p>
+
+            <div class="details-grid">
+                <div>
+                    <h4>The Challenge</h4>
+                    <p>
+                        Holding a CD-quality sample rate end to end leaves little headroom: the UART link to the PC is the bottleneck, and a single corrupted packet audibly damages the recording.
+                    </p>
+                </div>
+                <div>
+                    <h4>Engineering Solution</h4>
+                    <p>
+                        Data moves by DMA on both microcontrollers so the CPU is free between buffers. Two 12-bit samples are packed into three bytes to cut UART bandwidth, and every packet carries a CRC-8 that the PC checks so corrupted packets are dropped rather than written to the audio. A moving-average filter with outlier rejection cleans the signal. We managed the code in Git with feature branches and reproducible Python environments.
+                    </p>
+                </div>
+            </div>
+
+            <table class="spec-table">
+                <caption>Specifications</caption>
+                <tr><th>Microcontrollers</th><td>2 × STM32L432KC</td></tr>
+                <tr><th>Sample rate (measured)</th><td>44.1 kS/s, 12-bit</td></tr>
+                <tr><th>Links</th><td>SPI with DMA between boards; UART with DMA to PC</td></tr>
+                <tr><th>Integrity</th><td>CRC-8 per packet, invalid packets discarded</td></tr>
+                <tr><th>Trigger modes</th><td>Manual, or ultrasonic distance trigger</td></tr>
+                <tr><th>Outputs</th><td>WAV, CSV, waveform, FFT spectrum, spectrogram</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ============================================== POWER SUPPLY -->
+    <div class="project-section">
+        <div class="project-content">
+            <h2 class="project-title">Regulated 3.3 V Power Supply Tender</h2>
+            <p class="project-role">ECE2131 Electrical Circuits (Monash University) — Team of 5 · 2026</p>
+            <span class="status-label status-complete">Completed — tender scored 94.7%</span>
+            <div class="tags">
+                <span class="tag">Analog Circuit Design</span>
+                <span class="tag">LTspice</span>
+                <span class="tag">Soldered Prototype</span>
+                <span class="tag">Cost Analysis</span>
+            </div>
+
+            <p class="lead">
+                A tender response for a regulated 3.3 V supply to power an STM32L432-based embedded audio system. The design was analysed, simulated in LTspice, built as a soldered prototype and costed for mass production. Markers singled out the report and the layout of the soldered prototype.
+            </p>
+
+            <div class="details-grid">
+                <div>
+                    <h4>The Challenge</h4>
+                    <p>
+                        The supply had to hold a stable output under both steady and switching loads, survive a reversed or excessive input, and come in under $5 AUD per unit at volume using parts available from more than one supplier.
+                    </p>
+                </div>
+                <div>
+                    <h4>Engineering Solution</h4>
+                    <p>
+                        An LM317 regulator with a precision resistor divider and input, output and adjustment capacitors to suppress ripple. A clamping diode provides reverse-polarity protection, and the regulator's headroom plus a Zener clamp handle overvoltage. The design was tested at DC and with dynamic loads at 1 MHz and 80 MHz.
+                    </p>
+                </div>
+            </div>
+
+            <table class="spec-table">
+                <caption>Specifications</caption>
+                <tr><th>Regulator</th><td>LM317 adjustable linear regulator</td></tr>
+                <tr><th>Output</th><td>~3.25 V at more than 140 mA</td></tr>
+                <tr><th>Protection</th><td>Reverse polarity; overvoltage to ~30 V</td></tr>
+                <tr><th>Verification</th><td>LTspice simulation, soldered prototype bench tests</td></tr>
+                <tr><th>Unit cost (10,000 units)</th><td>~$2.27 AUD including PCB assembly, against a $5 target</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ============================================ IMAGE AESTHETICS -->
+    <div class="project-section">
+        <div class="project-content">
+            <h2 class="project-title">Image Aesthetics Prediction</h2>
+            <p class="project-role">ECE2191 Probability &amp; AI for Engineers (Monash University) · 2026</p>
+            <span class="status-label status-complete">Completed</span>
+            <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">scikit-learn</span>
+                <span class="tag">Transfer Learning</span>
+            </div>
+
+            <p class="lead">
+                A model that predicts how people rate the aesthetic quality of photographs, as the final task of an assignment that also covered robust (Huber) regression, gradient descent with momentum and outlier detection.
+            </p>
+
+            <div class="details-grid">
+                <div>
+                    <h4>The Challenge</h4>
+                    <p>
+                        Aesthetic judgements depend on composition, colour and texture more than on what an object is, so the final-layer features of an image-classification network are a weak fit for the task.
+                    </p>
+                </div>
+                <div>
+                    <h4>Engineering Solution</h4>
+                    <p>
+                        I used a frozen, pretrained ResNet-50 and pooled features from all four of its stages, not just the last, then trained an RBF kernel ridge regressor with hyper-parameters chosen by 5-fold cross-validation. Expected error fell to an MSE of about 0.30, against 0.50 for predicting the mean and 0.40 for the standard last-layer approach.
+                    </p>
+                </div>
+            </div>
+
+            <table class="spec-table">
+                <caption>Specifications</caption>
+                <tr><th>Feature extractor</th><td>Frozen ResNet-50, mean and std pooled from all four stages</td></tr>
+                <tr><th>Model</th><td>RBF kernel ridge regression</td></tr>
+                <tr><th>Tuning</th><td>5-fold cross-validation</td></tr>
+                <tr><th>Expected test MSE</th><td>~0.30 (mean baseline ~0.50)</td></tr>
+                <tr><th>Stack</th><td>Python, NumPy, scikit-learn, Jupyter</td></tr>
+            </table>
         </div>
     </div>
 
@@ -674,12 +850,12 @@
                 <div class="entry-header">
                     <div>
                         <p class="entry-role">Student Engineer</p>
-                        <span class="entry-org">Project Weirman, Monash University</span>
+                        <span class="entry-org">Warman Design &amp; Build Competition, MMA2001 Design 1 (Monash)</span>
                     </div>
                     <span class="entry-date">2026</span>
                 </div>
                 <ul class="detail-list">
-                    <li>Placed <strong>10th out of 160 teams</strong> in a university-wide engineering design challenge.</li>
+                    <li>Placed <strong>10th out of 160 teams</strong> in the Warman Design &amp; Build Competition.</li>
                     <li>Designed an automatic navigation system enabling the robot to detect deviation and self-correct mid-run without operator intervention.</li>
                     <li>Delivered a stable mechanical platform with a lean, low-power electrical architecture, achieving 100% system reliability during final evaluations.</li>
                 </ul>
@@ -722,22 +898,27 @@
 
             <div class="skill-group">
                 <h4>Hardware Engineering</h4>
-                <p>Mixed-signal PCB design (Altium Designer, KiCad), 4-layer stack-ups and split-plane power distribution, precision analog front-ends, high-current power distribution, signal integrity and EMI mitigation, hand-soldering (THT and SMD).</p>
+                <p>Mixed-signal PCB design (Altium Designer, KiCad), 4-layer stack-ups and split-plane power distribution, precision analog front-ends, high-current power distribution, signal integrity and EMI mitigation, linear regulator design, circuit simulation (LTspice), hand-soldering (THT and SMD).</p>
+            </div>
+
+            <div class="skill-group">
+                <h4>Digital &amp; Embedded Systems</h4>
+                <p>FPGA design in Verilog (Quartus Prime, Intel MAX 10), self-checking testbenches, timing and resource analysis, STM32 firmware in C (HAL, DMA, SPI, UART, ADC, timers), assembly programming, ESP32-S3, RP2040, Arduino.</p>
             </div>
 
             <div class="skill-group">
                 <h4>Robotics &amp; Control</h4>
-                <p>Inverse kinematics, PID control loops, PWM signal modulation across 18+ channels, autonomous navigation systems, computer vision and object tracking, microcontroller integration (ESP32-S3, RP2040, Arduino), embedded C++.</p>
+                <p>Inverse kinematics, PID control loops, PWM signal modulation across 18+ channels, autonomous navigation systems, computer vision and object tracking, microcontroller integration, embedded C++.</p>
             </div>
 
             <div class="skill-group">
                 <h4>CAD &amp; Prototyping</h4>
-                <p>SolidWorks complex assemblies, rapid prototyping via FDM printing, design for manufacture (DFM) and tolerance analysis, linkage and tendon mechanism design, test rig and fixture design.</p>
+                <p>SolidWorks complex assemblies, Onshape, rapid prototyping via FDM printing, design for manufacture (DFM) and tolerance analysis, linkage and tendon mechanism design, test rig and fixture design.</p>
             </div>
 
             <div class="skill-group">
                 <h4>Software &amp; AI</h4>
-                <p>Python (OpenCV, multi-threading), C++ for embedded firmware, search and optimisation methods (Monte Carlo Tree Search with UCB1, beam search, genetic algorithms), self-play reinforcement learning, cross-platform mobile development for iOS and Android.</p>
+                <p>Python (OpenCV, NumPy, scikit-learn, multi-threading), C for systems programming, C++ (object-oriented design, embedded firmware), Git, machine learning (kernel methods, transfer learning from pretrained CNNs, cross-validation), search and optimisation methods (Monte Carlo Tree Search with UCB1, beam search, genetic algorithms), self-play reinforcement learning, cross-platform mobile development for iOS and Android.</p>
             </div>
 
         </div>

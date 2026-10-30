@@ -25,7 +25,11 @@ Media files live at the repository root and are referenced directly from `index.
 | JAEGAR — Bio-Mimetic Robotic Hand | Robotics / power electronics | Operational |
 | SCORPION — Autonomous Hexapod | Robotics / embedded | Operational |
 | SENTINEL — Computer-Vision Tracking Turret | Computer vision | Operational |
-| Project Weirman — Course-Correcting Robot | Hardware / control | 10th of 160 teams |
+| Warman Design & Build Competition (MMA2001) | Hardware / control | 10th of 160 teams |
+| x72 16-bit Processor on FPGA (ECE2072) | Digital design / Verilog | Completed |
+| Real-Time Audio Acquisition System (ECE2071) | Embedded C / STM32 | Completed |
+| Regulated 3.3 V Power Supply Tender (ECE2131) | Analog circuits | Completed |
+| Image Aesthetics Prediction (ECE2191) | Machine learning | Completed |
 | Self-Play Card Game AI Agent | AI / search | Completed |
 | Endeavour — Habit Tracking App | Mobile software | In development |
 
