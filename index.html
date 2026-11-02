@@ -239,10 +239,10 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
 @media (prefers-reduced-motion:reduce){.cab-body,.bubble{transition:none}}
 
 /* player sprite */
-.player{--px:5px;position:absolute;bottom:22%;z-index:2;width:calc(28 * var(--px));height:calc(18 * var(--px));transform:translateX(-50%);pointer-events:none;will-change:transform,left}
+.player{--px:4px;position:absolute;bottom:22%;z-index:2;width:calc(24 * var(--px));height:calc(23 * var(--px));transform:translateX(-50%);pointer-events:none;will-change:transform,left}
 .player .sprite{position:absolute;left:0;top:0;width:var(--px);height:var(--px);background:transparent}
-.player.flip .sprite{transform:scaleX(-1);transform-origin:calc(14 * var(--px)) 0}
-.player .shadow{position:absolute;left:8%;right:8%;bottom:4px;height:8px;border-radius:50%;background:rgba(0,0,0,.5)}
+.player.flip .sprite{transform:scaleX(-1);transform-origin:calc(12 * var(--px)) 0}
+.player .shadow{position:absolute;left:12%;right:12%;bottom:-4px;height:8px;border-radius:50%;background:rgba(0,0,0,.5)}
 
 /* HUD / controls */
 .hud{
@@ -803,26 +803,33 @@ footer a{color:var(--ink-dim)}
   const worldW = x + START; world.style.width = worldW + 'px';
 
   // --- player sprite: a 16x24 pixel map, drawn with one box-shadow ---
-  // An original platypus: brown body, orange bill and feet, dark flat tail, safety goggles pushed up on its head.
-  const C = {b:'#7a4a2a',l:'#a9713f',d:'#4a2a16',o:'#e8891c',k:'#0b0919',g:'#2ee6ff',s:'#3a3470',w:'#ffffff'};
+  // An original upright platypus in the arcade's own colours: purple body, orange bill, feet and tail, engineer's goggles up on the head.
+  const C = {b:'#5b4fb8',B:'#3f3590',l:'#8a80e0',o:'#f29a2e',O:'#c9741a',k:'#0b0919',w:'#ffffff',g:'#2ee6ff',s:'#15112f'};
+  const head = [
+'........................',
+'.......ssssssss.........',
+'......sggwggwggs........',
+'......ssggggggss........',
+'.....bbbbbbbbbbbb.......',
+'....bbbBBbbbbbBBbb......',
+'....bbbwkbbbbbwkbb......',
+'....bbbkkbbbbbkkbb......',
+'....bbbbbbbbbbbbbb......',
+'..oooooooooooooooooo....',
+'.oooooooooooooooooooo...',
+'..OOOOOOOOOOOOOOOOOO....',
+'.....bbbbbbbbbbbb.......'];
   const body = [
-'............................',
-'...........sssss............',
-'..........sggwgggs..........',
-'.........ssggggggss.........',
-'........bbbbbbbbbbbb........',
-'.......bbbbbbbbbbbbbbk......',
-'......bbbbbbbbbbbbbbbbooooooo',
-'...dddbbbbbbbbbbbbbbbbbooooo.',
-'.dddddbbbbbbbbbbbbbbbbbb....',
-'dddddddbbbbbbbbbbbbbbbbb....',
-'dddddddlllllllllllllllb.....',
-'.ddddd.lllllllllllllll......'];
-  const legs = [
-['........llllllllllll........','.........oo.....oo..........','.........oo.....oo..........','........oooo...oooo.........'],
-['........llllllllllll........','.......oo.........oo........','......oo...........oo.......','.....oooo.........oooo......'],
-['........llllllllllll........','...........oo.oo............','...........oo.oo............','..........oooo.oooo.........']];
-  const frames = legs.map(l => body.concat(l, ['............................','............................']).join('\n'));
+['....bbbbbbbbbbbbbbbb....','...bbbbllllllllbbbbb....','...bbbbllllllllbbbbb....','...bbbbllllllllbbbbb....','...bbbbllllllllbbbb.....','....bbbbllllllbbbb......','.....bbbbbbbbbbbb.......','.....bbb.....bbb........','....oooo.....oooo.......','...ooooo.....ooooo......'],
+['.....bbbbbbbbbbbbbbb....','..bbbbbbllllllllbbbbbb..','.bbbbbbbllllllllbbbbbbb.','.bb.bbbbllllllllbbbb.bb.','....bbbbllllllllbbbb....','....bbbbllllllbbbb......','.....bbbbbbbbbbbb.......','...bbb.........bbb......','..oooo.........oooo.....','.ooooo.........ooooo....'],
+['....bbbbbbbbbbbbbbbb....','...bbbbllllllllbbbbb....','..bbbbbllllllllbbbbbb...','..bbbbbllllllllbbbbbb...','...bbbbllllllllbbbb.....','....bbbbllllllbbbb......','.....bbbbbbbbbbbb.......','.......bbbbbbb..........','......oooooooo..........','.....ooooooooo..........']];
+  // flat tail poking out behind on the left, drawn into the lower body rows
+  const tail = ['OOOO....................','OOOOO...................','.OOO....................'];
+  const frames = body.map(b => {
+    const rows = head.concat(b);
+    tail.forEach((t, k) => { const r = 14 + k; rows[r] = [...rows[r]].map((c, x) => t[x] !== '.' && c === '.' ? t[x] : c).join(''); });
+    return rows.join('\n');
+  });
   const px = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--px'));
   const shadows = frames.map(f => f.split('\n').flatMap((row, y) => [...row].map((ch, x) => ch === '.' ? null : `${x*px}px ${y*px}px 0 ${C[ch]}`).filter(Boolean)).join(','));
   let frame = 0; sprite.style.boxShadow = shadows[0];
