@@ -807,29 +807,29 @@ footer a{color:var(--ink-dim)}
   const C = {b:'#5b4fb8',B:'#3f3590',l:'#8a80e0',o:'#f29a2e',O:'#c9741a',k:'#0b0919',w:'#ffffff',g:'#2ee6ff',s:'#15112f'};
   const head = [
 '........................',
-'.......ssssssss.........',
-'......sggwggwggs........',
-'......ssggggggss........',
+'........sssssss.........',
+'.......sggwgggs.........',
+'.......ssggggss.........',
+'......bbbbbbbbbb........',
 '.....bbbbbbbbbbbb.......',
-'....bbbBBbbbbbBBbb......',
-'....bbbwkbbbbbwkbb......',
-'....bbbkkbbbbbkkbb......',
-'....bbbbbbbbbbbbbb......',
-'..oooooooooooooooooo....',
-'.oooooooooooooooooooo...',
-'..OOOOOOOOOOOOOOOOOO....',
-'.....bbbbbbbbbbbb.......'];
-  const body = [
-['....bbbbbbbbbbbbbbbb....','...bbbbllllllllbbbbb....','...bbbbllllllllbbbbb....','...bbbbllllllllbbbbb....','...bbbbllllllllbbbb.....','....bbbbllllllbbbb......','.....bbbbbbbbbbbb.......','.....bbb.....bbb........','....oooo.....oooo.......','...ooooo.....ooooo......'],
-['.....bbbbbbbbbbbbbbb....','..bbbbbbllllllllbbbbbb..','.bbbbbbbllllllllbbbbbbb.','.bb.bbbbllllllllbbbb.bb.','....bbbbllllllllbbbb....','....bbbbllllllbbbb......','.....bbbbbbbbbbbb.......','...bbb.........bbb......','..oooo.........oooo.....','.ooooo.........ooooo....'],
-['....bbbbbbbbbbbbbbbb....','...bbbbllllllllbbbbb....','..bbbbbllllllllbbbbbb...','..bbbbbllllllllbbbbbb...','...bbbbllllllllbbbb.....','....bbbbllllllbbbb......','.....bbbbbbbbbbbb.......','.......bbbbbbb..........','......oooooooo..........','.....ooooooooo..........']];
-  // flat tail poking out behind on the left, drawn into the lower body rows
-  const tail = ['OOOO....................','OOOOO...................','.OOO....................'];
-  const frames = body.map(b => {
-    const rows = head.concat(b);
-    tail.forEach((t, k) => { const r = 14 + k; rows[r] = [...rows[r]].map((c, x) => t[x] !== '.' && c === '.' ? t[x] : c).join(''); });
-    return rows.join('\n');
-  });
+'.....bbbbbbbbBBbb.......',
+'.....bbbbbbbbwkbb.......',
+'.....bbbbbbbbbbbbooooooo',
+'.....bbbbbbbbbbboooooooo',
+'......bbbbbbbbbbOOOOOOO.',
+'.......bbbbbbbbbb.......',
+'......bbbbbbbbbbb.......',
+'.....bbbbbbbllllbb......',
+'OOO..bbbbbbbllllbBB.....',
+'OOOOObbbbbbbllllbBB.....',
+'.OOOObbbbbbbllllbbb.....',
+'......bbbbbbllllbb......',
+'.......bbbbbbbbbb.......'];
+  const legs = [
+['........bbb..bbb........','........bbb..bbb........','.......oooo..oooo.......','......ooooo..ooooo......'],
+['......bbb......bbb......','.....bbb........bbb.....','....oooo........oooo....','...ooooo........ooooo...'],
+['..........bbbb..........','..........bbbb..........','.........oooooo.........','........ooooooo.........']];
+  const frames = legs.map(l => head.concat(l).join('\n'));
   const px = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--px'));
   const shadows = frames.map(f => f.split('\n').flatMap((row, y) => [...row].map((ch, x) => ch === '.' ? null : `${x*px}px ${y*px}px 0 ${C[ch]}`).filter(Boolean)).join(','));
   let frame = 0; sprite.style.boxShadow = shadows[0];
