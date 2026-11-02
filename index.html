@@ -59,209 +59,216 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid 
 @keyframes blink{50%{opacity:0}}
 @media (prefers-reduced-motion:reduce){.insert-coin{animation:none}}
 
-/* ---------- the arcade: a CSS-3D room ---------- */
-.topbar{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;padding:12px 16px;background:#07051a;border-bottom:2px solid #1d1740;font-size:14px}
-.topbar a{color:var(--ink-dim);text-decoration:none}
-.topbar a:hover{color:var(--neon-cyan)}
+/* ---------- the arcade scene ---------- */
 .arcade{
-  position:relative;height:min(80vh,700px);min-height:500px;overflow:hidden;background:#07051a;
-  perspective:1100px;perspective-origin:50% 42%;
+  position:relative;height:min(76vh,640px);min-height:460px;overflow:hidden;
+  background:
+    linear-gradient(180deg,#07051a 0%,#0c0924 56%,#0a0820 70%,#16123a 70.2%,#0d0a26 100%);
   user-select:none;-webkit-user-select:none;touch-action:pan-y;
 }
 .arcade:focus{outline:none}
 .arcade:focus-visible{box-shadow:inset 0 0 0 3px rgba(255,210,63,.55)}
-.room{position:absolute;left:0;top:0;width:100%;height:100%;transform-style:preserve-3d;will-change:transform}
-.room.sky{pointer-events:none}
-.room > *{transform-style:preserve-3d}
-/* planes */
-.plane{position:absolute;left:0;top:0;transform-origin:50% 0;pointer-events:none}
-.wall{
-  height:var(--floorY);transform:translateZ(calc(-1 * var(--depth)));
+/* ceiling neon tubes */
+.arcade::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:70%;pointer-events:none;z-index:0;
   background:
-    repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 2px,transparent 2px 90px),
-    linear-gradient(180deg,#0a0822 0%,#100c2c 60%,#171245 100%);
-  box-shadow:inset 0 -40px 80px -30px rgba(46,230,255,.12);
+    linear-gradient(180deg,#07051a 0,#07051a 18px,var(--neon-pink) 18px,var(--neon-pink) 21px,transparent 21px),
+    linear-gradient(180deg,transparent 34px,var(--neon-cyan) 34px,var(--neon-cyan) 36px,transparent 36px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.028) 0 2px,transparent 2px 72px),
+    radial-gradient(ellipse 60% 40% at 50% 0%,rgba(255,62,165,.14),transparent 70%);
 }
-.wall::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(180deg,#4a4290,#1d1740)}
-.ceil{
-  height:calc(var(--depth) + 720px);transform:translateZ(calc(-1 * var(--depth) - 20px)) rotateX(90deg);
+/* glossy floor: reflections, sheen and a faint perspective grid */
+.arcade::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:30%;pointer-events:none;z-index:0;
   background:
-    repeating-linear-gradient(180deg,transparent 0 118px,var(--neon-pink) 118px 122px,transparent 122px 150px,var(--neon-cyan) 150px 153px,transparent 153px 240px),
-    repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 1px,transparent 1px 160px),
-    linear-gradient(180deg,#07051a,#0a0822);
-  box-shadow:0 0 60px rgba(255,62,165,.25);
+    linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.02) 30%,transparent 55%),
+    radial-gradient(ellipse 70% 60% at 50% 0%,rgba(255,62,165,.10),transparent 70%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 120px),
+    repeating-linear-gradient(180deg,rgba(255,255,255,.03) 0 1px,transparent 1px 26px),
+    linear-gradient(180deg,#1e1850,#0b0924);
 }
-.floor{
-  top:var(--floorY);height:calc(var(--depth) + 700px);transform:translateZ(calc(-1 * var(--depth))) rotateX(90deg);
-  background:
-    linear-gradient(180deg,rgba(255,255,255,.10),transparent 30%),
-    repeating-linear-gradient(90deg,rgba(46,230,255,.10) 0 2px,transparent 2px 120px),
-    repeating-linear-gradient(180deg,rgba(255,62,165,.10) 0 2px,transparent 2px 120px),
-    linear-gradient(180deg,#1f1a52,#0b0924 60%,#07051a);
-}
-.floor::before{content:"";position:absolute;left:0;right:0;top:0;height:120px;background:linear-gradient(180deg,rgba(46,230,255,.12),transparent)}
-/* things hung on the back wall */
-.onwall{position:absolute;transform:translateZ(calc(14px - var(--depth)));}
+.world{position:absolute;left:0;top:0;height:100%;will-change:transform;z-index:1}
+.wall-line{position:absolute;left:0;right:0;top:70%;height:5px;background:linear-gradient(180deg,#3b3380,#1a1545);box-shadow:0 0 18px rgba(46,230,255,.25)}
 .zone-sign{
-  top:38px;transform:translateZ(calc(14px - var(--depth))) translateX(-50%);
-  font-family:var(--display);font-size:11px;line-height:1.8;text-align:center;
-  color:var(--neon-cyan);padding:12px 18px;border:3px solid var(--neon-cyan);border-radius:4px;
+  position:absolute;top:52px;transform:translateX(-50%);
+  font-family:var(--display);font-size:10px;line-height:1.8;text-align:center;
+  color:var(--neon-cyan);padding:10px 16px;border:3px solid var(--neon-cyan);border-radius:4px;
   box-shadow:0 0 14px rgba(46,230,255,.55),inset 0 0 14px rgba(46,230,255,.25),0 0 40px rgba(46,230,255,.25);
-  text-shadow:0 0 8px rgba(46,230,255,.9);background:rgba(8,6,24,.85);white-space:nowrap;
+  text-shadow:0 0 8px rgba(46,230,255,.9);
+  background:rgba(8,6,24,.85);white-space:nowrap;
 }
 .zone-sign.pink{color:var(--neon-pink);border-color:var(--neon-pink);box-shadow:0 0 14px rgba(255,62,165,.55),inset 0 0 14px rgba(255,62,165,.25),0 0 40px rgba(255,62,165,.25);text-shadow:0 0 8px rgba(255,62,165,.9)}
 .zone-sign.yellow{color:var(--neon-yellow);border-color:var(--neon-yellow);box-shadow:0 0 14px rgba(255,210,63,.55),inset 0 0 14px rgba(255,210,63,.25),0 0 40px rgba(255,210,63,.25);text-shadow:0 0 8px rgba(255,210,63,.9)}
-.poster{
-  top:120px;width:170px;padding:8px;background:#15112f;border:3px solid #3b3380;box-shadow:6px 6px 0 #050312,0 0 24px rgba(0,0,0,.6);
-  transform:translateZ(calc(14px - var(--depth))) translateX(-50%) rotate(var(--tilt,0deg));
-}
-.poster img{display:block;width:100%;height:110px;object-fit:cover;filter:saturate(1.2)}
-.poster span{display:block;font-family:var(--display);font-size:7px;line-height:1.6;color:var(--ink-dim);margin-top:6px;text-align:center}
-.scores{
-  top:70px;width:250px;padding:14px 16px;background:#040310;border:4px solid #3b3380;border-radius:6px;
-  box-shadow:0 0 0 3px #050312,0 0 30px rgba(155,255,122,.25),inset 0 0 30px rgba(155,255,122,.08);
-  transform:translateZ(calc(14px - var(--depth))) translateX(-50%);
-  font-family:var(--display);font-size:8px;line-height:2.2;color:var(--crt-green);text-shadow:0 0 6px rgba(155,255,122,.8);
-}
-.scores b{display:block;color:var(--neon-yellow);font-weight:400;font-size:10px;margin-bottom:6px;text-shadow:0 0 8px rgba(255,210,63,.8)}
-.scores div{display:flex;justify-content:space-between;gap:12px;border-top:1px dotted #2a2550}
-/* hero sign at the start of the corridor */
-.hero{top:40px;width:640px;transform:translateZ(calc(14px - var(--depth)))}
-.hero .name{
-  font-family:var(--display);font-size:54px;line-height:1.1;color:var(--neon-yellow);margin:0 0 14px;letter-spacing:2px;
-  text-shadow:0 0 10px rgba(255,210,63,.7),0 0 40px rgba(255,210,63,.35),
-    2px 2px 0 #9c7a12,4px 4px 0 #8a6a0e,6px 6px 0 #78590b,8px 8px 0 #664908,10px 10px 0 #543a06,12px 12px 0 #3c2904,14px 14px 10px rgba(0,0,0,.6);
-}
-.hero .tag{font-family:var(--display);font-size:9px;line-height:1.9;color:var(--neon-cyan);text-shadow:0 0 8px rgba(46,230,255,.8);margin:0 0 10px}
-.hero .sub{margin:0 0 16px;color:var(--ink-dim);font-size:16px;max-width:52ch}
-.keys{display:flex;flex-wrap:wrap;gap:10px}
-.keys a,.keys span{
-  display:inline-block;font-family:var(--display);font-size:8px;line-height:1.5;color:#0b0919;text-decoration:none;
-  background:#e8e4d8;border:2px solid #0b0919;border-radius:4px;padding:9px 12px;box-shadow:0 5px 0 #8f8a7c,0 7px 0 #0b0919;
-}
-.keys a:hover{transform:translateY(2px);box-shadow:0 3px 0 #8f8a7c,0 5px 0 #0b0919}
-.keys a.hot{background:var(--neon-pink);color:#fff;box-shadow:0 5px 0 #9c1f66,0 7px 0 #0b0919}
-.hint-keys{position:absolute;top:calc(var(--floorY) + 8px);display:flex;align-items:center;gap:8px;transform:translateZ(calc(80px - var(--depth))) rotateX(60deg);transform-origin:50% 0}
-.hint-keys span{font-family:var(--display);font-size:9px;color:#0b0919;background:#e8e4d8;border:2px solid #0b0919;border-radius:4px;padding:9px 11px;box-shadow:0 5px 0 #8f8a7c,0 7px 0 #0b0919}
-.hint-keys i{font-family:var(--display);font-style:normal;font-size:8px;color:var(--ink-dim)}
 
-/* ---------- cabinet: a box standing against the wall ---------- */
+/* ---------- cabinet ---------- */
 .cab{
-  position:absolute;bottom:calc(100% - var(--floorY));width:190px;margin-left:-95px;
-  transform:translateZ(calc(var(--cabd) - var(--depth)));transform-style:preserve-3d;
-  background:none;border:0;padding:0;color:inherit;font:inherit;text-align:left;cursor:pointer;
-  --g:var(--glow);--cabd:90px;
+  position:absolute;bottom:30%;transform:translateX(-50%);width:190px;
+  background:none;border:0;padding:0;margin:0;color:inherit;font:inherit;text-align:left;cursor:pointer;
+  --g:var(--glow);
 }
 .cab-body{
   position:relative;z-index:1;
   background:linear-gradient(90deg,#211c48 0%,#2c2660 18%,#2a2458 82%,#1a1640 100%);
   border-radius:6px 6px 2px 2px;
-  box-shadow:inset 3px 0 0 rgba(255,255,255,.08),inset -3px 0 0 rgba(0,0,0,.45),0 0 0 2px #0a0820;
-  transition:box-shadow .18s ease;
+  box-shadow:
+    inset 3px 0 0 rgba(255,255,255,.08),inset -3px 0 0 rgba(0,0,0,.45),
+    0 0 0 2px #0a0820,14px 10px 24px rgba(0,0,0,.6);
+  transition:transform .18s ease,box-shadow .18s ease;
 }
-.cab-body::before,.cab-body::after{content:"";position:absolute;top:70px;bottom:40px;width:6px;pointer-events:none;background:linear-gradient(180deg,var(--g),transparent 70%);opacity:.75}
+/* side art stripes in the cabinet's colour */
+.cab-body::before,.cab-body::after{
+  content:"";position:absolute;top:70px;bottom:40px;width:6px;pointer-events:none;
+  background:linear-gradient(180deg,var(--g),transparent 70%);opacity:.75;
+}
 .cab-body::before{left:3px}.cab-body::after{right:3px}
-.face{position:absolute;pointer-events:none;backface-visibility:hidden}
-.face.l,.face.r{top:0;bottom:0;width:var(--cabd);background:linear-gradient(90deg,#0b0922,#191540 60%,#120f2e);box-shadow:inset 0 0 0 2px #0a0820}
-.face.l{left:0;transform-origin:left center;transform:rotateY(90deg)}
-.face.r{right:0;transform-origin:right center;transform:rotateY(-90deg)}
-.face.l::before,.face.r::before{content:"";position:absolute;left:14%;right:14%;top:18%;height:46%;background:linear-gradient(180deg,var(--g),transparent);opacity:.55;border-radius:3px}
-.face.t{left:0;right:0;top:0;height:var(--cabd);background:linear-gradient(180deg,#2d2763,#1a1640);transform-origin:center top;transform:rotateX(-90deg);box-shadow:inset 0 0 0 2px #0a0820}
 .cab-marquee{
   position:relative;margin:0 6px;padding:12px 8px 10px;min-height:46px;
   display:flex;align-items:center;justify-content:center;text-align:center;
   font-family:var(--display);font-size:8px;line-height:1.5;color:#fff;
-  background:linear-gradient(180deg,rgba(255,255,255,.22),transparent 45%),linear-gradient(180deg,color-mix(in srgb,var(--g) 70%,#000),color-mix(in srgb,var(--g) 35%,#000));
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.22),transparent 45%),
+    linear-gradient(180deg,color-mix(in srgb,var(--g) 70%,#000) ,color-mix(in srgb,var(--g) 35%,#000));
   border:3px solid #0a0820;border-bottom-width:5px;border-radius:5px 5px 0 0;
   box-shadow:0 0 14px color-mix(in srgb,var(--g) 60%,transparent),inset 0 0 18px color-mix(in srgb,var(--g) 45%,transparent);
-  text-shadow:0 0 6px #fff,0 0 12px var(--g);clip-path:polygon(0 0,100% 0,96% 100%,4% 100%);
+  text-shadow:0 0 6px #fff,0 0 12px var(--g);
+  clip-path:polygon(0 0,100% 0,96% 100%,4% 100%);
 }
-.cab.yellow .cab-marquee{border-radius:22px 22px 0 0;clip-path:none}
 .cab-grille{height:10px;margin:4px 14px 0;background:repeating-linear-gradient(90deg,#0a0820 0 3px,#3b3380 3px 5px);border-radius:2px;opacity:.9}
-.cab-bezel{position:relative;margin:6px 10px 0;padding:8px;background:linear-gradient(180deg,#0f0c26,#07051a);border-radius:8px;box-shadow:inset 0 2px 0 rgba(255,255,255,.08),inset 0 -2px 0 rgba(0,0,0,.6)}
-.cab-screen{position:relative;height:92px;background:var(--crt-bg);overflow:hidden;border-radius:6px;box-shadow:inset 0 0 16px rgba(0,0,0,.9),0 0 10px color-mix(in srgb,var(--g) 35%,transparent)}
+.cab-bezel{
+  position:relative;margin:6px 10px 0;padding:8px;background:linear-gradient(180deg,#0f0c26,#07051a);
+  border-radius:8px;box-shadow:inset 0 2px 0 rgba(255,255,255,.08),inset 0 -2px 0 rgba(0,0,0,.6);
+}
+.cab-screen{
+  position:relative;height:92px;background:var(--crt-bg);overflow:hidden;border-radius:6px;
+  box-shadow:inset 0 0 16px rgba(0,0,0,.9),0 0 10px color-mix(in srgb,var(--g) 35%,transparent);
+}
 .cab-screen img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.25) contrast(1.1) brightness(.95)}
-.cab-screen .title-card{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;padding:8px;font-family:var(--display);font-size:9px;line-height:1.6;text-align:center;color:var(--g);text-shadow:0 0 8px var(--g);background:radial-gradient(ellipse at 50% 60%,color-mix(in srgb,var(--g) 18%,#06120e),#061a12 75%)}
+.cab-screen .title-card{
+  height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;padding:8px;
+  font-family:var(--display);font-size:9px;line-height:1.6;text-align:center;color:var(--g);
+  text-shadow:0 0 8px var(--g);
+  background:radial-gradient(ellipse at 50% 60%,color-mix(in srgb,var(--g) 18%,#06120e),#061a12 75%);
+}
 .cab-screen .title-card small{font-family:var(--body);font-size:11px;color:var(--crt-green);line-height:1.3;text-shadow:none}
-.cab-screen::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(115deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,.06) 28%,transparent 42%),radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%)}
-.cab-screen::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:repeating-linear-gradient(0deg,rgba(0,0,0,.26) 0 2px,transparent 2px 4px)}
-.cab-panel{position:relative;margin:10px 8px 0;height:34px;background:linear-gradient(180deg,#4a4290,#2b2560);border:3px solid #0a0820;border-radius:4px;transform:perspective(240px) rotateX(38deg);transform-origin:50% 0;display:flex;align-items:center;justify-content:space-evenly;padding:0 10px;box-shadow:0 4px 0 #0a0820,0 -1px 0 color-mix(in srgb,var(--g) 60%,transparent)}
+/* scanlines, vignette and glass glare */
+.cab-screen::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:
+    linear-gradient(115deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,.06) 28%,transparent 42%),
+    radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%);
+}
+.cab-screen::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.26) 0 2px,transparent 2px 4px);
+}
+.cab-panel{
+  position:relative;margin:10px 8px 0;height:34px;
+  background:linear-gradient(180deg,#4a4290,#2b2560);border:3px solid #0a0820;border-radius:4px;
+  transform:perspective(240px) rotateX(38deg);transform-origin:50% 0;
+  display:flex;align-items:center;justify-content:space-evenly;padding:0 10px;
+  box-shadow:0 4px 0 #0a0820,0 -1px 0 color-mix(in srgb,var(--g) 60%,transparent);
+}
 .stick{width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#b9b3d9);box-shadow:0 -11px 0 0 #e8e4d8,0 0 0 3px #0a0820}
 .btn-a,.btn-b{width:14px;height:14px;border-radius:50%;border:3px solid #0a0820;box-shadow:inset 0 -3px 0 rgba(0,0,0,.35),0 0 8px currentColor}
-.btn-a{background:var(--g);color:var(--g)}.btn-b{background:var(--neon-yellow);color:var(--neon-yellow)}
-.cab-status{font-family:var(--display);font-size:7px;line-height:1.5;text-align:center;color:var(--crt-green);padding:4px 8px 6px;text-shadow:0 0 6px rgba(155,255,122,.7)}
-.cab-kick{position:relative;height:40px;margin:0 6px;border-top:3px solid #0a0820;background:linear-gradient(180deg,#1a1640,#0e0b26)}
-.coin-door{position:absolute;left:50%;top:7px;transform:translateX(-50%);width:34px;height:24px;border:2px solid #4a4290;border-radius:3px;background:#0a0820}
+.btn-a{background:var(--g);color:var(--g)}
+.btn-b{background:var(--neon-yellow);color:var(--neon-yellow)}
+.cab-status{
+  font-family:var(--display);font-size:7px;line-height:1.5;text-align:center;color:var(--crt-green);
+  padding:4px 8px 6px;text-shadow:0 0 6px rgba(155,255,122,.7);
+}
+.cab-kick{
+  position:relative;height:40px;margin:0 6px;border-top:3px solid #0a0820;
+  background:linear-gradient(180deg,#1a1640,#0e0b26);
+}
+.coin-door{
+  position:absolute;left:50%;top:7px;transform:translateX(-50%);width:34px;height:24px;
+  border:2px solid #4a4290;border-radius:3px;background:#0a0820;
+}
 .coin-door::before{content:"";position:absolute;left:50%;top:4px;width:3px;height:9px;margin-left:-1px;background:var(--g);box-shadow:0 0 6px var(--g)}
 .coin-door::after{content:"";position:absolute;left:5px;right:5px;bottom:3px;height:2px;background:#4a4290}
 .cab-base{height:12px;margin:0 2px;background:#050312;border-radius:0 0 4px 4px}
-.cab-glow{position:absolute;left:6%;right:6%;bottom:-10px;height:26px;border-radius:50%;z-index:0;pointer-events:none;background:var(--g);filter:blur(14px);opacity:.55;transform:translateZ(-2px)}
-.cab-refl{position:absolute;left:8%;right:8%;top:100%;height:110px;pointer-events:none;background:linear-gradient(180deg,color-mix(in srgb,var(--g) 30%,transparent),transparent 85%);transform-origin:center top;transform:rotateX(90deg);opacity:.9}
-
-/* cocktail-table cabinet for the software projects */
-.cab.cocktail{width:200px;margin-left:-100px;--cabd:120px}
-.cab.cocktail .cab-body{border-radius:4px}
-.cab.cocktail .cab-top{
-  position:absolute;left:0;right:0;top:0;height:var(--cabd);transform-origin:center top;transform:rotateX(-118deg);
-  background:#15112f;border:3px solid #0a0820;border-radius:4px;padding:8px 10px;
-  box-shadow:inset 0 0 0 2px #3b3380,0 0 14px color-mix(in srgb,var(--g) 45%,transparent);
+.cab-side{
+  position:absolute;top:0;bottom:0;right:-16px;width:16px;z-index:0;pointer-events:none;
+  background:linear-gradient(90deg,#120f2e,#07051a);
+  transform:skewY(-28deg);transform-origin:0 100%;
+  border-radius:0 4px 4px 0;
+  box-shadow:inset 1px 0 0 rgba(255,255,255,.06);
 }
-.cab.cocktail .cab-top .cab-screen{height:100%;transform:scaleY(-1)}
-.cab.cocktail .cab-body::before,.cab.cocktail .cab-body::after{top:14px;bottom:14px}
-.cab.cocktail .cab-label{font-family:var(--display);font-size:8px;line-height:1.5;color:#fff;text-align:center;padding:14px 10px 6px;text-shadow:0 0 8px var(--g)}
-.cab.cocktail .cab-side-btn{display:flex;justify-content:center;gap:10px;padding:4px 0 10px}
+.cab-side::before{content:"";position:absolute;left:3px;right:3px;top:16%;height:40%;background:linear-gradient(180deg,var(--g),transparent);opacity:.5}
+/* LED underglow + floor reflection */
+.cab-glow{
+  position:absolute;left:8%;right:8%;bottom:-12px;height:22px;border-radius:50%;z-index:0;pointer-events:none;
+  background:var(--g);filter:blur(12px);opacity:.55;
+}
+.cab-refl{
+  position:absolute;left:0;right:0;top:100%;height:110px;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--g) 32%,transparent),transparent 85%);
+  -webkit-mask-image:linear-gradient(180deg,#000,transparent);mask-image:linear-gradient(180deg,#000,transparent);
+  transform:skewX(-6deg);opacity:.8;
+}
 
-.cab.near .cab-body{box-shadow:inset 3px 0 0 rgba(255,255,255,.08),inset -3px 0 0 rgba(0,0,0,.45),0 0 0 2px #0a0820,0 0 34px var(--g),0 0 80px color-mix(in srgb,var(--g) 60%,transparent)}
-.cab.near .cab-glow{opacity:1;filter:blur(18px)}
-.cab.near .cab-screen img,.cab.near .cab-screen .title-card{filter:brightness(.35) blur(1px)}
+.cab.near .cab-body{transform:translateY(-6px);box-shadow:inset 3px 0 0 rgba(255,255,255,.08),inset -3px 0 0 rgba(0,0,0,.45),0 0 0 2px #0a0820,14px 16px 24px rgba(0,0,0,.6),0 0 34px var(--g),0 0 80px color-mix(in srgb,var(--g) 60%,transparent)}
+.cab.near .cab-glow{opacity:1;filter:blur(16px)}
+.cab:hover .cab-body{transform:translateY(-3px)}
 
-/* preview bubble: pops out of the machine toward you */
+/* preview bubble that pops up when you walk up to a machine */
 .bubble{
-  position:absolute;left:50%;bottom:52%;transform:translateX(-50%) translateZ(10px) scale(.6);transform-origin:50% 100%;
+  position:absolute;left:50%;bottom:52%;transform:translateX(-50%) translateY(10px) scale(.6);transform-origin:50% 100%;
   width:300px;padding:10px;border-radius:8px;cursor:default;
   background:#0f0c24;border:3px solid var(--g);
   box-shadow:0 0 0 3px #050312,0 0 24px color-mix(in srgb,var(--g) 60%,transparent),10px 10px 0 #050312;
-  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s ease,transform .18s ease,visibility .18s;
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s ease,transform .16s ease,visibility .16s;
   text-align:left;z-index:5;
 }
-.bubble::after{content:"";position:absolute;left:50%;top:100%;margin-left:-9px;border:9px solid transparent;border-top-color:var(--g)}
-.cab.near .bubble{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateZ(120px) scale(1)}
-.cab.cocktail .bubble{bottom:100%}
+.bubble::after{
+  content:"";position:absolute;left:50%;top:100%;margin-left:-9px;border:9px solid transparent;border-top-color:var(--g);
+}
+.cab.near .bubble{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1)}
+.cab.near .cab-screen img,.cab.near .cab-screen .title-card{filter:brightness(.35) blur(1px)}
 .bubble img{width:100%;height:120px;object-fit:cover;display:block;border-radius:4px;border:2px solid #2a2550;background:#000}
 .bubble .b-card{height:120px;display:flex;align-items:center;justify-content:center;border-radius:4px;border:2px solid #2a2550;font-family:var(--display);font-size:10px;color:var(--g);text-shadow:0 0 8px var(--g);background:radial-gradient(ellipse at 50% 60%,color-mix(in srgb,var(--g) 18%,#06120e),#061a12 75%)}
 .bubble h3{font-family:var(--display);font-size:9px;line-height:1.6;color:#fff;margin:10px 0 4px}
 .bubble p{font-family:var(--body);font-size:13.5px;line-height:1.4;color:var(--ink-dim);margin:0 0 10px}
-.bubble .play{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font-family:var(--display);font-size:9px;color:#0a0820;background:var(--neon-yellow);border:3px solid #0a0820;padding:10px;cursor:pointer;box-shadow:3px 3px 0 #050312}
+.bubble .play{
+  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  font-family:var(--display);font-size:9px;color:#0a0820;background:var(--neon-yellow);
+  border:3px solid #0a0820;padding:10px;cursor:pointer;box-shadow:3px 3px 0 #050312;
+}
 .bubble .play:hover{background:#fff}
 .bubble .play:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #050312}
-@media (prefers-reduced-motion:reduce){.cab-body,.bubble,.room{transition:none}}
+@media (prefers-reduced-motion:reduce){.cab-body,.bubble{transition:none}}
 
-/* player sprite: stands at the front of the room */
-.player{--px:4px;position:absolute;top:calc(var(--floorY) - 2px);z-index:2;width:calc(24 * var(--px));height:calc(23 * var(--px));margin-top:calc(-23 * var(--px));transform:translateX(-50%) translateZ(150px);pointer-events:none;will-change:left}
+/* player sprite */
+.player{--px:4px;position:absolute;bottom:22%;z-index:2;width:calc(24 * var(--px));height:calc(23 * var(--px));transform:translateX(-50%);pointer-events:none;will-change:transform,left}
 .player .sprite{position:absolute;left:0;top:0;width:var(--px);height:var(--px);background:transparent}
 .player.flip .sprite{transform:scaleX(-1);transform-origin:calc(12 * var(--px)) 0}
-.player .shadow{position:absolute;left:12%;right:12%;bottom:0;height:6px;border-radius:50%;background:rgba(0,0,0,.5)}
+.player .shadow{position:absolute;left:12%;right:12%;bottom:-4px;height:8px;border-radius:50%;background:rgba(0,0,0,.5)}
 
-/* HUD / controls (2D, over the room) */
-.hud{position:absolute;left:0;right:0;top:12px;display:flex;justify-content:space-between;align-items:flex-start;z-index:3;padding:0 16px;pointer-events:none;font-family:var(--display);font-size:9px;line-height:1.7;color:var(--ink-dim)}
+/* HUD / controls */
+.hud{
+  position:absolute;left:0;right:0;top:12px;display:flex;justify-content:space-between;align-items:flex-start;z-index:3;
+  padding:0 16px;pointer-events:none;font-family:var(--display);font-size:9px;line-height:1.7;color:var(--ink-dim);
+}
 .hud .hint{background:rgba(8,6,24,.78);border:3px solid #2a2550;padding:8px 12px;max-width:min(360px,60vw)}
 .hud .hint b{color:var(--neon-yellow);font-weight:400}
 .hud .counter{background:rgba(8,6,24,.78);border:3px solid #2a2550;padding:8px 12px;color:var(--crt-green);white-space:nowrap}
-.pad{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 16px;z-index:3}
+.pad{
+  position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:space-between;align-items:flex-end;padding:0 16px;z-index:3;
+}
 .pad .group{display:flex;gap:10px}
-.pad button{width:62px;height:62px;border-radius:50%;border:4px solid #0b0919;font-family:var(--display);font-size:14px;color:#0b0919;background:#e8e4d8;box-shadow:0 6px 0 #0b0919;cursor:pointer;touch-action:none}
+.pad button{
+  width:62px;height:62px;border-radius:50%;border:4px solid #0b0919;font-family:var(--display);font-size:14px;color:#0b0919;
+  background:#e8e4d8;box-shadow:0 6px 0 #0b0919;cursor:pointer;touch-action:none;
+}
 .pad button.go{background:var(--neon-pink);color:#fff;width:72px;height:72px;font-size:11px}
 .pad button:active{transform:translateY(4px);box-shadow:0 2px 0 #0b0919}
 @media (hover:hover) and (pointer:fine){.pad{display:none}}
 @media (max-width:640px){
   .hud{justify-content:flex-end}.hud .hint{display:none}
-  .arcade{height:min(74vh,600px);perspective:800px}
-  .hero{width:min(560px,90vw)}.hero .name{font-size:34px}.hero .sub{font-size:14px}
-  .zone-sign{top:30px;font-size:8px;padding:8px 10px}
-  .cab{width:170px;margin-left:-85px}
+  .arcade{height:min(72vh,560px)}
+  .zone-sign{top:48px;font-size:8px;padding:8px 10px}
+  .cab{width:170px}
   .bubble{width:min(280px,calc(100vw - 40px))}
-  .poster{width:130px}.poster img{height:84px}
-  .scores{width:210px;font-size:7px}
 }
 
 /* ---------- lobby (everything below the scene) ---------- */
@@ -344,34 +351,23 @@ footer a{color:var(--ink-dim)}
 </head>
 <body>
 
-<nav class="topbar" aria-label="Contact and profiles">
-  <a href="https://linkedin.com/in/ombhatt15/">LinkedIn</a>
-  <a href="https://github.com/OmBhatt15">GitHub</a>
-  <a href="https://www.instagram.com/ares_technologies/reels/">ARES on Instagram</a>
-  <a href="mailto:bhattom76@gmail.com">bhattom76@gmail.com</a>
-  <a href="Om_Bhatt_Resume.pdf">Résumé (PDF)</a>
-  <a href="#projects">All projects</a>
-  <a href="classic.html">Plain version</a>
-</nav>
+<header class="marquee">
+  <h1>OM BHATT</h1>
+  <p class="sub">Mechatronics engineering undergraduate at Monash University and co-founder of ARES Technologies. PCB design, FPGA and embedded systems, robotics and computer vision.</p>
+  <nav class="links" aria-label="Contact and profiles">
+    <a href="https://linkedin.com/in/ombhatt15/">LinkedIn</a>
+    <a href="https://github.com/OmBhatt15">GitHub</a>
+    <a href="https://www.instagram.com/ares_technologies/reels/">ARES on Instagram</a>
+    <a href="mailto:bhattom76@gmail.com">bhattom76@gmail.com</a>
+    <a href="Om_Bhatt_Resume.pdf">Résumé (PDF)</a>
+    <a href="classic.html">Plain version</a>
+  </nav>
+  <p class="insert-coin" aria-hidden="true">INSERT COIN · USE ← → TO WALK · ↑ TO PLAY</p>
+</header>
 
 <section class="arcade" id="arcade" tabindex="0" aria-label="Project arcade. Use the left and right arrow keys to walk, and the up arrow or Enter to open the machine in front of you. Every project is also listed further down the page.">
-  <div class="room sky" id="sky"><div class="plane ceil"></div></div>
-  <div class="room" id="world">
-    <div class="plane wall" id="wall"></div>
-    <div class="plane floor"></div>
-
-    <div class="onwall hero" id="hero">
-      <h1 class="name">OM BHATT</h1>
-      <p class="tag">MECHATRONICS @ MONASH · CO-FOUNDER, ARES TECHNOLOGIES</p>
-      <p class="sub">PCB design, FPGA and embedded systems, robotics and computer vision. Walk right to see what I've built.</p>
-      <div class="keys">
-        <a class="hot" href="Om_Bhatt_Resume.pdf">RÉSUMÉ</a>
-        <a href="https://linkedin.com/in/ombhatt15/">LINKEDIN</a>
-        <a href="https://github.com/OmBhatt15">GITHUB</a>
-        <a href="mailto:bhattom76@gmail.com">EMAIL</a>
-      </div>
-    </div>
-
+  <div class="world" id="world">
+    <div class="wall-line"></div>
     <div id="signs"></div>
     <div id="cabs"></div>
     <div class="player" id="player" aria-hidden="true"><div class="shadow"></div><div class="sprite" id="sprite"></div></div>
@@ -755,7 +751,7 @@ footer a{color:var(--ink-dim)}
     monash:{label:'MONASH COURSEWORK',cls:'yellow'},
     software:{label:'SOFTWARE & AI',cls:''}
   };
-  const SPACING = 250, START = 900, ZONE_GAP = 420, DEPTH = 280;
+  const SPACING = 230, START = 200, ZONE_GAP = 120;
   const world = document.getElementById('world');
   const cabsEl = document.getElementById('cabs');
   const signsEl = document.getElementById('signs');
@@ -764,63 +760,27 @@ footer a{color:var(--ink-dim)}
   const sprite = document.getElementById('sprite');
   const counter = document.getElementById('counter');
   const list = document.getElementById('projectList');
-  arcade.style.setProperty('--depth', DEPTH + 'px');
-  function setFloor(){ arcade.style.setProperty('--floorY', Math.round(arcade.clientHeight * 0.72) + 'px'); }
-  setFloor();
-  document.getElementById('hero').style.left = '120px';
-
-  // Wall dressing between the zones, so the walk has some scenery.
-  const decor = {
-    muas: [{type:'scores'}],
-    ares: [{type:'poster', img:'MUAS_Cassowary_Routing.png', cap:'CASSOWARY BOARD 1 · ALTIUM', tilt:-2}],
-    monash: [{type:'poster', img:'SCORPION V1 CAD.png', cap:'SCORPION V1 · SOLIDWORKS', tilt:2}],
-    software: [{type:'poster', img:'JAEGAR Hand V3.jpeg', cap:'JAEGAR HAND V3', tilt:-1.5}]
-  };
-  function addDecor(kind, at){
-    (decor[kind] || []).forEach(d => {
-      let el;
-      if (d.type === 'scores') {
-        el = document.createElement('div'); el.className = 'onwall scores';
-        el.innerHTML = `<b>HIGH SCORES</b><div><span>WAM</span><span>79.300</span></div><div><span>GPA</span><span>3.400</span></div><div><span>WARMAN</span><span>10 / 160</span></div><div><span>DEEPNEURON EXPO</span><span>EXHIBITED</span></div>`;
-      } else {
-        el = document.createElement('div'); el.className = 'onwall poster'; el.style.setProperty('--tilt', d.tilt + 'deg');
-        el.innerHTML = `<img src="${d.img}" alt="" loading="lazy"><span>${d.cap}</span>`;
-      }
-      el.style.left = at + 'px'; signsEl.appendChild(el);
-    });
-  }
 
   // Lay out cabinets left to right, with a sign at the start of each zone.
   const cabs = []; let x = START, lastZone = null;
   details.forEach((d, i) => {
     const z = d.dataset.zone;
     if (z !== lastZone) {
-      if (lastZone) { addDecor(lastZone, x + 85); x += ZONE_GAP; }
+      if (lastZone) x += ZONE_GAP;
       const s = document.createElement('div');
-      s.className = 'onwall zone-sign ' + zones[z].cls; s.textContent = zones[z].label; s.style.left = x + 'px';
+      s.className = 'zone-sign ' + zones[z].cls; s.textContent = zones[z].label; s.style.left = x + 'px';
       signsEl.appendChild(s); lastZone = z;
     }
-    const cocktail = z === 'software';
     const b = document.createElement('button');
-    b.type = 'button'; b.className = 'cab ' + zones[z].cls + (cocktail ? ' cocktail' : ''); b.style.left = x + 'px'; b.style.setProperty('--glow', d.dataset.glow);
+    b.type = 'button'; b.className = 'cab'; b.style.left = x + 'px'; b.style.setProperty('--glow', d.dataset.glow);
     b.setAttribute('aria-label', d.dataset.title + '. ' + d.dataset.blurb + '. Open details');
     const screen = d.dataset.img
       ? `<img src="${d.dataset.img}" alt="">`
       : `<div class="title-card">${d.dataset.title}<small>${d.dataset.blurb}</small></div>`;
     const bimg = d.dataset.img ? `<img src="${d.dataset.img}" alt="">` : `<div class="b-card">${d.dataset.title}</div>`;
-    const bubble = `<div class="bubble" role="group" aria-label="${d.dataset.title} preview">${bimg}
+    b.innerHTML = `<div class="bubble" role="group" aria-label="${d.dataset.title} preview">${bimg}
         <h3>${d.dataset.title}</h3><p>${d.dataset.blurb}. ${d.dataset.status}.</p>
-        <span class="play" data-play>PLAY ▶</span></div>`;
-    b.innerHTML = cocktail ? `${bubble}
-      <div class="cab-top"><div class="cab-screen">${screen}</div></div><div class="face l"></div><div class="face r"></div>
-      <div class="cab-body">
-        <div class="cab-label">${d.dataset.title}</div>
-        <div class="cab-side-btn"><div class="btn-a"></div><div class="btn-b"></div></div>
-        <div class="cab-status">${d.dataset.status}</div>
-        <div class="cab-kick"><div class="coin-door"></div></div>
-        <div class="cab-base"></div>
-      </div><div class="cab-glow"></div><div class="cab-refl"></div>` : `${bubble}
-      <div class="face l"></div><div class="face r"></div><div class="face t"></div>
+        <span class="play" data-play>PLAY ▶</span></div>
       <div class="cab-body">
         <div class="cab-marquee">${d.dataset.title}</div>
         <div class="cab-grille"></div>
@@ -829,7 +789,8 @@ footer a{color:var(--ink-dim)}
         <div class="cab-status">${d.dataset.status}</div>
         <div class="cab-kick"><div class="coin-door"></div></div>
         <div class="cab-base"></div>
-      </div><div class="cab-glow"></div><div class="cab-refl"></div>`;
+      </div>
+      <div class="cab-side"></div><div class="cab-glow"></div><div class="cab-refl"></div>`;
     b.addEventListener('click', e => { if (e.target.closest('[data-play]') || nearIdx === i) open(i); else walkTo(i, true); });
     cabsEl.appendChild(b); cabs.push({x, el:b, d});
 
@@ -839,8 +800,7 @@ footer a{color:var(--ink-dim)}
     list.appendChild(li);
     x += SPACING;
   });
-  const worldW = x + 300; world.style.width = worldW + 'px';
-  document.querySelectorAll('.plane').forEach(p => p.style.width = worldW + 'px');
+  const worldW = x + START; world.style.width = worldW + 'px';
 
   // --- player sprite: a 16x24 pixel map, drawn with one box-shadow ---
   // An original upright platypus in the arcade's own colours: purple body, orange bill, feet and tail, engineer's goggles up on the head.
@@ -875,17 +835,13 @@ footer a{color:var(--ink-dim)}
   let frame = 0; sprite.style.boxShadow = shadows[0];
 
   // --- movement ---
-  let px_ = innerWidth < 640 ? 230 : 420, vx = 0, facing = 1, target = null, openAfter = false, nearIdx = -1, ftimer = 0;
+  let px_ = START - 110, vx = 0, facing = 1, target = null, openAfter = false, nearIdx = -1, ftimer = 0;
   const SPEED = 4.2, RANGE = 70;
   const keys = {};
-  let yaw = 0; const sky = document.getElementById('sky');
-  function camera(dir){
+  function camera(){
     const vw = arcade.clientWidth;
     const cam = Math.max(Math.min(0, -(px_ - vw/2)), -(worldW - vw));
-    const want = reduced ? 0 : (dir || 0) * -2.5;
-    yaw += (want - yaw) * 0.08;
-    world.style.transform = `translate3d(${cam}px,0,0)`; sky.style.transform = world.style.transform;
-    arcade.style.perspectiveOrigin = (50 + yaw * 1.2) + '% 42%';
+    world.style.transform = `translateX(${cam}px)`;
   }
   function updateNear(){
     let best = -1, bd = RANGE;
@@ -917,7 +873,7 @@ footer a{color:var(--ink-dim)}
     sprite.style.boxShadow = shadows[frame];
     player.classList.toggle('flip', facing < 0);
     player.style.left = px_ + 'px';
-    camera(dir); updateNear();
+    camera(); updateNear();
     requestAnimationFrame(step);
   }
   function nearest(){ let b=0,bd=Infinity; cabs.forEach((c,i)=>{const d=Math.abs(c.x-px_); if(d<bd){bd=d;b=i;}}); return b; }
@@ -985,12 +941,12 @@ footer a{color:var(--ink-dim)}
     target = Math.max(60, Math.min(worldW - 60, e.clientX - arcade.getBoundingClientRect().left - cam)); openAfter = false;
     arcade.focus({preventScroll:true});
   });
-  addEventListener('resize', () => { setFloor(); camera(0); });
+  addEventListener('resize', camera);
 
   // Deep link: /#x72 opens that machine.
   const h = location.hash.replace('#','');
   const idx = details.findIndex(d => d.id === 'd-' + h);
-  camera(0); updateNear(); requestAnimationFrame(step);
+  camera(); updateNear(); requestAnimationFrame(step);
   if (idx >= 0) { px_ = cabs[idx].x; open(idx); }
 })();
 </script>

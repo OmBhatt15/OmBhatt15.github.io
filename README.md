@@ -6,8 +6,7 @@ Co-Founder of ARES Technologies. Live at **[ombhatt15.github.io](https://ombhatt
 ## Stack
 
 Single-file static site. No build step, no dependencies, no framework — GitHub Pages serves the
-files exactly as they are committed. The arcade is a CSS 3D room (perspective, preserve-3d planes
-and boxed cabinets); `classic.html` is the plain layout.
+files exactly as they are committed.
 
 | File | Purpose |
 | --- | --- |
